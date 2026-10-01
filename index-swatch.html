@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suji Shin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Open+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F3ED;
+    --surface: #FFFFFF;
+    --ink: #2C1A10;
+    --ink-soft: #9C7A6A;
+    --line: #DDD5C8;
+    --stitch: #8B1A2F;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(to right, rgba(140,120,100,0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(140,120,100,0.09) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  header.site {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; padding: 28px 32px; max-width: 1100px; margin: 0 auto;
+  }
+  nav.left { display: flex; gap: 28px; }
+  nav.right { display: flex; gap: 28px; justify-content: flex-end; }
+  nav.left a, nav.right a { font-size: 14px; color: var(--ink-soft); transition: color .15s; }
+  nav.left a:hover, nav.right a:hover { color: var(--ink); }
+  .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; cursor: pointer; text-align: center; color: var(--ink); }
+
+  .view { display: none; animation: fade .35s ease; }
+  .view.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 48px 0 64px;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-sub, .hero-tagline { padding: 0 24px; }
+  canvas#off { display: none; }
+  canvas#stage { display: block; width: 100%; margin-bottom: 24px; }
+  .hero-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px; letter-spacing: 0.2em; color: var(--ink-soft);
+    text-transform: uppercase; margin-bottom: 12px;
+    opacity: 0; transition: opacity 1.2s;
+  }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(16px, 2.2vw, 20px); color: var(--ink);
+    opacity: 0; transition: opacity 1.2s;
+    margin-bottom: 0; max-width: 46ch; line-height: 1.6;
+  }
+  .stitch-show { opacity: 1 !important; }
+
+  /* GRID */
+  .work-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px 24px;
+    margin-bottom: 120px;
+  }
+  @media (max-width: 680px) { .work-grid { grid-template-columns: 1fr; } }
+
+  .work-item { cursor: pointer; }
+  .work-img {
+    overflow: hidden; aspect-ratio: 16/10;
+    background: var(--line);
+  }
+  .work-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .work-img svg { width: 100%; height: 100%; display: block; }
+  .work-item:hover .work-img img { transform: scale(1.04); }
+  .work-caption { padding: 18px 0 0; }
+  .work-caption .tags {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 10px;
+  }
+  .work-caption .name-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 12px; margin: 0 0 6px; }
+  .work-caption .name {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 19px; letter-spacing: -0.01em; line-height: 1.2;
+    margin: 0; color: var(--ink); transition: color .15s;
+  }
+  .work-item:hover .work-caption .name { color: var(--stitch); }
+  .work-caption .year { font-size: 13px; color: var(--ink-soft); }
+  .work-caption .chip {
+    font-size: 11px; letter-spacing: .03em; padding: 3px 10px; border-radius: 20px;
+    border: 1px solid rgba(139,26,47,.35); color: var(--stitch); align-self: center;
+  }
+  .work-caption .title { font-size: 16px; font-weight: 500; line-height: 1.4; margin: 0 0 6px; color: var(--ink); max-width: 40ch; }
+  .work-caption .desc { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.55; max-width: 46ch; }
+
+  /* award line in hero */
+  .hero-award {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px; font-size: 13px; color: var(--ink);
+    opacity: 0; transition: opacity 1.2s;
+  }
+  .hero-award svg { width: 16px; height: 16px; color: var(--stitch); flex-shrink: 0; }
+
+  /* CASE STUDY */
+  .back {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-soft);
+    margin: 40px 0 36px; cursor: pointer; border: none; background: none; font-family: inherit; transition: color .15s;
+  }
+  .back:hover { color: var(--ink); }
+
+  .detail-hero { overflow: hidden; margin-bottom: 48px; }
+  .detail-hero img { width: 100%; display: block; }
+  .detail-hero.full-hero {
+    position: relative; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
+    width: 100vw; max-width: 100vw;
+    margin-top: 0; margin-bottom: 56px;
+  }
+
+  .detail-head { max-width: 680px; margin-bottom: 48px; }
+  .detail-head .tag { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; display: block; }
+  .detail-head h2 {
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(30px, 4.4vw, 46px); margin: 0 0 16px; line-height: 1.16; color: var(--ink);
+  }
+  .detail-head .dek { font-size: 17px; color: var(--ink-soft); margin: 0; }
+
+  .meta-row {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 20px 0; margin-bottom: 52px;
+  }
+  .meta-row .k { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 4px; }
+  .meta-row .v { font-size: 14px; margin: 0; }
+
+  .detail-body { max-width: 640px; padding-bottom: 40px; }
+  .detail-body h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; font-weight: 400; margin: 48px 0 14px; }
+  .detail-body h3:first-child { margin-top: 0; }
+  .detail-body p { color: var(--ink-soft); margin: 0 0 14px; }
+
+  .callout {
+    margin-top: 40px; padding: 20px 24px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout svg { flex-shrink: 0; width: 24px; height: 24px; color: var(--ink-soft); }
+  .callout p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  .toolset { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+  .toolset span { font-size: 12px; border: 1px solid var(--line); padding: 5px 12px; border-radius: 20px; color: var(--ink-soft); }
+
+  .full-img {
+    position: relative; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
+    width: 100vw; max-width: 100vw;
+    display: block; margin-top: 36px; margin-bottom: 36px;
+  }
+
+  .soon-note { max-width: 560px; padding: 0 0 80px; color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+
+
+  /* ===== SWATCH LAYOUT: grid underneath, feels free on top ===== */
+  .work-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 32px; row-gap: 72px;
+    padding-top: 24px;
+  }
+  .work-item { position: relative; }
+  .work-item:nth-child(1) { grid-column: 1 / span 7; --tilt: -1.2deg; }
+  .work-item:nth-child(2) { grid-column: 8 / span 5; margin-top: 140px; --tilt: 1.4deg; }
+  .work-item:nth-child(3) { grid-column: 2 / span 5; margin-top: -20px; --tilt: 1deg; }
+  .work-item:nth-child(4) { grid-column: 7 / span 6; margin-top: 90px; --tilt: -1.1deg; }
+
+  /* the swatch: a little piece of fabric holding the image */
+  .work-img {
+    position: relative; overflow: visible; aspect-ratio: auto;
+    padding: 12px;
+    box-shadow: inset 0 0 0 12px #FBF8F3, 0 1px 2px rgba(60,30,20,.08), 0 10px 28px rgba(60,30,20,.10);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
+  }
+  .work-item:hover .work-img {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: inset 0 0 0 12px #FBF8F3, 0 2px 4px rgba(60,30,20,.08), 0 18px 36px rgba(60,30,20,.14);
+  }
+  .work-img > img, .work-img > svg {
+    display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; height: auto;
+  }
+  .work-item:nth-child(1) .work-img > img { aspect-ratio: 16/11; }
+  .work-item:hover .work-img > img { transform: none; }
+
+  /* sewing pin holding each swatch: pearl head, shaft that dips under the fabric */
+  .work-item { --pin: #F1ECE4; }   /* white pearl head on every pin */
+  .work-img::before {               /* shaft */
+    content: ''; position: absolute; z-index: 3;
+    left: 40px; top: -12px; width: 2px; height: 54px; border-radius: 1px;
+    background: linear-gradient(to bottom,
+      #8d8d8d 0, #e6e6e6 18%, #9b9b9b 56%, transparent 56%,
+      transparent 78%, #9b9b9b 78%, #dcdcdc 92%, #8d8d8d 100%);
+    transform: rotate(-36deg); transform-origin: top center;
+    filter: drop-shadow(1px 1px 0.6px rgba(40,20,10,.25));
+  }
+  .work-img::after {                /* pearl head */
+    content: ''; position: absolute; z-index: 4;
+    left: 33px; top: -20px; width: 16px; height: 16px; border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, #fff 0 9%,
+      color-mix(in srgb, var(--pin) 70%, #fff) 22%, var(--pin) 52%,
+      color-mix(in srgb, var(--pin) 65%, #000) 100%);
+    box-shadow: 1px 3px 5px rgba(40,20,10,.32), inset -1px -2px 3px rgba(120,100,80,.18);
+  }
+  .work-item:nth-child(even) .work-img::before { left: auto; right: 40px; transform: rotate(36deg); }
+  .work-item:nth-child(even) .work-img::after { left: auto; right: 33px; }
+
+  .work-caption { padding: 18px 6px 0; }
+
+  @media (max-width: 760px) {
+    .work-grid { grid-template-columns: 1fr; row-gap: 56px; }
+    .work-item:nth-child(n) { grid-column: 1 / -1; margin-top: 0; --tilt: 0deg; }
+  }
+
+  /* ===== CASE STUDY (structured) ===== */
+  .cs { padding-bottom: 40px; }
+  .cs-title {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: clamp(30px, 4.6vw, 52px); line-height: 1.12; letter-spacing: -0.015em;
+    margin: 0 0 40px; max-width: 18ch; color: var(--ink);
+  }
+  .cs-meta {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 22px 0; margin-bottom: 40px;
+  }
+  @media (max-width: 720px) { .cs-meta { grid-template-columns: 1fr 1fr; } }
+  .cs-meta .k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--stitch); margin: 0 0 6px; font-weight: 600; }
+  .cs-meta .v { font-size: 14px; margin: 0; line-height: 1.5; color: var(--ink); }
+
+  .cs-section { padding: 88px 0 0; }
+  .cs-eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--stitch); font-weight: 600; margin: 0 0 14px; }
+  .cs-h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: clamp(26px, 3.4vw, 38px); line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 14px; max-width: 26ch; color: var(--ink);
+  }
+  .cs-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(17px, 2vw, 21px); color: var(--ink); margin: 0 0 18px; max-width: 46ch; line-height: 1.45; }
+  .cs-body { font-size: 16px; color: var(--ink-soft); max-width: 62ch; margin: 0 0 14px; line-height: 1.7; }
+  .cs mark { background: rgba(139,26,47,0.12); color: var(--ink); padding: 0 3px; border-radius: 3px; }
+
+  /* TL;DR */
+  .cs-tldr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  @media (max-width: 820px) { .cs-tldr { grid-template-columns: 1fr; } }
+  .cs-card { background: rgba(255,255,255,0.6); border: 1px solid var(--line); border-radius: 14px; padding: 22px 22px 24px; }
+  .cs-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 10px; color: var(--ink); }
+  .cs-card p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+  .cs-card .num { font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; color: var(--stitch); margin: 0 0 18px; line-height: 1; }
+
+  .cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 820px) { .cs-two { grid-template-columns: 1fr; gap: 28px; } }
+  .cs-list { margin: 0; padding: 0; list-style: none; }
+  .cs-list li { font-size: 15px; color: var(--ink); padding: 12px 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
+  .cs-list li:first-child { border-top: 1px solid var(--line); }
+  .cs-note { font-size: 13.5px; color: var(--ink-soft); margin-top: 14px; }
+
+  /* process steps */
+  .cs-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0 32px; }
+  @media (max-width: 900px) { .cs-steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .cs-steps { grid-template-columns: 1fr; } }
+
+  /* before / after */
+  .cs-decision { margin-top: 56px; }
+  .cs-decision h3 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .cs-decision .label { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 22px; }
+  .cs-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 720px) { .cs-ba { grid-template-columns: 1fr; } }
+  .cs-ba .side { border-radius: 16px; padding: 24px; }
+  .cs-ba .before { background: rgba(139,26,47,0.05); }
+  .cs-ba .after { background: rgba(60,120,80,0.07); }
+  .cs-ba .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 18px; }
+  .cs-ba .before .tag { background: rgba(139,26,47,0.12); color: var(--stitch); }
+  .cs-ba .after .tag { background: rgba(60,120,80,0.15); color: #2E6B45; }
+  .cs-ba .phone-wrap { max-width: 220px; margin: 0 auto 20px; }
+  .cs-ba p { font-size: 14.5px; line-height: 1.65; color: var(--ink); margin: 0; }
+
+  /* final screens gallery */
+  .cs-gallery { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 2px 18px; margin-top: 28px; }
+  .cs-gallery .media { flex: 0 0 180px; scroll-snap-align: start; }
+  .cs-gallery figure { margin: 0; flex: 0 0 180px; }
+  .cs-gallery figcaption { font-size: 12px; color: var(--ink-soft); text-align: center; margin-top: 10px; }
+
+  .cs-feature { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-top: 72px; }
+  .cs-feature.flip { grid-template-columns: 0.9fr 1.1fr; }
+  .cs-feature.flip .cs-feature-text { order: 2; }
+  @media (max-width: 820px) { .cs-feature, .cs-feature.flip { grid-template-columns: 1fr; gap: 28px; } .cs-feature.flip .cs-feature-text { order: 0; } }
+  .cs-feature .phone-wrap { max-width: 260px; margin: 0 auto; }
+  .cs-feature .phone-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 460px; margin: 0 auto; }
+
+  .cs-fill { color: var(--stitch); font-style: italic; }
+
+  .cs-cta { text-align: center; padding: 100px 0 40px; }
+  .cs-cta h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 10px; }
+  .cs-cta p { color: var(--ink-soft); margin: 0 0 24px; }
+  .cs-btn { display: inline-block; font-size: 14px; padding: 11px 26px; border: 1px solid var(--stitch); color: var(--stitch); border-radius: 30px; transition: .15s; }
+  .cs-btn:hover { background: var(--stitch); color: #fff; }
+  .cs-next { display: block; border-top: 1px solid var(--line); margin-top: 60px; padding: 28px 0 0; cursor: pointer; }
+  .cs-next .k { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 6px; }
+  .cs-next .t { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; margin: 0; color: var(--ink); transition: color .15s; }
+  .cs-next:hover .t { color: var(--stitch); }
+
+  /* media placeholders: swap themselves for the real file once it exists */
+  .media {
+    position: relative; overflow: hidden; border-radius: 14px;
+    background: repeating-linear-gradient(45deg, rgba(139,26,47,0.045) 0 10px, transparent 10px 20px), #EAE2D7;
+    border: 1.5px dashed #C9B3A2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media .ph { font-size: 11.5px; line-height: 1.55; color: #8F6F5E; text-align: center; padding: 14px; font-family: ui-monospace, Menlo, monospace; }
+  .media .ph b { display: block; color: var(--stitch); font-weight: 600; margin-bottom: 2px; }
+  .media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media.loaded { border: none; background: none; }
+  .media.loaded .ph { display: none; }
+  .media.phone { border-radius: 26px; }
+  .cs-wide { margin-top: 32px; }
+
+  /* FOOTER */
+  footer.site {
+    border-top: 1px solid var(--line); padding: 64px 32px 72px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px;
+  }
+  footer.site h2 {
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 24px; line-height: 1.2; color: var(--ink);
+  }
+  footer.site .links { display: flex; gap: 24px; flex-wrap: wrap; }
+  footer.site .links a { font-size: 14px; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: .15s; }
+  footer.site .links a:hover { color: var(--ink); border-color: var(--ink); }
+  footer.site .fine { font-size: 12px; color: var(--ink-soft); text-align: right; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="left">
+    <a href="#" onclick="go('home');return false;">Work</a>
+    <a href="#" onclick="go('home');return false;">About</a>
+  </nav>
+  <span class="logo" onclick="go('home')">Suji Shin</span>
+  <nav class="right">
+    <a href="mailto:suzy.shin7@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/suji-shin" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div class="view active" id="view-home">
+  <div class="hero">
+    <canvas id="off"></canvas>
+    <canvas id="stage"></canvas>
+    <div class="hero-sub" id="hero-sub">Interaction Design &nbsp;·&nbsp; Toronto</div>
+    <div class="hero-tagline" id="hero-tagline">I care about the problem as much as the pixels.</div>
+  </div>
+
+  <div class="wrap">
+    <div class="work-grid">
+
+      <div class="work-item" onclick="go('ergoscan')">
+        <div class="work-img">
+          <img src="images/ergoscan-01.jpg" alt="ErgoScan">
+        </div>
+        <div class="work-caption">
+          <p class="tags">Mobile app &middot; Product design &middot; Team of 2</p>
+          <div class="name-row"><h3 class="name">ErgoScan</h3><span class="year">2026</span><span class="chip">RGD Honorable Mention</span></div>
+          <p class="title">Turning a desk scan into posture fixes anyone can make</p>
+          <p class="desc">An AR app that measures your workspace and uses AI to suggest small changes you can make today.</p>
+        </div>
+      </div>
+
+      <div class="work-item" onclick="go('shleep')">
+        <div class="work-img" style="background:#E4DDF6;">
+          <svg viewBox="0 0 400 300" fill="none">
+            <circle cx="300" cy="80" r="90" fill="#8A6BE0" opacity="0.15"/>
+            <path d="M120 190 Q120 150 155 150 Q150 115 190 106 Q230 98 242 128 Q270 122 278 155 Q305 160 305 188 Q305 205 280 205 L145 205 Q120 205 120 190 Z" fill="#fff" stroke="#4A2E8C" stroke-width="3"/>
+            <circle cx="158" cy="172" r="5" fill="#4A2E8C"/>
+          </svg>
+        </div>
+        <div class="work-caption">
+          <p class="tags">Mobile app &middot; UI design &middot; Team of 4</p>
+          <div class="name-row"><h3 class="name">Shleep</h3><span class="year">2025</span></div>
+          <p class="title">Helping people see what happens while they sleep</p>
+          <p class="desc">A future sleep-tech concept: a smart mattress topper and an app that turns your night into simple visuals.</p>
+        </div>
+      </div>
+
+      <div class="work-item" onclick="go('pawloop')">
+        <div class="work-img" style="background:#D6ECDD;">
+          <svg viewBox="0 0 400 300" fill="none">
+            <circle cx="310" cy="60" r="80" fill="#3CA664" opacity="0.15"/>
+            <ellipse cx="200" cy="190" rx="72" ry="58" fill="#fff" stroke="#1E6B3F" stroke-width="3"/>
+            <circle cx="158" cy="118" r="18" fill="#fff" stroke="#1E6B3F" stroke-width="3"/>
+            <circle cx="200" cy="106" r="18" fill="#fff" stroke="#1E6B3F" stroke-width="3"/>
+            <circle cx="242" cy="118" r="18" fill="#fff" stroke="#1E6B3F" stroke-width="3"/>
+            <circle cx="200" cy="190" r="6" fill="#3CA664"/>
+          </svg>
+        </div>
+        <div class="work-caption">
+          <p class="tags">Mobile app &middot; Product design &middot; Solo</p>
+          <div class="name-row"><h3 class="name">PawLoop</h3><span class="year">2025</span></div>
+          <p class="title">Giving unused cat toys a second home</p>
+          <p class="desc">A local exchange app where cat owners trade, sell, or give away toys their cats got bored of.</p>
+        </div>
+      </div>
+
+      <div class="work-item" onclick="go('stuview')">
+        <div class="work-img" style="background:#F7E7CE;">
+          <svg viewBox="0 0 400 300" fill="none">
+            <circle cx="100" cy="220" r="90" fill="#E2A03D" opacity="0.15"/>
+            <rect x="120" y="80" width="180" height="120" rx="6" fill="#fff" stroke="#8A5A17" stroke-width="3"/>
+            <line x1="120" y1="110" x2="300" y2="110" stroke="#8A5A17" stroke-width="3"/>
+            <circle cx="138" cy="95" r="4" fill="#8A5A17"/>
+            <path d="M188 145 L222 162 L188 179 Z" fill="#E2A03D"/>
+          </svg>
+        </div>
+        <div class="work-caption">
+          <p class="tags">Web &middot; UX research &middot; Solo</p>
+          <div class="name-row"><h3 class="name">Stu-View</h3><span class="year">2025</span></div>
+          <p class="title">Finding out why students get lost in their own portal</p>
+          <p class="desc">A moderated study with 5 students and 4 tasks. 3 out of 5 gave up on the menu and used search instead.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site">
+    <div>
+      <h2>Always happy<br>to connect.</h2>
+      <div class="links">
+        <a href="mailto:suzy.shin7@gmail.com">suzy.shin7@gmail.com</a>
+        <a href="https://www.linkedin.com/in/suji-shin" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#">Resume</a>
+      </div>
+    </div>
+    <p class="fine">2026 Suji Shin<br>Toronto, Canada.</p>
+  </footer>
+</div>
+
+<!-- ERGOSCAN -->
+<div class="view" id="view-ergoscan">
+  <div class="wrap cs">
+    <button class="back" onclick="go('home')">← All work</button>
+
+    <h1 class="cs-title">Turning a desk scan into posture fixes anyone can make</h1>
+
+    <div class="cs-meta">
+      <div><p class="k">Role</p><p class="v">UX/UI Designer<br>Front-end build</p></div>
+      <div><p class="k">Team</p><p class="v">Suji Shin<br>Diana Amriyeva</p></div>
+      <div><p class="k">Timeline</p><p class="v">2026<br><span class="cs-fill">[ how many weeks ]</span></p></div>
+      <div><p class="k">Type</p><p class="v">iOS app<br>AR + AI</p></div>
+    </div>
+
+    <div class="media " data-src="images/ergoscan/hero.mp4" data-ratio="16/9" data-type="video"><span class="ph"><b>hero.mp4</b>Hero loop: AR measuring on a real desk<br>16:9, 2400 × 1350 px (mp4) or hero.jpg</span></div>
+
+    <!-- TL;DR -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">TL;DR</p>
+      <div class="cs-tldr">
+        <div class="cs-card">
+          <h4>The problem</h4>
+          <p>Desk workers and students feel <mark>pain and discomfort</mark> but <mark>don't know why</mark>, and getting help usually means paying an expert.</p>
+        </div>
+        <div class="cs-card">
+          <h4>What I did</h4>
+          <p>Designed the app from lo-fi to hi-fi, <mark>built the front end in Xcode</mark>, and ran two rounds of testing that reshaped the measuring and results screens.</p>
+        </div>
+        <div class="cs-card">
+          <h4>The outcome</h4>
+          <p>A working iOS prototype that <mark>measures a desk in three steps</mark> and turns it into simple fixes. Recognized with an <mark>RGD Student Award Honorable Mention</mark>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">Overview</p>
+      <h2 class="cs-h2">Your personal ergonomist, in your pocket.</h2>
+      <p class="cs-sub">ErgoScan measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
+      <div class="cs-two" style="margin-top:28px">
+        <div>
+          <p class="cs-body" style="color:var(--ink);font-weight:600;margin-bottom:12px">What I did</p>
+          <ul class="cs-list">
+            <li>UX/UI design, from lo-fi wireframes to hi-fi screens</li>
+            <li>Front-end prototype in Xcode (SwiftUI + ARKit), built with help from Claude</li>
+            <li>User testing and iteration</li>
+          </ul>
+          <p class="cs-note">Diana led the concept, the UX flow and the backend, including the OpenAI API integration.</p>
+        </div>
+        <div class="media " data-src="images/ergoscan/overview.png" data-ratio="4/3"><span class="ph"><b>overview.png</b>Overview: 2 or 3 key screens together<br>4:3, 2000 × 1500 px</span></div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">The problem</p>
+      <h2 class="cs-h2">Most people don't know their desk is hurting them.</h2>
+      <p class="cs-sub">Many people spend 8+ hours a day at their desk.</p>
+      <p class="cs-body">Without realizing it, they adjust to their setup. They slouch a little more and strain a little further, and the damage adds up.</p>
+      <div class="cs-wide"><div class="media " data-src="images/ergoscan/problem.png" data-ratio="16/9"><span class="ph"><b>problem.png</b>Problem visual: person at a desk with strain points<br>16:9, 2400 × 1350 px</span></div></div>
+      <div class="cs-tldr" style="margin-top:32px">
+        <div class="cs-card"><p class="num">01</p><h4>Can't see the problem</h4><p>People know bad posture is harmful, but can't tell what's wrong with their own setup.</p></div>
+        <div class="cs-card"><p class="num">02</p><h4>No clear first step</h4><p>Even when they want to fix it, they don't know where to start.</p></div>
+        <div class="cs-card"><p class="num">03</p><h4>Experts cost too much</h4><p>Professional assessments exist, but they're too expensive and inconvenient for everyday use.</p></div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">Process</p>
+      <h2 class="cs-h2">How we got there</h2>
+      <div class="cs-steps">
+        <div class="cs-card"><h4>Concept &amp; UX flow</h4><p>Diana mapped the full flow: measure, a quick assessment, AI analysis, then save to history.</p></div>
+        <div class="cs-card"><h4>Lo-fi to hi-fi</h4><p>I designed every screen, from wireframes to the final UI in Figma.</p></div>
+        <div class="cs-card"><h4>Building it</h4><p>I built the front end in Xcode with SwiftUI and ARKit, using Claude to help with the code.</p></div>
+        <div class="cs-card"><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then a survey with about 20 visitors at our year-end show.</p></div>
+      </div>
+      <div class="media " data-src="images/ergoscan/ux-flow.png" data-ratio="24/11"><span class="ph"><b>ux-flow.png</b>UX flow diagram<br>wide, 2400 × 1100 px</span></div>
+    </section>
+
+    <!-- EXPLORATION -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">Exploration</p>
+      <h2 class="cs-h2">What testing changed.</h2>
+      <p class="cs-sub">Two decisions where feedback from real people reshaped the design.</p>
+
+      <div class="cs-decision">
+        <p class="label">Challenge 1 &middot; Measuring</p>
+        <h3>Familiar pattern, fewer placement errors</h3>
+        <div class="cs-ba" style="margin-top:20px">
+          <div class="side before">
+            <span class="tag">Before</span>
+            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/before-measure.png" data-ratio="1170/2532"><span class="ph"><b>before-measure.png</b>Old measuring screen<br>phone, 1170 × 2532 px</span></div></div>
+            <p>Free tap to place points on a small camera view. During the in-class showcase, testers weren't sure where to tap and couldn't aim precisely.</p>
+          </div>
+          <div class="side after">
+            <span class="tag">After</span>
+            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/after-measure.png" data-ratio="1170/2532"><span class="ph"><b>after-measure.png</b>New measuring screen<br>phone, 1170 × 2532 px</span></div></div>
+            <p>A crosshair and a plus button on a full-screen camera. People already know this from iPhone's Measure app, so there's nothing new to learn and fewer misplaced points.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-decision">
+        <p class="label">Challenge 2 &middot; Results</p>
+        <h3>From a data dump to an actionable report</h3>
+        <div class="cs-ba" style="margin-top:20px">
+          <div class="side before">
+            <span class="tag">Before</span>
+            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/before-results.png" data-ratio="1170/2532"><span class="ph"><b>before-results.png</b>Old results screen<br>phone, 1170 × 2532 px</span></div></div>
+            <p>Raw measurements in a flat list, colored by brand instead of status. Related info was spread across the screen, and each card had too much text to scan.</p>
+          </div>
+          <div class="side after">
+            <span class="tag">After</span>
+            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/after-results.png" data-ratio="1170/2532"><span class="ph"><b>after-results.png</b>New results screen<br>phone, 1170 × 2532 px</span></div></div>
+            <p>A score you can read at a glance, using traffic light colors (green, yellow, red). What needs fixing comes first, and each measurement lives in one card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL SOLUTION -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">Final solution</p>
+      <h2 class="cs-h2">Measure, understand, improve.</h2>
+      <div class="cs-gallery">
+        <figure><div class="media phone" data-src="images/ergoscan/screen-start.png" data-ratio="1170/2532"><span class="ph"><b>screen-start.png</b>Start<br>phone</span></div><figcaption>Start</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-height.png" data-ratio="1170/2532"><span class="ph"><b>screen-height.png</b>Viewing height<br>phone</span></div><figcaption>Viewing height</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-distance.png" data-ratio="1170/2532"><span class="ph"><b>screen-distance.png</b>Monitor distance<br>phone</span></div><figcaption>Monitor distance</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-keyboard.png" data-ratio="1170/2532"><span class="ph"><b>screen-keyboard.png</b>Keyboard position<br>phone</span></div><figcaption>Keyboard position</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-assessment.png" data-ratio="1170/2532"><span class="ph"><b>screen-assessment.png</b>Quick assessment<br>phone</span></div><figcaption>Quick assessment</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-score.png" data-ratio="1170/2532"><span class="ph"><b>screen-score.png</b>Score<br>phone</span></div><figcaption>Score</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-good.png" data-ratio="1170/2532"><span class="ph"><b>screen-good.png</b>Good setup<br>phone</span></div><figcaption>Good setup</figcaption></figure>
+        <figure><div class="media phone" data-src="images/ergoscan/screen-history.png" data-ratio="1170/2532"><span class="ph"><b>screen-history.png</b>History<br>phone</span></div><figcaption>History</figcaption></figure>
+      </div>
+
+      <div class="cs-feature">
+        <div class="cs-feature-text">
+          <p class="cs-eyebrow">Measure</p>
+          <h3 class="cs-h2" style="font-size:28px">Three steps, one camera.</h3>
+          <p class="cs-body">Viewing height, monitor distance and keyboard position, each measured by aiming and tapping. A quick two-question check covers elbows and wrists.</p>
+        </div>
+        <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/feature-measure.png" data-ratio="1170/2532"><span class="ph"><b>feature-measure.png</b>Measuring in action<br>phone, 1170 × 2532 px</span></div></div>
+      </div>
+
+      <div class="cs-feature flip">
+        <div class="cs-feature-text">
+          <p class="cs-eyebrow">Analyze</p>
+          <h3 class="cs-h2" style="font-size:28px">Know what's wrong first.</h3>
+          <p class="cs-body">The score shows how your setup is doing. Anything that needs improvement comes first, with a specific fix and why it matters.</p>
+        </div>
+        <div class="phone-pair"><div class="media phone" data-src="images/ergoscan/feature-score.png" data-ratio="1170/2532"><span class="ph"><b>feature-score.png</b>Score<br>phone</span></div><div class="media phone" data-src="images/ergoscan/feature-fix.png" data-ratio="1170/2532"><span class="ph"><b>feature-fix.png</b>Fix detail<br>phone</span></div></div>
+      </div>
+
+      <div class="cs-feature">
+        <div class="cs-feature-text">
+          <p class="cs-eyebrow">Track</p>
+          <h3 class="cs-h2" style="font-size:28px">Watch yourself improve.</h3>
+          <p class="cs-body">Every scan is saved, so you can compare setups and see your score change over time.</p>
+        </div>
+        <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/feature-history.png" data-ratio="1170/2532"><span class="ph"><b>feature-history.png</b>History<br>phone, 1170 × 2532 px</span></div></div>
+      </div>
+    </section>
+
+    <!-- IMPACT & REFLECTION -->
+    <section class="cs-section">
+      <p class="cs-eyebrow">Impact &amp; reflection</p>
+      <h2 class="cs-h2">It felt useful, not just like a school project.</h2>
+      <div class="cs-two" style="margin-top:24px">
+        <div>
+          <p class="cs-body">At our year-end show, visitors told us this wasn't just a school project. It was something they'd actually use at their own desk.</p>
+          <p class="cs-body">ErgoScan also received an Honorable Mention at the RGD Student Awards 2026.</p>
+        </div>
+        <div class="media " data-src="images/ergoscan/showcase.jpg" data-ratio="3/2"><span class="ph"><b>showcase.jpg</b>Photo from the year-end show (booth, poster, people trying it)<br>3:2, 2100 × 1400 px</span></div>
+      </div>
+      <div class="cs-tldr" style="margin-top:36px">
+        <div class="cs-card"><h4>What worked</h4><p class="cs-fill">[ your own words ]</p></div>
+        <div class="cs-card"><h4>What I'd do differently</h4><p class="cs-fill">[ your own words ]</p></div>
+        <div class="cs-card"><h4>If this shipped, I'd measure</h4><p class="cs-fill">[ your own words ]</p></div>
+      </div>
+    </section>
+
+    <div class="cs-cta">
+      <h2>Want to hear more?</h2>
+      <p>I'd love to walk you through it.</p>
+      <a class="cs-btn" href="mailto:suzy.shin7@gmail.com">Email me</a>
+    </div>
+
+    <a class="cs-next" onclick="go('pawloop')">
+      <p class="k">Next project</p>
+      <p class="t">Giving unused cat toys a second home →</p>
+    </a>
+  </div>
+</div>
+
+<!-- SHLEEP -->
+<div class="view" id="view-shleep">
+  <div class="wrap">
+    <button class="back" onclick="go('home')">← All work</button>
+    <div class="detail-head">
+      <span class="tag">UI design · 2025</span>
+      <h2>Shleep</h2>
+      <p class="dek">A speculative sleep-tech concept built in a 4-day, 4-person hackathon with George Brown Polytechnic and OCAD U.</p>
+    </div>
+    <p class="soon-note">Full case study coming soon. I led the UI design for this project. If you'd like a walkthrough before it's published, reach out by email and I'm happy to share the deck.</p>
+  </div>
+</div>
+
+<!-- PAWLOOP -->
+<div class="view" id="view-pawloop">
+  <div class="wrap">
+    <button class="back" onclick="go('home')">← All work</button>
+    <div class="detail-head">
+      <span class="tag">Product design · 2025</span>
+      <h2>PawLoop</h2>
+      <p class="dek">A local toy exchange platform for cat owners, reducing waste through community sharing. Designed solo from problem framing through sitemap, hi-fi UI in Figma, and a coded HTML/CSS prototype.</p>
+    </div>
+    <p class="soon-note">Full case study coming soon. The project started from a real pain point (cats losing interest in toys after a week, and perfectly good toys piling up with no place to go). I explored 3 concepts, chose PawLoop for its clear problem and differentiation, and took it all the way to a working prototype. Email me if you want an early look.</p>
+  </div>
+</div>
+
+<!-- STU-VIEW -->
+<div class="view" id="view-stuview">
+  <div class="wrap">
+    <button class="back" onclick="go('home')">← All work</button>
+    <div class="detail-head">
+      <span class="tag">UX research · 2025</span>
+      <h2>Stu-View usability test</h2>
+      <p class="dek">A moderated usability study of GBC's Stu-View student portal, evaluating how well students complete common campus tasks.</p>
+    </div>
+    <p class="soon-note">Full write-up coming soon. The study ran with 5 Interaction Design students across 4 tasks (student awards, payment plan, photo ID reissue, class schedule). Task 2 had the most critical errors despite the shortest time, pointing to a misleading UI path. Key findings: card-based layout was hard to scan, top-level categories were ambiguous, and 3 out of 5 participants abandoned navigation and searched instead. Email me if you'd like the full report early.</p>
+  </div>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  var el=document.getElementById('view-'+id);
+  (el||document.getElementById('view-home')).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant' in window?'instant':'auto'});
+  history.replaceState(null,'',id==='home'?'#':'#'+id);
+  if(id==='home' && typeof stitchPending!=='undefined' && stitchPending){ setTimeout(function(){layoutStitch(true);},60); }
+}
+var start=(location.hash||'').replace('#','');
+if(start) go(start);
+
+// Cross stitch animation, stitches sit inside the page grid squares
+var DPR=window.devicePixelRatio||1;
+var CELL=DPR>=2?3:4;          // 3px cells on retina (6 real pixels), 4px otherwise
+var LINE=DPR>=2?0.5:1;        // grid line thickness in CSS px
+var STITCH='#8B1A2F';
+
+// aida cloth: woven blocks with a hole at every corner, one block per stitch cell
+(function(){
+  var svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"+
+    "<rect width='10' height='10' fill='#F1ECE4'/>"+
+    "<rect x='1.1' y='1.1' width='7.8' height='7.8' rx='2.4' fill='#FBF8F3'/>"+
+    "<rect x='1.6' y='1.4' width='6.8' height='3.2' rx='1.6' fill='#FFFFFF' opacity='.35'/>"+
+    "<rect x='1.6' y='6.2' width='6.8' height='2.2' rx='1.2' fill='#EEE7DD' opacity='.5'/>"+
+    "<circle cx='0' cy='0' r='1.25' fill='#E3DACD'/><circle cx='10' cy='0' r='1.25' fill='#E3DACD'/>"+
+    "<circle cx='0' cy='10' r='1.25' fill='#E3DACD'/><circle cx='10' cy='10' r='1.25' fill='#E3DACD'/>"+
+    "</svg>";
+  document.body.style.backgroundImage="url(\"data:image/svg+xml,"+encodeURIComponent(svg)+"\")";
+  document.body.style.backgroundSize=CELL+'px '+CELL+'px';
+})();
+
+// thread colours: slight dye variation so it reads as real floss, not flat pixels
+var THREAD=['#87192D','#8B1A2F','#8E1B31'];
+function drawLeg(ctx,x0,y0,x1,y1,base,hi){
+  var w=CELL*0.46;
+  ctx.strokeStyle='rgba(70,20,25,0.12)';ctx.lineWidth=w+0.25;
+  ctx.beginPath();ctx.moveTo(x0+0.2,y0+0.25);ctx.lineTo(x1+0.2,y1+0.25);ctx.stroke();
+  ctx.strokeStyle=base;ctx.lineWidth=w;
+  ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();
+  ctx.strokeStyle=hi;ctx.lineWidth=w*0.32;
+  var nx=-(y1-y0),ny=(x1-x0),l=Math.hypot(nx,ny)||1;nx=nx/l*w*0.15;ny=ny/l*w*0.15;
+  ctx.beginPath();ctx.moveTo(x0+nx,y0+ny);ctx.lineTo(x1+nx,y1+ny);ctx.stroke();
+}
+function drawX(ctx,col,row){
+  var x0=col*CELL+0.25, y0=row*CELL+0.25, x1=(col+1)*CELL-0.25, y1=(row+1)*CELL-0.25;
+  var base=THREAD[(Math.random()*THREAD.length)|0];
+  drawLeg(ctx,x0,y1,x1,y0,'#801729','rgba(230,150,165,0.18)');   // under stitch  /
+  drawLeg(ctx,x0,y0,x1,y1,base,'rgba(240,170,185,0.28)');        // top stitch  \
+}
+
+var stitchPending=false;
+function layoutStitch(animate){
+  var stage=document.getElementById('stage');
+  var W=stage.clientWidth;
+  if(!W){ stitchPending=true; return; }   // home is hidden (opened on a case study), run later
+  stitchPending=false;
+  var off=document.getElementById('off');
+  var oc=off.getContext('2d');
+  var TEXT="Hi, I'm Suji.";
+  var fontPx=Math.min(150,Math.max(70,W*0.115));
+  oc.font='italic '+fontPx+'px Georgia, serif';
+  var tw=oc.measureText(TEXT).width;
+  if(tw>W*0.86){ fontPx=fontPx*(W*0.86)/tw; }
+  fontPx=Math.round(fontPx);
+  var H=Math.ceil(fontPx*1.35/CELL)*CELL;
+
+  off.width=W;off.height=H;
+  oc.clearRect(0,0,W,H);
+  oc.fillStyle='#000';
+  oc.font='italic '+fontPx+'px Georgia, serif';
+  oc.textAlign='center';
+  oc.textBaseline='alphabetic';
+  oc.fillText(TEXT,W/2,Math.round(H*0.78));
+  var img=oc.getImageData(0,0,W,H).data;
+
+  // a cell gets a stitch when the letter covers enough of its area
+  var cells=[];
+  var cols=Math.floor(W/CELL),rows=H/CELL;
+  for(var r=0;r<rows;r++){
+    for(var c=0;c<cols;c++){
+      var sum=0,n=0;
+      for(var yy=r*CELL;yy<(r+1)*CELL;yy++){
+        for(var xx=c*CELL;xx<(c+1)*CELL;xx++){ sum+=img[(yy*W+xx)*4+3]; n++; }
+      }
+      if(sum/n>105) cells.push([c,r]);
+    }
+  }
+
+  stage.width=W*DPR;stage.height=H*DPR;
+  stage.style.height=H+'px';
+  var sc=stage.getContext('2d');
+  sc.setTransform(DPR,0,0,DPR,0,0);
+  sc.clearRect(0,0,W,H);
+  sc.lineCap='round';sc.globalAlpha=1;
+
+  // snap the page grid so its lines fall on the canvas cell edges
+  var top=stage.getBoundingClientRect().top+window.scrollY;
+  document.body.style.backgroundPosition='0 '+(top%CELL)+'px';
+
+  if(!animate){ cells.forEach(function(p){drawX(sc,p[0],p[1]);}); return; }
+  for(var i=cells.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=cells[i];cells[i]=cells[j];cells[j]=t;}
+  var per=Math.max(6,Math.ceil(cells.length/260));   // finishes in about 3 seconds
+  var idx=0;
+  function step(){
+    for(var b=0;b<per&&idx<cells.length;b++,idx++) drawX(sc,cells[idx][0],cells[idx][1]);
+    if(idx<cells.length){setTimeout(step,12);}
+    else{
+      setTimeout(function(){
+        document.getElementById('hero-sub').classList.add('stitch-show');
+        document.getElementById('hero-tagline').classList.add('stitch-show');
+      },500);
+    }
+  }
+  step();
+}
+
+var resizeTimer;
+window.addEventListener('resize',function(){
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(function(){
+    if(document.getElementById('view-home').classList.contains('active')) layoutStitch(false);
+  },150);
+});
+setTimeout(function(){layoutStitch(true);},300);
+
+// media placeholders: drop a file with the same name into images/ergoscan/ and it replaces the box
+document.querySelectorAll('.media').forEach(function(m){
+  m.style.aspectRatio=m.dataset.ratio;
+  var src=m.dataset.src;
+  if(m.dataset.type==='video'){
+    var v=document.createElement('video');
+    v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.setAttribute('playsinline','');
+    v.addEventListener('loadeddata',function(){m.classList.add('loaded');});
+    v.addEventListener('error',function(){
+      // no video yet, try a still image with the same name
+      var img=new Image();
+      img.onload=function(){m.appendChild(img);m.classList.add('loaded');};
+      img.src=src.replace(/\.mp4$/,'.jpg');
+    });
+    v.src=src;m.appendChild(v);
+  } else {
+    var img=new Image();
+    img.alt=m.querySelector('.ph').textContent;
+    img.onload=function(){m.appendChild(img);m.classList.add('loaded');};
+    img.src=src;
+  }
+});
+</script>
+</body>
+</html>
