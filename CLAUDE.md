@@ -20,7 +20,7 @@ Pushing to `main` deploys the site in about a minute.
 - Project cards, caption order: tag row (Platform · Role · Team, same three slots for every project) → project name (19px Space Grotesk 600) with year → problem-focused title (16px) → one-line description.
   - Platforms used: "Mobile app" (ErgoScan, Shleep, PawLoop), "Web" (Stu-View).
   - ErgoScan has a small "RGD Honorable Mention" chip. Do not put the award in the hero.
-- Layout: two versions exist. `index-swatch.html` is the staggered "fabric swatch" layout (12-column grid underneath, slight tilt on the image only, white pearl sewing pin on each card). The grid version is the plain two-column layout. Suji is choosing between them. Whichever she picks becomes `index.html`.
+- Layout: Suji chose the staggered "fabric swatch" layout (12-column grid underneath, slight tilt on the image only, white pearl sewing pin on each card). It is now `index.html`. The old plain two-column grid version is only in git history.
 - Case study pages follow the Dishcovery structure from sierrahopkins.com: title, meta row, hero media, TL;DR (problem / what I did / outcome), overview, problem, process, exploration (before/after per decision), final solution (screen gallery + features), impact and reflection, CTA, next project. Text is real HTML text, not slide images.
 
 ## Writing rules (important)
@@ -39,7 +39,7 @@ Pushing to `main` deploys the site in about a minute.
 ## To do
 
 - [ ] Fix the crowded nav on mobile (Work, About, name, Email, LinkedIn on one line).
-- [ ] Pick swatch or grid layout and make it `index.html`.
+- [x] Pick swatch or grid layout and make it `index.html` (swatch).
 - [ ] Add ErgoScan images to `images/ergoscan/` (Suji is making them herself).
 - [ ] Fill ErgoScan timeline and the three reflection cards with Suji's own words.
 - [ ] Build PawLoop, Shleep and Stu-View case studies in the same structure.
