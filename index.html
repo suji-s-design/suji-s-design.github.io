@@ -6,7 +6,8 @@
 <title>Suji Shin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Open+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FFFFFF;
@@ -57,12 +58,12 @@
   canvas#stage { display: block; width: 100%; margin-bottom: 24px; }
   .hero-sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 10px; letter-spacing: 0.2em; color: var(--ink-soft);
-    text-transform: uppercase; margin-bottom: 12px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.16em; color: var(--ink);
+    text-transform: uppercase; margin-bottom: 14px;
     opacity: 0; transition: opacity 1.2s;
   }
   .hero-tagline {
-    font-family: 'Playfair Display', serif; font-style: italic;
+    font-family: 'Gambarino', serif; font-style: normal;
     font-size: clamp(16px, 2.2vw, 20px); color: var(--ink);
     opacity: 0; transition: opacity 1.2s;
     margin-bottom: 0; max-width: 46ch; line-height: 1.6;
@@ -134,7 +135,7 @@
   .detail-head { max-width: 680px; margin-bottom: 48px; }
   .detail-head .tag { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; display: block; }
   .detail-head h2 {
-    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    font-family: 'Gambarino', serif; font-style: normal; font-weight: 400;
     font-size: clamp(30px, 4.4vw, 46px); margin: 0 0 16px; line-height: 1.16; color: var(--ink);
   }
   .detail-head .dek { font-size: 17px; color: var(--ink-soft); margin: 0; }
@@ -148,7 +149,7 @@
   .meta-row .v { font-size: 14px; margin: 0; }
 
   .detail-body { max-width: 640px; padding-bottom: 40px; }
-  .detail-body h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; font-weight: 400; margin: 48px 0 14px; }
+  .detail-body h3 { font-family: 'Gambarino', serif; font-style: normal; font-size: 20px; font-weight: 400; margin: 48px 0 14px; }
   .detail-body h3:first-child { margin-top: 0; }
   .detail-body p { color: var(--ink-soft); margin: 0 0 14px; }
 
@@ -181,7 +182,7 @@
   }
   .work-item { position: relative; }
   .work-item:nth-child(1) { grid-column: 1 / span 7; --tilt: -1.2deg; }
-  .work-item:nth-child(2) { grid-column: 8 / span 5; margin-top: 140px; --tilt: 1.4deg; }
+  .work-item:nth-child(2) { grid-column: 8 / span 5; margin-top: 140px; margin-left: 40px; --tilt: 1.4deg; }
   .work-item:nth-child(3) { grid-column: 2 / span 5; margin-top: -20px; --tilt: 1deg; }
   .work-item:nth-child(4) { grid-column: 7 / span 6; margin-top: 90px; --tilt: -1.1deg; }
 
@@ -229,7 +230,7 @@
 
   @media (max-width: 760px) {
     .work-grid { grid-template-columns: 1fr; row-gap: 56px; }
-    .work-item:nth-child(n) { grid-column: 1 / -1; margin-top: 0; --tilt: 0deg; }
+    .work-item:nth-child(n) { grid-column: 1 / -1; margin-top: 0; margin-left: 0; --tilt: 0deg; }
   }
 
   /* ===== CASE STUDY (structured) ===== */
@@ -255,7 +256,7 @@
     font-size: clamp(26px, 3.4vw, 38px); line-height: 1.18; letter-spacing: -0.01em;
     margin: 0 0 14px; max-width: 26ch; color: var(--ink);
   }
-  .cs-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(17px, 2vw, 21px); color: var(--ink); margin: 0 0 18px; max-width: 46ch; line-height: 1.45; }
+  .cs-sub { font-family: 'Gambarino', serif; font-style: normal; font-size: clamp(17px, 2vw, 21px); color: var(--ink); margin: 0 0 18px; max-width: 46ch; line-height: 1.45; }
   .cs-body { font-size: 16px; color: var(--ink-soft); max-width: 62ch; margin: 0 0 14px; line-height: 1.7; }
   .cs mark { background: rgba(139,26,47,0.12); color: var(--ink); padding: 0 3px; border-radius: 3px; }
 
@@ -310,7 +311,7 @@
   .cs-fill { color: var(--stitch); font-style: italic; }
 
   .cs-cta { text-align: center; padding: 100px 0 40px; }
-  .cs-cta h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 10px; }
+  .cs-cta h2 { font-family: 'Gambarino', serif; font-style: normal; font-weight: 400; font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 10px; }
   .cs-cta p { color: var(--ink-soft); margin: 0 0 24px; }
   .cs-btn { display: inline-block; font-size: 14px; padding: 11px 26px; border: 1px solid var(--stitch); color: var(--stitch); border-radius: 30px; transition: .15s; }
   .cs-btn:hover { background: var(--stitch); color: #fff; }
@@ -341,7 +342,7 @@
     display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px;
   }
   footer.site h2 {
-    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
+    font-family: 'Gambarino', serif; font-style: normal; font-weight: 400;
     font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 24px; line-height: 1.2; color: var(--ink);
   }
   footer.site .links { display: flex; gap: 24px; flex-wrap: wrap; }
@@ -369,7 +370,7 @@
   <div class="hero">
     <canvas id="off"></canvas>
     <canvas id="stage"></canvas>
-    <div class="hero-sub" id="hero-sub">Interaction Design &nbsp;·&nbsp; Toronto</div>
+    <div class="hero-sub" id="hero-sub">UX/UI Designer &nbsp;·&nbsp; Toronto</div>
     <div class="hero-tagline" id="hero-tagline">I care about the problem as much as the pixels.</div>
   </div>
 
@@ -706,22 +707,29 @@ if(start) go(start);
 
 // Cross stitch animation, stitches sit inside the page grid squares
 var DPR=window.devicePixelRatio||1;
-var CELL=DPR>=2?3:4;          // 3px cells on retina (6 real pixels), 4px otherwise
+// cell size: 3px on narrow screens so the hero stays readable, 4px on wide screens so the X shows
+// (one more px each on non-retina screens)
+var CELL;
+function setCell(){
+  var wide=window.innerWidth>=760;
+  CELL=DPR>=2?(wide?4:3):(wide?5:4);
+  document.body.style.backgroundSize=CELL+'px '+CELL+'px';
+}
 var LINE=DPR>=2?0.5:1;        // grid line thickness in CSS px
 var STITCH='#8B1A2F';
 
 // aida cloth: woven blocks with a hole at every corner, one block per stitch cell
 (function(){
   var svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"+
-    "<rect width='10' height='10' fill='#F1ECE4'/>"+
-    "<rect x='1.1' y='1.1' width='7.8' height='7.8' rx='2.4' fill='#FBF8F3'/>"+
+    "<rect width='10' height='10' fill='#F6F2EC'/>"+
+    "<rect x='1.1' y='1.1' width='7.8' height='7.8' rx='2.4' fill='#FFFEFB'/>"+
     "<rect x='1.6' y='1.4' width='6.8' height='3.2' rx='1.6' fill='#FFFFFF' opacity='.35'/>"+
-    "<rect x='1.6' y='6.2' width='6.8' height='2.2' rx='1.2' fill='#EEE7DD' opacity='.5'/>"+
-    "<circle cx='0' cy='0' r='1.25' fill='#E3DACD'/><circle cx='10' cy='0' r='1.25' fill='#E3DACD'/>"+
-    "<circle cx='0' cy='10' r='1.25' fill='#E3DACD'/><circle cx='10' cy='10' r='1.25' fill='#E3DACD'/>"+
+    "<rect x='1.6' y='6.2' width='6.8' height='2.2' rx='1.2' fill='#F3EEE7' opacity='.5'/>"+
+    "<circle cx='0' cy='0' r='1.25' fill='#E6DED3'/><circle cx='10' cy='0' r='1.25' fill='#E6DED3'/>"+
+    "<circle cx='0' cy='10' r='1.25' fill='#E6DED3'/><circle cx='10' cy='10' r='1.25' fill='#E6DED3'/>"+
     "</svg>";
   document.body.style.backgroundImage="url(\"data:image/svg+xml,"+encodeURIComponent(svg)+"\")";
-  document.body.style.backgroundSize=CELL+'px '+CELL+'px';
+  setCell();
 })();
 
 // thread colours: slight dye variation so it reads as real floss, not flat pixels
@@ -813,6 +821,7 @@ var resizeTimer;
 window.addEventListener('resize',function(){
   clearTimeout(resizeTimer);
   resizeTimer=setTimeout(function(){
+    setCell();
     if(document.getElementById('view-home').classList.contains('active')) layoutStitch(false);
   },150);
 });

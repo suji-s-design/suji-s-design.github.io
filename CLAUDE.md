@@ -12,10 +12,10 @@ Pushing to `main` deploys the site in about a minute.
 
 ## Design system
 
-- Background `--bg: #F7F3ED` with an aida cloth texture (SVG pattern set in JS), stitch colour `#8B1A2F`, ink `#2C1A10`, soft ink `#9C7A6A`, lines `#DDD5C8`.
-- Fonts: Space Grotesk (headings, project names), Open Sans (body), Playfair Display italic (accents, taglines). Keep Open Sans for body text.
+- Background `--bg: #FFFFFF` with a light aida cloth texture (SVG pattern set in JS; base `#F6F2EC`, blocks `#FFFEFB`, holes `#E6DED3`, lightened for text contrast), stitch colour `#8B1A2F`, ink `#2C1A10`, soft ink `#9C7A6A`, lines `#DDD5C8`.
+- Fonts: Space Grotesk (headings, project names), Open Sans (body), Gambarino from Fontshare, upright only since it has no italic (accents, taglines; replaced Playfair Display italic). Keep Open Sans for body text.
 - Hero: "Hi, I'm Suji." stitched in cross stitch on a canvas. Text is sampled from Georgia italic, regular weight (not bold).
-  - Cell size: 3px on retina, 4px otherwise. The page cloth uses the same cell size and is snapped to the canvas so every X sits in one cell, hole to hole.
+  - Cell size: on retina, 4px on wide screens (760px and up) and 3px on narrow screens so the hero stays readable on phones. One px more on non-retina screens (5px / 4px). The page cloth uses the same cell size and is snapped to the canvas so every X sits in one cell, hole to hole.
   - Legibility matters more than texture. Thread shadow and sheen stay faint. Do not add jitter or a dark under stitch. Suji rejected big cells (8px) and noisy texture.
 - Project cards, caption order: tag row (Platform · Role · Team, same three slots for every project) → project name (19px Space Grotesk 600) with year → problem-focused title (16px) → one-line description.
   - Platforms used: "Mobile app" (ErgoScan, Shleep, PawLoop), "Web" (Stu-View).
