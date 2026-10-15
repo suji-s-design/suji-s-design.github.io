@@ -182,7 +182,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
-@media(min-width:900px){.abg{grid-template-columns:auto minmax(0,400px);justify-content:start;column-gap:clamp(48px,6vw,96px)}.pic{justify-self:start}}
+@media(min-width:900px){.abg{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-areas:none;grid-template-rows:auto auto;column-gap:24px;row-gap:clamp(36px,5vh,56px)}.abh{grid-column:1/-1;grid-row:1}.pic{grid-column:1/span 5;grid-row:2;max-width:none;justify-self:stretch;align-self:start}.bio{grid-column:7/span 6;grid-row:2;align-self:start;max-width:none}}
 
 /* ===== ErgoScan case study ===== */
 #ergoscanPage{--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72);--shot:#f6f6f6}
