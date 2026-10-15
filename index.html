@@ -176,6 +176,12 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 <style>
 /* ===== work thumbnails: real image inside .ph ===== */
 .ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* scroll reveal: fade + small rise, added by script only when motion is OK */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.8,.2,1) var(--rvd,0s),transform .7s cubic-bezier(.2,.8,.2,1) var(--rvd,0s)}
+.rv.rvin{opacity:1;transform:none}
+/* About photo */
+.pic{overflow:hidden;background:#d9d9d9}
+.pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
 
 /* ===== ErgoScan case study ===== */
 #ergoscanPage{--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72);--shot:#f6f6f6}
@@ -363,7 +369,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 <section class="ab"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about" aria-current="page">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in"><div class="abg">
     <h1 class="abh">Hi, I'm Suji.</h1>
-    <div class="pic" role="img" aria-label="Photo placeholder"><span>Your photo here</span></div>
+    <div class="pic"><img src="images/suji.jpg" alt="Suji Shin smiling, in a white top"></div>
     <div class="bio">
       <p><b>I trained as a classical singer before I trained as a designer.</b> I grew up with voice and piano, and spent years fixing small things until they sounded right.</p>
       <p><b>Design gave me the same feeling in a new form.</b> I'm a third-year Interaction Design student at George Brown Polytechnic. I like work where a small detail changes how a whole experience feels, like ErgoScan, an AR app that helps people sit better. I start with the real problem, not the screen, and I keep testing until the solution feels obvious to the person using it.</p>
@@ -807,6 +813,25 @@ document.querySelectorAll('.media').forEach(function(m){
 // case study: only play the clips that are on screen
 (function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(en){var v=en.target.querySelector('video');if(!v)return;if(en.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.15});
   document.querySelectorAll('#ergoscanPage .media[data-type=video]').forEach(function(m){io.observe(m)})})();
+
+// scroll reveal (subtle). Skips the hero and anything nested in an element that already reveals.
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+  var sel=['.work h2','.grid .card','.meet .in','.bio p','.pic','.xp h2','.rows li','.off h2','.tiles','footer.end h3','footer.end .fl',
+    '#ergoscanPage .stats li','#ergoscanPage .cs-eyebrow','#ergoscanPage .cs-h2','#ergoscanPage .cs-h3','#ergoscanPage .cs-sub','#ergoscanPage .cs-body',
+    '#ergoscanPage .cs-split > .media','#ergoscanPage .cs-tldr > *','#ergoscanPage .cs-list','#ergoscanPage .cs-note','#ergoscanPage .cs-steps > li',
+    '#ergoscanPage .zoom','#ergoscanPage .cs-decision','#ergoscanPage .cs-feature-text','#ergoscanPage .phones','#ergoscanPage .cs-gallery',
+    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .lineup','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
+  var els=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')});
+  var set=new Set(els);els=els.filter(function(el){var a=el.parentElement;while(a){if(set.has(a))return false;a=a.parentElement}return true});
+  els.forEach(function(el){var sib=[].filter.call(el.parentElement.children,function(c){return els.indexOf(c)>-1});var i=sib.indexOf(el);
+    if(sib.length>1)el.style.setProperty('--rvd',Math.min(i,4)*0.08+'s');el.classList.add('rv')});
+  // reveal anything whose top is inside the viewport; runs on scroll, resize, page switch and load
+  var left=els.slice(),tm=0;
+  function check(){tm=0;var vh=innerHeight;left=left.filter(function(el){var r=el.getBoundingClientRect();if(r.width===0&&r.height===0)return true;
+    if(r.top<vh*0.92&&r.bottom>0){el.classList.add('rvin');return false}if(r.bottom<=0){el.classList.add('rvin');return false}return true})}
+  function soon(){if(!tm)tm=setTimeout(check,60)}
+  addEventListener('scroll',soon,{passive:true});addEventListener('resize',soon);addEventListener('hashchange',function(){setTimeout(check,80)});addEventListener('load',check);
+  setTimeout(check,120)})();
 </script>
 </body>
 </html>
