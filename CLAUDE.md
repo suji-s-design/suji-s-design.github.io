@@ -66,7 +66,7 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 
 ## Facts about the projects
 
-- ErgoScan (2026): AR iOS app that measures a desk setup and gives AI fixes. Team of 2 with Diana Amriyeva. Suji: UX/UI from lo-fi to hi-fi, front-end prototype in Xcode (SwiftUI + ARKit) built with help from Claude, two rounds of user testing (in-class showcase, then a survey with about 20 visitors at the year-end show). Diana: concept, UX flow, backend including the OpenAI API. RGD Student Award 2026, Honorable Mention.
+- ErgoScan (2026, 4 weeks): AR iOS app that measures a desk setup and gives AI fixes. Team of 2 with Diana Amriyeva. Suji: UX/UI from lo-fi to hi-fi, front-end prototype in Xcode (SwiftUI + ARKit) built with help from Claude, two rounds of user testing (in-class showcase, then a survey with about 20 visitors at the year-end show). Diana: concept, UX flow, backend including the OpenAI API. RGD Student Award 2026, Honorable Mention.
 - Shleep (2026): sleep and dream tracking concept from FigBuild 2026 (Figma's student design-a-thon), team of 4. Suji mainly did UI design and UX flow.
 - PawLoop (2025): solo, local toy exchange app for cat owners (trade, sell, free). Problem framing, 3 concepts explored, sitemap, hi-fi UI in Figma, coded HTML/CSS/Bootstrap prototype.
 - Stu-View (2025): solo moderated usability study of GBC's student portal. 5 participants, 4 tasks, think-aloud. Task 2 had a 60% completion rate and 2 critical errors. 3 of 5 participants gave up on the menu and used search.
@@ -79,7 +79,7 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 - [ ] Piano tile caption is empty on purpose. Ask Suji what to write.
 - [ ] Resume link and LinkedIn link (Resume is `#` for now).
 - [x] ErgoScan media in `images/ergoscan/`. App screens (`screen-*.jpg`) and looping clips (`clip-*.mp4` + same-name `.jpg` fallback) come from Suji's screen recording `IMG_9004.MP4` at full resolution, shown inside a CSS phone frame (`.dv > .device`). Only `before-*.jpg` (old versions), `problem.jpg`, `ux-flow.jpg` and `poster.jpg` come from the slides/poster, rendered at high resolution. Do not use low-res slide crops. A real photo from the year-end show would still be good.
-- [ ] Fill ErgoScan timeline and the three reflection cards with Suji's own words.
+- [ ] ErgoScan reflection cards have DRAFT text written by Claude (2026-10-15) based on the case study facts. Suji should confirm or rewrite them in her own words. Timeline is 4 weeks.
 - [ ] Build PawLoop, Shleep and Stu-View case studies in the same structure, then link their cards.
 - [ ] Check in a real browser: DM Sans rendering, needle drag, cursor, the 700px to tablet layout, and the phone hero.
 
