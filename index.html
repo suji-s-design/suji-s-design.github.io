@@ -177,69 +177,127 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 /* ===== work thumbnails: real image inside .ph ===== */
 .ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
-/* ===== ErgoScan case study (ported from the old site, restyled for this design) ===== */
-#ergoscanPage{--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72)}
-.csh{background:var(--blue);color:#fff;position:relative}
-.csh .in{padding-top:clamp(96px,14vh,150px);padding-bottom:clamp(40px,6vh,64px)}
+/* ===== ErgoScan case study ===== */
+#ergoscanPage{--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72);--shot:#f6f6f6}
+
+/* header */
+.csh{background:var(--blue);color:#fff;position:relative;overflow:hidden}
+.csh .in{padding-top:clamp(96px,14vh,140px);padding-bottom:clamp(48px,8vh,88px)}
 .csh .back{display:inline-block;font:400 13px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;margin-bottom:28px}
 .csh .back:hover{color:var(--y)}
-.csh h1.cs-title{color:#fff;white-space:normal;font-weight:600;letter-spacing:-.025em;line-height:1;font-size:clamp(36px,5.4vw,72px);max-width:16ch;margin:0 0 clamp(32px,5vh,56px)}
-.csh .cs-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-top:1px solid rgba(255,255,255,.3);padding-top:18px}
+.csh-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:clamp(32px,6vw,96px);align-items:center}
+.award{display:inline-flex;align-items:center;gap:10px;margin:0 0 22px;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:#fff}
+.award span{background:var(--y);color:#0a0a0a;border:1px solid #0a0a0a;border-radius:999px;padding:.3em .9em;font-weight:500}
+.csh h1.cs-title{color:#fff;white-space:normal;font-weight:600;letter-spacing:-.025em;line-height:1;font-size:clamp(36px,5vw,68px);max-width:15ch;margin:0 0 22px}
+.csh-sub{margin:0 0 clamp(32px,5vh,48px);font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:rgba(255,255,255,.82);max-width:34em}
+.csh .cs-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-top:1px solid rgba(255,255,255,.3);padding-top:18px}
 .csh .cs-meta .k{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.6);margin:0 0 6px}
 .csh .cs-meta .v{font-size:15px;line-height:1.5;margin:0;color:#fff}
 .csh .cs-fill{color:var(--y)}
+.csh-phone{margin:0;justify-self:center;width:100%;max-width:300px}
+.csh-phone figcaption{margin-top:14px;text-align:center;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:rgba(255,255,255,.6)}
+@media(max-width:900px){.csh-grid{grid-template-columns:1fr}.csh-phone{max-width:260px}}
 @media(max-width:700px){.csh .cs-meta{grid-template-columns:1fr 1fr}}
 
-#ergoscanPage .cs{padding-top:clamp(40px,6vh,64px);padding-bottom:clamp(64px,10vh,110px)}
-#ergoscanPage .cs-section{padding-top:clamp(72px,11vh,120px)}
-#ergoscanPage .cs-eyebrow{display:inline-block;margin:0 0 20px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--y);padding:.2em .9em;border-radius:999px;border:1px solid #0a0a0a}
-#ergoscanPage .cs-h2{margin:0 0 14px;font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(28px,3.6vw,48px);max-width:22ch}
-#ergoscanPage .cs-sub{font-weight:500;letter-spacing:-.02em;font-size:clamp(18px,1.8vw,24px);line-height:1.35;margin:0 0 18px;max-width:40ch}
-#ergoscanPage .cs-body{font-size:16px;line-height:1.6;color:var(--body);max-width:62ch;margin:0 0 14px}
-#ergoscanPage mark{background:var(--y);color:#0a0a0a;padding:0 3px}
-#ergoscanPage .cs-fill{color:var(--blue);font-family:'DM Mono',ui-monospace,monospace;font-size:.9em}
 
-/* TL;DR and cards */
-#ergoscanPage .cs-tldr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:8px}
-#ergoscanPage .cs-card{background:#fff;border:1px solid #0a0a0a;border-radius:14px;padding:22px 22px 24px}
+/* device frame used for every app screen and clip */
+#ergoscanPage .dv{margin:0;min-width:0}
+#ergoscanPage .device{background:#0a0a0a;border-radius:15% / 7%;padding:3.2%;box-shadow:0 14px 34px rgba(10,10,10,.16)}
+#ergoscanPage .device .media.phone{border-radius:12% / 5.6%;border:0;background:#111}
+#ergoscanPage .device .media.phone.loaded{border:0;background:#111}
+.csh-phone .device{box-shadow:0 30px 70px rgba(8,0,90,.45)}
+
+/* body */
+#ergoscanPage .cs{padding-top:clamp(40px,6vh,64px);padding-bottom:clamp(64px,10vh,110px)}
+#ergoscanPage .stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #0a0a0a;border-bottom:1px solid var(--line)}
+#ergoscanPage .stats li{padding:22px 16px 22px 0;display:flex;flex-direction:column;gap:6px}
+#ergoscanPage .stats li+li{padding-left:20px;border-left:1px solid var(--line)}
+#ergoscanPage .stats b{font-weight:600;font-size:clamp(34px,4.4vw,60px);letter-spacing:-.025em;line-height:1}
+#ergoscanPage .stats span{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft)}
+@media(max-width:700px){#ergoscanPage .stats{grid-template-columns:1fr 1fr}#ergoscanPage .stats li:nth-child(3){padding-left:0;border-left:0}#ergoscanPage .stats li:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* sticky section list on wide screens */
+#ergoscanPage .cs-layout{display:grid;grid-template-columns:minmax(0,1fr)}
+#ergoscanPage .toc{display:none}
+@media(min-width:1100px){
+  #ergoscanPage .cs-layout{grid-template-columns:150px minmax(0,1fr);gap:56px}
+  #ergoscanPage .toc{display:flex;flex-direction:column;gap:2px;position:sticky;top:32px;align-self:start;margin-top:clamp(72px,11vh,120px)}
+  #ergoscanPage .toc a{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:6px 0 6px 16px;position:relative}
+  #ergoscanPage .toc a::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;border:1px solid rgba(10,10,10,.35)}
+  #ergoscanPage .toc a:hover{color:#0a0a0a}
+  #ergoscanPage .toc a.on{color:#0a0a0a}
+  #ergoscanPage .toc a.on::before{background:var(--y);border-color:#0a0a0a}
+}
+#ergoscanPage .cs-section{padding-top:clamp(72px,11vh,120px);scroll-margin-top:24px}
+#ergoscanPage .cs-eyebrow{display:inline-block;margin:0 0 20px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--y);padding:.2em .9em;border-radius:999px;border:1px solid #0a0a0a}
+#ergoscanPage .cs-h2{margin:0 0 14px;font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(28px,3.4vw,46px);max-width:20ch}
+#ergoscanPage .cs-h3{margin:56px 0 18px;font-weight:600;letter-spacing:-.025em;font-size:clamp(20px,2vw,26px)}
+#ergoscanPage .cs-sub{font-weight:500;letter-spacing:-.02em;font-size:clamp(18px,1.8vw,24px);line-height:1.35;margin:0 0 14px;max-width:40ch}
+#ergoscanPage .cs-body{font-size:16px;line-height:1.6;color:var(--body);max-width:60ch;margin:0 0 14px}
+#ergoscanPage mark{background:rgba(45,25,248,.12);color:#0a0a0a;padding:0 3px;border-radius:3px}
+#ergoscanPage .cs-fill{color:var(--blue);font-family:'DM Mono',ui-monospace,monospace;font-size:.9em}
+#ergoscanPage .cap{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);margin:10px 0 0}
+
+#ergoscanPage .cs-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+@media(max-width:820px){#ergoscanPage .cs-split{grid-template-columns:1fr}}
+
+/* cards */
+#ergoscanPage .cs-tldr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#ergoscanPage .cs-card{background:#fff;border:1px solid #0a0a0a;border-radius:14px;padding:22px 22px 24px;margin:0}
 #ergoscanPage .cs-card h4{font-size:17px;font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
 #ergoscanPage .cs-card p{font-size:15px;line-height:1.6;color:var(--body);margin:0}
 #ergoscanPage .cs-card .num{font:500 13px 'DM Mono',ui-monospace,monospace;color:var(--blue);margin:0 0 16px}
 @media(max-width:820px){#ergoscanPage .cs-tldr{grid-template-columns:1fr}}
 
-#ergoscanPage .cs-two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-@media(max-width:820px){#ergoscanPage .cs-two{grid-template-columns:1fr;gap:28px}}
+#ergoscanPage .cs-two{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start;margin-top:24px}
+@media(max-width:820px){#ergoscanPage .cs-two{grid-template-columns:1fr;gap:20px}}
 #ergoscanPage .cs-list{margin:0;padding:0;list-style:none;border-top:2px solid #0a0a0a}
 #ergoscanPage .cs-list li{font-size:16px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.5}
-#ergoscanPage .cs-note{font-size:14px;color:var(--body);margin-top:14px}
+#ergoscanPage .cs-note{font-size:15px;line-height:1.6;color:var(--body);margin:0;padding-top:14px}
 
-/* process */
-#ergoscanPage .cs-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 32px}
-@media(max-width:900px){#ergoscanPage .cs-steps{grid-template-columns:1fr 1fr}}
+#ergoscanPage .cs-steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 32px}
+@media(max-width:1000px){#ergoscanPage .cs-steps{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){#ergoscanPage .cs-steps{grid-template-columns:1fr}}
+#ergoscanPage .zoom{display:block}
 
 /* before / after */
 #ergoscanPage .cs-decision{margin-top:56px}
 #ergoscanPage .cs-decision .label{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--soft);margin:0 0 8px}
-#ergoscanPage .cs-decision h3{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em;margin:0}
-#ergoscanPage .cs-ba{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:720px){#ergoscanPage .cs-ba{grid-template-columns:1fr}}
-#ergoscanPage .cs-ba .side{border:1px solid #0a0a0a;border-radius:14px;padding:24px;background:#fff}
-#ergoscanPage .cs-ba .tag{display:inline-block;max-width:none;margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;padding:.15em .9em;border-radius:999px;border:1px solid #0a0a0a;background:#fff}
+#ergoscanPage .cs-decision h3{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em;margin:0 0 20px}
+#ergoscanPage .cs-ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){#ergoscanPage .cs-ba{grid-template-columns:1fr}}
+#ergoscanPage .cs-ba .side{border:1px solid #0a0a0a;border-radius:14px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:18px}
+#ergoscanPage .cs-ba .tag{align-self:flex-start;max-width:none;margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;padding:.15em .9em;border-radius:999px;border:1px solid #0a0a0a;background:#fff}
 #ergoscanPage .cs-ba .after .tag{background:var(--y)}
-#ergoscanPage .cs-ba .phone-wrap{max-width:220px;margin:0 auto 20px}
+#ergoscanPage .cs-ba .dv{width:min(240px,62%);align-self:center}
+#ergoscanPage .cs-ba .side{background:var(--shot)}
 #ergoscanPage .cs-ba p{font-size:15px;line-height:1.6;margin:0}
 
-/* final screens */
-#ergoscanPage .cs-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 18px;margin-top:28px}
-#ergoscanPage .cs-gallery figure{margin:0;flex:0 0 180px;scroll-snap-align:start}
-#ergoscanPage .cs-gallery figcaption{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-align:center;margin-top:10px}
-#ergoscanPage .cs-feature{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:72px}
-#ergoscanPage .cs-feature.flip{grid-template-columns:.9fr 1.1fr}
+/* features */
+#ergoscanPage .cs-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-top:56px}
 #ergoscanPage .cs-feature.flip .cs-feature-text{order:2}
-@media(max-width:820px){#ergoscanPage .cs-feature,#ergoscanPage .cs-feature.flip{grid-template-columns:1fr;gap:28px}#ergoscanPage .cs-feature.flip .cs-feature-text{order:0}}
-#ergoscanPage .cs-feature .phone-wrap{max-width:260px;margin:0 auto}
-#ergoscanPage .cs-feature .phone-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:460px;margin:0 auto}
+#ergoscanPage .fk{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
+#ergoscanPage .cs-feature h3{font-weight:600;letter-spacing:-.025em;font-size:clamp(24px,2.6vw,34px);margin:0 0 12px;line-height:1.1}
+#ergoscanPage .phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);background:var(--shot);border-radius:20px;padding:clamp(24px,3.4vw,44px) clamp(24px,4vw,56px)}
+#ergoscanPage .phones figure,#ergoscanPage .cs-gallery figure{margin:0}
+#ergoscanPage figcaption{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-align:center;margin-top:10px}
+@media(max-width:820px){#ergoscanPage .cs-feature{grid-template-columns:1fr;gap:20px}#ergoscanPage .cs-feature.flip .cs-feature-text{order:0}}
+
+#ergoscanPage .cs-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px}
+#ergoscanPage .cs-gallery .dv{flex:0 0 clamp(140px,14vw,176px);scroll-snap-align:start}
+#ergoscanPage .cs-gallery{padding:20px 4px 22px}
+
+#ergoscanPage .hood-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #0a0a0a}
+#ergoscanPage .hood-list li{padding:16px 24px 16px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.55;color:var(--body)}
+#ergoscanPage .hood-list b{color:#0a0a0a;font-weight:600}
+@media(max-width:700px){#ergoscanPage .hood-list{grid-template-columns:1fr}}
+
+#ergoscanPage .poster{margin:0;max-width:420px;justify-self:end;width:100%}
+@media(max-width:820px){#ergoscanPage .poster{justify-self:start}}
+#ergoscanPage .lineup{margin-top:clamp(72px,11vh,120px);background:var(--blue);border-radius:20px;padding:clamp(36px,6vw,80px) clamp(24px,8vw,140px) 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,44px);align-items:start;overflow:hidden;height:clamp(340px,42vw,560px)}
+#ergoscanPage .lineup .dv:nth-child(odd){margin-top:14%}
+#ergoscanPage .lineup .device{box-shadow:0 24px 60px rgba(8,0,90,.45)}
+@media(max-width:700px){#ergoscanPage .lineup{height:auto;padding-bottom:28px}}
 
 /* CTA and next */
 #ergoscanPage .cs-cta{text-align:center;padding:clamp(80px,12vh,120px) 0 40px}
@@ -252,15 +310,15 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 #ergoscanPage .cs-next .t{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.025em;margin:0}
 #ergoscanPage .cs-next:hover .t{color:var(--blue)}
 
-/* media placeholders: swap themselves for the real file once it exists */
+/* media: swap themselves for the real file once it exists */
 #ergoscanPage .media{position:relative;overflow:hidden;border-radius:14px;background:#f4f4f4;border:1px dashed rgba(10,10,10,.45);display:flex;align-items:center;justify-content:center}
 #ergoscanPage .media .mph{font:400 12px/1.6 'DM Mono',ui-monospace,monospace;color:var(--soft);text-align:center;padding:14px}
 #ergoscanPage .media .mph b{display:block;color:#0a0a0a;font-weight:500;margin-bottom:2px}
 #ergoscanPage .media img,#ergoscanPage .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-#ergoscanPage .media.loaded{border:1px solid #0a0a0a;background:none}
+#ergoscanPage .media.loaded{border:0;background:var(--shot)}
 #ergoscanPage .media.loaded .mph{display:none}
-#ergoscanPage .media.phone{border-radius:26px}
-#ergoscanPage .cs-wide{margin-top:32px}
+#ergoscanPage .media.phone{border-radius:12px}
+#ergoscanPage .media.phone.loaded{background:transparent}
 </style>
 </head>
 <body>
@@ -336,22 +394,42 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 <section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in">
     <a class="back" href="#work">&larr; All work</a>
-
-    <h1 class="cs-title">Turning a desk scan into posture fixes anyone can make</h1>
-
-    <div class="cs-meta">
-      <div><p class="k">Role</p><p class="v">UX/UI Designer<br>Front-end build</p></div>
-      <div><p class="k">Team</p><p class="v">Suji Shin<br>Diana Amriyeva</p></div>
-      <div><p class="k">Timeline</p><p class="v">2026<br><span class="cs-fill">[ how many weeks ]</span></p></div>
-      <div><p class="k">Type</p><p class="v">iOS app<br>AR + AI</p></div>
+    <div class="csh-grid">
+      <div class="csh-text">
+        <p class="award"><span>RGD Student Award 2026</span>Honorable Mention</p>
+        <h1 class="cs-title">Turning a desk scan into posture fixes anyone can make</h1>
+        <p class="csh-sub">ErgoScan is an iOS app that measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
+        <div class="cs-meta">
+          <div><p class="k">Role</p><p class="v">UX/UI Designer<br>Front-end build</p></div>
+          <div><p class="k">Team</p><p class="v">Suji Shin<br>Diana Amriyeva</p></div>
+          <div><p class="k">Timeline</p><p class="v">2026<br><span class="cs-fill">[ how many weeks ]</span></p></div>
+          <div><p class="k">Built with</p><p class="v">SwiftUI, ARKit<br>OpenAI API</p></div>
+        </div>
+      </div>
+      <figure class="csh-phone">
+        <div class="device"><div class="media phone" data-src="images/ergoscan/demo.mp4" data-type="video" data-ratio="600/1298"><span class="mph"><b>demo.mp4</b>App walkthrough</span></div></div>
+        <figcaption>The full flow, recorded on iPhone</figcaption>
+      </figure>
     </div>
   </div>
 </section>
+
 <div class="in cs">
-    <div class="media " data-src="images/ergoscan/hero.mp4" data-ratio="16/9" data-type="video"><span class="mph"><b>hero.mp4</b>Hero loop: AR measuring on a real desk<br>16:9, 2400 × 1350 px (mp4) or hero.jpg</span></div>
+  <ul class="stats">
+    <li><b>3</b><span>AR measurements</span></li>
+    <li><b>&lt;30s</b><span>to scan a desk</span></li>
+    <li><b>2</b><span>rounds of user testing</span></li>
+    <li><b>~20</b><span>visitors surveyed</span></li>
+  </ul>
+
+  <div class="cs-layout">
+    <nav class="toc" aria-label="Sections">
+      <a href="#es-tldr">TL;DR</a><a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-reflection">Reflection</a>
+    </nav>
+    <div class="cs-main">
 
     <!-- TL;DR -->
-    <section class="cs-section">
+    <section class="cs-section" id="es-tldr">
       <p class="cs-eyebrow">TL;DR</p>
       <div class="cs-tldr">
         <div class="cs-card">
@@ -369,70 +447,70 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
       </div>
     </section>
 
-    <!-- OVERVIEW -->
-    <section class="cs-section">
-      <p class="cs-eyebrow">Overview</p>
-      <h2 class="cs-h2">Your personal ergonomist, in your pocket.</h2>
-      <p class="cs-sub">ErgoScan measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
-      <div class="cs-two" style="margin-top:28px">
-        <div>
-          <p class="cs-body" style="color:var(--ink);font-weight:600;margin-bottom:12px">What I did</p>
-          <ul class="cs-list">
-            <li>UX/UI design, from lo-fi wireframes to hi-fi screens</li>
-            <li>Front-end prototype in Xcode (SwiftUI + ARKit), built with help from Claude</li>
-            <li>User testing and iteration</li>
-          </ul>
-          <p class="cs-note">Diana led the concept, the UX flow and the backend, including the OpenAI API integration.</p>
-        </div>
-        <div class="media " data-src="images/ergoscan/overview.png" data-ratio="4/3"><span class="mph"><b>overview.png</b>Overview: 2 or 3 key screens together<br>4:3, 2000 × 1500 px</span></div>
-      </div>
-    </section>
-
     <!-- PROBLEM -->
-    <section class="cs-section">
+    <section class="cs-section" id="es-problem">
       <p class="cs-eyebrow">The problem</p>
-      <h2 class="cs-h2">Most people don't know their desk is hurting them.</h2>
-      <p class="cs-sub">Many people spend 8+ hours a day at their desk.</p>
-      <p class="cs-body">Without realizing it, they adjust to their setup. They slouch a little more and strain a little further, and the damage adds up.</p>
-      <div class="cs-wide"><div class="media " data-src="images/ergoscan/problem.png" data-ratio="16/9"><span class="mph"><b>problem.png</b>Problem visual: person at a desk with strain points<br>16:9, 2400 × 1350 px</span></div></div>
-      <div class="cs-tldr" style="margin-top:32px">
+      <div class="cs-split">
+        <div>
+          <h2 class="cs-h2">Most people don't know their desk is hurting them.</h2>
+          <p class="cs-sub">Many people spend 8+ hours a day at their desk.</p>
+          <p class="cs-body">Without realizing it, they adjust to their setup. They slouch a little more and strain a little further, and the damage adds up.</p>
+        </div>
+        <div class="media shot" data-src="images/ergoscan/problem.jpg" data-ratio="1100/1091"><span class="mph"><b>problem.jpg</b>Person at a desk with strain points</span></div>
+      </div>
+      <h3 class="cs-h3">Why people stay stuck</h3>
+      <div class="cs-tldr">
         <div class="cs-card"><p class="num">01</p><h4>Can't see the problem</h4><p>People know bad posture is harmful, but can't tell what's wrong with their own setup.</p></div>
         <div class="cs-card"><p class="num">02</p><h4>No clear first step</h4><p>Even when they want to fix it, they don't know where to start.</p></div>
         <div class="cs-card"><p class="num">03</p><h4>Experts cost too much</h4><p>Professional assessments exist, but they're too expensive and inconvenient for everyday use.</p></div>
       </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="cs-section">
-      <p class="cs-eyebrow">Process</p>
-      <h2 class="cs-h2">How we got there</h2>
-      <div class="cs-steps">
-        <div class="cs-card"><h4>Concept &amp; UX flow</h4><p>Diana mapped the full flow: measure, a quick assessment, AI analysis, then save to history.</p></div>
-        <div class="cs-card"><h4>Lo-fi to hi-fi</h4><p>I designed every screen, from wireframes to the final UI in Figma.</p></div>
-        <div class="cs-card"><h4>Building it</h4><p>I built the front end in Xcode with SwiftUI and ARKit, using Claude to help with the code.</p></div>
-        <div class="cs-card"><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then a survey with about 20 visitors at our year-end show.</p></div>
+    <!-- ROLE -->
+    <section class="cs-section" id="es-role">
+      <p class="cs-eyebrow">My role</p>
+      <h2 class="cs-h2">Your personal ergonomist, in your pocket.</h2>
+      <div class="cs-two">
+        <ul class="cs-list">
+          <li>UX/UI design, from lo-fi wireframes to hi-fi screens</li>
+          <li>Front-end prototype in Xcode (SwiftUI + ARKit), built with help from Claude</li>
+          <li>User testing and iteration</li>
+        </ul>
+        <p class="cs-note">Diana led the concept, the UX flow and the backend, including the OpenAI API integration.</p>
       </div>
-      <div class="media " data-src="images/ergoscan/ux-flow.png" data-ratio="24/11"><span class="mph"><b>ux-flow.png</b>UX flow diagram<br>wide, 2400 × 1100 px</span></div>
     </section>
 
-    <!-- EXPLORATION -->
-    <section class="cs-section">
-      <p class="cs-eyebrow">Exploration</p>
-      <h2 class="cs-h2">What testing changed.</h2>
-      <p class="cs-sub">Two decisions where feedback from real people reshaped the design.</p>
+    <!-- PROCESS -->
+    <section class="cs-section" id="es-process">
+      <p class="cs-eyebrow">Process</p>
+      <h2 class="cs-h2">How we got there</h2>
+      <ol class="cs-steps">
+        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>Diana mapped the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
+        <li class="cs-card"><p class="num">02</p><h4>Lo-fi to hi-fi</h4><p>I designed every screen, from wireframes to the final UI in Figma.</p></li>
+        <li class="cs-card"><p class="num">03</p><h4>Building it</h4><p>I built the front end in Xcode with SwiftUI and ARKit, using Claude to help with the code.</p></li>
+        <li class="cs-card"><p class="num">04</p><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then a survey with about 20 visitors at our year-end show.</p></li>
+      </ol>
+      <a class="zoom" href="images/ergoscan/ux-flow.jpg" target="_blank" rel="noopener"><div class="media shot" data-src="images/ergoscan/ux-flow.jpg" data-ratio="2600/1341"><span class="mph"><b>ux-flow.jpg</b>UX flow diagram</span></div></a>
+      <p class="cap">UX flow. Open full size &nearr;</p>
+    </section>
+
+    <!-- TESTING -->
+    <section class="cs-section" id="es-testing">
+      <p class="cs-eyebrow">What testing changed</p>
+      <h2 class="cs-h2">Two decisions where feedback from real people reshaped the design.</h2>
 
       <div class="cs-decision">
         <p class="label">Challenge 1 &middot; Measuring</p>
         <h3>Familiar pattern, fewer placement errors</h3>
-        <div class="cs-ba" style="margin-top:20px">
+        <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/before-measure.png" data-ratio="1170/2532"><span class="mph"><b>before-measure.png</b>Old measuring screen<br>phone, 1170 × 2532 px</span></div></div>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-measure.jpg" data-ratio="600/1301"><span class="mph"><b>before-measure.jpg</b></span></div></div></figure>
             <p>Free tap to place points on a small camera view. During the in-class showcase, testers weren't sure where to tap and couldn't aim precisely.</p>
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/after-measure.png" data-ratio="1170/2532"><span class="mph"><b>after-measure.png</b>New measuring screen<br>phone, 1170 × 2532 px</span></div></div>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-distance.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-distance.mp4</b></span></div></div></figure>
             <p>A crosshair and a plus button on a full-screen camera. People already know this from iPhone's Measure app, so there's nothing new to learn and fewer misplaced points.</p>
           </div>
         </div>
@@ -441,92 +519,117 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
       <div class="cs-decision">
         <p class="label">Challenge 2 &middot; Results</p>
         <h3>From a data dump to an actionable report</h3>
-        <div class="cs-ba" style="margin-top:20px">
+        <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/before-results.png" data-ratio="1170/2532"><span class="mph"><b>before-results.png</b>Old results screen<br>phone, 1170 × 2532 px</span></div></div>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-results.jpg" data-ratio="600/1298"><span class="mph"><b>before-results.jpg</b></span></div></div></figure>
             <p>Raw measurements in a flat list, colored by brand instead of status. Related info was spread across the screen, and each card had too much text to scan.</p>
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/after-results.png" data-ratio="1170/2532"><span class="mph"><b>after-results.png</b>New results screen<br>phone, 1170 × 2532 px</span></div></div>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure>
             <p>A score you can read at a glance, using traffic light colors (green, yellow, red). What needs fixing comes first, and each measurement lives in one card.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FINAL SOLUTION -->
-    <section class="cs-section">
+    <!-- SOLUTION -->
+    <section class="cs-section" id="es-solution">
       <p class="cs-eyebrow">Final solution</p>
       <h2 class="cs-h2">Measure, understand, improve.</h2>
-      <div class="cs-gallery">
-        <figure><div class="media phone" data-src="images/ergoscan/screen-start.png" data-ratio="1170/2532"><span class="mph"><b>screen-start.png</b>Start<br>phone</span></div><figcaption>Start</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-height.png" data-ratio="1170/2532"><span class="mph"><b>screen-height.png</b>Viewing height<br>phone</span></div><figcaption>Viewing height</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-distance.png" data-ratio="1170/2532"><span class="mph"><b>screen-distance.png</b>Monitor distance<br>phone</span></div><figcaption>Monitor distance</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-keyboard.png" data-ratio="1170/2532"><span class="mph"><b>screen-keyboard.png</b>Keyboard position<br>phone</span></div><figcaption>Keyboard position</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-assessment.png" data-ratio="1170/2532"><span class="mph"><b>screen-assessment.png</b>Quick assessment<br>phone</span></div><figcaption>Quick assessment</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-score.png" data-ratio="1170/2532"><span class="mph"><b>screen-score.png</b>Score<br>phone</span></div><figcaption>Score</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-good.png" data-ratio="1170/2532"><span class="mph"><b>screen-good.png</b>Good setup<br>phone</span></div><figcaption>Good setup</figcaption></figure>
-        <figure><div class="media phone" data-src="images/ergoscan/screen-history.png" data-ratio="1170/2532"><span class="mph"><b>screen-history.png</b>History<br>phone</span></div><figcaption>History</figcaption></figure>
-      </div>
 
       <div class="cs-feature">
         <div class="cs-feature-text">
-          <p class="cs-eyebrow">Measure</p>
-          <h3 class="cs-h2" style="font-size:28px">Three steps, one camera.</h3>
+          <p class="fk">01 &middot; Measure</p>
+          <h3>Three steps, one camera.</h3>
           <p class="cs-body">Viewing height, monitor distance and keyboard position, each measured by aiming and tapping. A quick two-question check covers elbows and wrists.</p>
         </div>
-        <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/feature-measure.png" data-ratio="1170/2532"><span class="mph"><b>feature-measure.png</b>Measuring in action<br>phone, 1170 × 2532 px</span></div></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-measure.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-measure.mp4</b></span></div></div><figcaption>Three measurements</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-assess.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-assess.mp4</b></span></div></div><figcaption>Quick assessment</figcaption></figure></div>
       </div>
 
       <div class="cs-feature flip">
         <div class="cs-feature-text">
-          <p class="cs-eyebrow">Analyze</p>
-          <h3 class="cs-h2" style="font-size:28px">Know what's wrong first.</h3>
+          <p class="fk">02 &middot; Analyze</p>
+          <h3>Know what's wrong first.</h3>
           <p class="cs-body">The score shows how your setup is doing. Anything that needs improvement comes first, with a specific fix and why it matters.</p>
         </div>
-        <div class="phone-pair"><div class="media phone" data-src="images/ergoscan/feature-score.png" data-ratio="1170/2532"><span class="mph"><b>feature-score.png</b>Score<br>phone</span></div><div class="media phone" data-src="images/ergoscan/feature-fix.png" data-ratio="1170/2532"><span class="mph"><b>feature-fix.png</b>Fix detail<br>phone</span></div></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div><figcaption>Score and fixes</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure></div>
       </div>
 
       <div class="cs-feature">
         <div class="cs-feature-text">
-          <p class="cs-eyebrow">Track</p>
-          <h3 class="cs-h2" style="font-size:28px">Watch yourself improve.</h3>
+          <p class="fk">03 &middot; Track</p>
+          <h3>Watch yourself improve.</h3>
           <p class="cs-body">Every scan is saved, so you can compare setups and see your score change over time.</p>
         </div>
-        <div class="phone-wrap"><div class="media phone" data-src="images/ergoscan/feature-history.png" data-ratio="1170/2532"><span class="mph"><b>feature-history.png</b>History<br>phone, 1170 × 2532 px</span></div></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Workspaces</figcaption></figure></div>
+      </div>
+
+      <h3 class="cs-h3">Every screen in the flow</h3>
+      <div class="cs-gallery">
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div><figcaption>Start</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-height.jpg" data-ratio="600/1298"><span class="mph"><b>screen-height.jpg</b></span></div></div><figcaption>Viewing height</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-distance.jpg" data-ratio="600/1298"><span class="mph"><b>screen-distance.jpg</b></span></div></div><figcaption>Monitor distance</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-keyboard.jpg" data-ratio="600/1298"><span class="mph"><b>screen-keyboard.jpg</b></span></div></div><figcaption>Keyboard position</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-assessment.jpg" data-ratio="600/1298"><span class="mph"><b>screen-assessment.jpg</b></span></div></div><figcaption>Quick assessment</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-analyzing.jpg" data-ratio="600/1298"><span class="mph"><b>screen-analyzing.jpg</b></span></div></div><figcaption>Analyzing</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-score.jpg" data-ratio="600/1298"><span class="mph"><b>screen-score.jpg</b></span></div></div><figcaption>Score</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-improve.jpg" data-ratio="600/1298"><span class="mph"><b>screen-improve.jpg</b></span></div></div><figcaption>Needs improvement</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure>
+      </div>
+
+      <div class="hood">
+        <h3 class="cs-h3">Under the hood</h3>
+        <ul class="hood-list">
+          <li><b>Surface first.</b> ARKit looks for the desk surface, and Start Measurement stays off until it finds one.</li>
+          <li><b>Two taps per measurement.</b> The app places two points, draws a line between them and shows the distance in cm.</li>
+          <li><b>AI for the advice.</b> The three numbers go to the OpenAI API, which returns a score and a fix for each item.</li>
+          <li><b>Never stuck.</b> If the AI call fails, simple built-in rules still score the setup, so people always get a result.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- IMPACT & REFLECTION -->
-    <section class="cs-section">
-      <p class="cs-eyebrow">Impact &amp; reflection</p>
-      <h2 class="cs-h2">It felt useful, not just like a school project.</h2>
-      <div class="cs-two" style="margin-top:24px">
+    <!-- SHOWCASE -->
+    <section class="cs-section" id="es-showcase">
+      <p class="cs-eyebrow">Impact</p>
+      <div class="cs-split">
         <div>
+          <h2 class="cs-h2">It felt useful, not just like a school project.</h2>
           <p class="cs-body">At our year-end show, visitors told us this wasn't just a school project. It was something they'd actually use at their own desk.</p>
           <p class="cs-body">ErgoScan also received an Honorable Mention at the RGD Student Awards 2026.</p>
         </div>
-        <div class="media " data-src="images/ergoscan/showcase.jpg" data-ratio="3/2"><span class="mph"><b>showcase.jpg</b>Photo from the year-end show (booth, poster, people trying it)<br>3:2, 2100 × 1400 px</span></div>
+        <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg" data-ratio="1600/2036"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
       </div>
-      <div class="cs-tldr" style="margin-top:36px">
+    </section>
+
+    <!-- REFLECTION -->
+    <section class="cs-section" id="es-reflection">
+      <p class="cs-eyebrow">Reflection</p>
+      <div class="cs-tldr">
         <div class="cs-card"><h4>What worked</h4><p class="cs-fill">[ your own words ]</p></div>
         <div class="cs-card"><h4>What I'd do differently</h4><p class="cs-fill">[ your own words ]</p></div>
         <div class="cs-card"><h4>If this shipped, I'd measure</h4><p class="cs-fill">[ your own words ]</p></div>
       </div>
     </section>
 
-    <div class="cs-cta">
-      <h2>Want to hear more?</h2>
-      <p>I'd love to walk you through it.</p>
-      <a class="cs-btn" href="mailto:suzy.shin7@gmail.com">Email me</a>
     </div>
+  </div>
 
-    <a class="cs-next" href="#work">
-      <p class="k">Next project</p>
-      <p class="t">Giving unused cat toys a second home →</p>
-    </a>
+  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
+
+  <div class="cs-cta">
+    <h2>Want to hear more?</h2>
+    <p>I'd love to walk you through it.</p>
+    <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com">Email me</a>
+  </div>
+
+  <a class="cs-next" href="#work">
+    <p class="k">Next project</p>
+    <p class="t">Giving unused cat toys a second home &rarr;</p>
+  </a>
 </div>
 </div>
 <footer class="end"><div class="in">
@@ -694,6 +797,16 @@ document.querySelectorAll('.media').forEach(function(m){
     img.src=src;
   }
 });
+
+// case study: highlight the current section in the side list
+(function(){var links=[].slice.call(document.querySelectorAll('#ergoscanPage .toc a'));if(!links.length||!('IntersectionObserver' in window))return;
+  links.forEach(function(l){l.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(l.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-35% 0px -60% 0px'});
+  links.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)io.observe(t)})})();
+
+// case study: only play the clips that are on screen
+(function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(en){var v=en.target.querySelector('video');if(!v)return;if(en.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.15});
+  document.querySelectorAll('#ergoscanPage .media[data-type=video]').forEach(function(m){io.observe(m)})})();
 </script>
 </body>
 </html>

@@ -21,7 +21,7 @@ Steps:
 - `#home`: hero (`#hero`), work section (`#work`), "Want to know who's behind it?" band (`.meet`).
 - `#aboutPage` (hidden by default): intro with photo placeholder, bio, Education, Awards, "When I log off, I like to *" tiles.
 - Shared `<footer class="end">` (blue, "Stay tuned.", email, LinkedIn, Resume, Toronto clock, Back to top).
-- `#ergoscanPage` (hidden by default, route `#ergoscan`): ported ErgoScan case study. Blue header (`.csh`, own nav, back link, title, meta row), then the white body. Its CSS is a separate `<style>` block scoped to `#ergoscanPage`, and the `.media` loader is a separate `<script>` after the main one. Placeholder labels use `.mph` (not `.ph`, which is the work thumbnail box).
+- `#ergoscanPage` (hidden by default, route `#ergoscan`): ErgoScan case study, redesigned 2026-10-15 from Suji's award slides, poster, app code and screen recording. Blue header with award chip, title, one-line summary, meta and a phone frame playing `images/ergoscan/demo.mp4` (trimmed, 600px, no audio). Then stats row, sticky section list (1100px+), TL;DR, Problem, My role, Process (UX flow), Testing (before/after), Solution (features, screen gallery, Under the hood), Impact (poster), Reflection, blue lineup of three phones, CTA, next. CSS is a separate `<style>` block scoped to `#ergoscanPage`; the `.media` loader and the section-list script are a separate `<script>` after the main one. Placeholder labels use `.mph` (not `.ph`).
 - Fixed corner speaker button `#snd`, custom cursor `#cur` (whole note) and `#curv` ("View" pill).
 - One `<script>` IIFE. Careful with variable names inside it: `cv` is the hero canvas. A new variable named `cv` once broke the whole dot field. Use unique names.
 
@@ -77,7 +77,7 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 - [ ] About photo (Suji will provide it, placeholder says "Your photo here").
 - [ ] Piano tile caption is empty on purpose. Ask Suji what to write.
 - [ ] Resume link and LinkedIn link (Resume is `#` for now).
-- [ ] Add ErgoScan images to `images/ergoscan/` (Suji is making them herself).
+- [x] ErgoScan media in `images/ergoscan/`. App screens (`screen-*.jpg`) and looping clips (`clip-*.mp4` + same-name `.jpg` fallback) come from Suji's screen recording `IMG_9004.MP4` at full resolution, shown inside a CSS phone frame (`.dv > .device`). Only `before-*.jpg` (old versions), `problem.jpg`, `ux-flow.jpg` and `poster.jpg` come from the slides/poster, rendered at high resolution. Do not use low-res slide crops. A real photo from the year-end show would still be good.
 - [ ] Fill ErgoScan timeline and the three reflection cards with Suji's own words.
 - [ ] Build PawLoop, Shleep and Stu-View case studies in the same structure, then link their cards.
 - [ ] Check in a real browser: DM Sans rendering, needle drag, cursor, the 700px to tablet layout, and the phone hero.
