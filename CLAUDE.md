@@ -25,8 +25,9 @@ Steps:
 - `#shleepPage` (route `#shleep`): Shleep case study built 2026-10-19 from the FigBuild deck and the Figma prototype, same structure and CSS as ErgoScan (case study CSS is scoped with `:is(#ergoscanPage,#shleepPage)`). Screens are 2x Figma exports in `images/shleep/`. Long screens use `.media.scroll` with a `--shift` value so they scroll slowly inside the phone frame. No Reflection section yet (nothing from Suji to base it on).
 - `#stuviewPage` (route `#stuview`): Stu-View case study built 2026-10-19 from Suji's test plan (Assignment 4), one-page report (Assignment 5), observation sheet and survey. Screens are stills from session video E.mov, cropped to the page, with Suji's name, student number and the instructor's name blurred. Never publish unblurred frames from the session videos.
 - PawLoop card is marked work in progress (`.card.wip`): band says "Work in progress", cursor pill says "Soon", click does nothing.
+- About "When I log off" tiles show a small black "WIP" tag on hover (`.tile::after`).
 - Scroll reveal: a separate script adds `.rv` to sections, cards and media (not the hero) and `.rvin` when they scroll into view (fade + 18px rise, cards staggered 80ms). It checks scroll position directly instead of IntersectionObserver, and does nothing with prefers-reduced-motion. Do not put `.rv` on elements that have their own transform or transition on hover (tiles, pills, buttons); reveal their container instead.
-- Email links with `data-copy` (case study "Email me" button, footer email) copy the address instead of opening mail: pink "Copy email" cursor pill on desktop, "Email copied" toast everywhere. Clipboard API first, then a textarea fallback.
+- Email links with `data-copy` (case study "Email me" button, footer email) copy the address instead of opening mail: black "Copy email" cursor pill (same look as the "View" pill) on desktop, "Email copied" toast everywhere. Clipboard API first, then a textarea fallback.
 - `body.pg-about` is set on `#about` and `#ergoscan` (pages without the tuner) so the corner sound button always sits in the corner and also shows on phones.
 - Fixed corner speaker button `#snd`, custom cursor `#cur` (whole note) and `#curv` ("View" pill).
 - One `<script>` IIFE. Careful with variable names inside it: `cv` is the hero canvas. A new variable named `cv` once broke the whole dot field. Use unique names.
@@ -34,7 +35,7 @@ Steps:
 ## Design system
 
 Palette (CSS tokens in `:root`):
-- `--blue #2d19f8` (hero, About top, footer), `--y #fff70d` (name, labels), `--pink #ff4ba7` (the "Want to know who's behind it?" text and the "Copy email" cursor pill only), `--black #0a0a0a`, white page background.
+- `--blue #2d19f8` (hero, About top, footer), `--y #fff70d` (name, labels), `--pink #ff4ba7` (the "Want to know who's behind it?" text only), `--black #0a0a0a`, white page background.
 - Tuner: body `#d6dade`, LCD `#fbe94a`, needle `#e5262d`, in-tune lamp `#25e06a`.
 - Do not lower the pink saturation. Suji tried it and rejected it. Avoid gradients on the tuner, avoid hot pink dominance.
 
