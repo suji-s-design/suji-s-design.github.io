@@ -185,13 +185,14 @@ html.hascur a[data-copy]{cursor:none!important}
 #curc.on{opacity:1;scale:1}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:10000;transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);background:#0a0a0a;color:#fff;border-radius:999px;padding:10px 18px;font:500 14px var(--f)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+.card.wip{cursor:default}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
 @media(min-width:900px){.abg{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-areas:none;grid-template-rows:auto auto;column-gap:24px;row-gap:clamp(36px,5vh,56px)}.abh{grid-column:1/-1;grid-row:1}.pic{grid-column:1/span 5;grid-row:2;max-width:none;justify-self:stretch;align-self:start}.bio{grid-column:7/span 6;grid-row:2;align-self:start;max-width:none}}
 
 /* ===== ErgoScan case study ===== */
-#ergoscanPage{--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72);--shot:#f6f6f6}
+:is(#ergoscanPage,#shleepPage,#stuviewPage){--line:rgba(10,10,10,.18);--body:rgba(10,10,10,.72);--shot:#f6f6f6}
 
 /* header */
 .csh{background:var(--blue);color:#fff;position:relative;overflow:hidden}
@@ -214,137 +215,180 @@ html.hascur a[data-copy]{cursor:none!important}
 
 
 /* device frame used for every app screen and clip */
-#ergoscanPage .dv{margin:0;min-width:0}
-#ergoscanPage .device{background:#0a0a0a;border-radius:15% / 7%;padding:3.2%;box-shadow:0 14px 34px rgba(10,10,10,.16)}
-#ergoscanPage .device .media.phone{border-radius:12% / 5.6%;border:0;background:#111}
-#ergoscanPage .device .media.phone.loaded{border:0;background:#111}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .dv{margin:0;min-width:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .device{background:#0a0a0a;border-radius:15% / 7%;padding:3.2%;box-shadow:0 14px 34px rgba(10,10,10,.16)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .device .media.phone{border-radius:12% / 5.6%;border:0;background:#111}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .device .media.phone.loaded{border:0;background:#111}
 .csh-phone .device{box-shadow:0 30px 70px rgba(8,0,90,.45)}
 
 /* body */
-#ergoscanPage .cs{padding-top:clamp(40px,6vh,64px);padding-bottom:clamp(64px,10vh,110px)}
-#ergoscanPage .stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #0a0a0a;border-bottom:1px solid var(--line)}
-#ergoscanPage .stats li{padding:22px 16px 22px 0;display:flex;flex-direction:column;gap:6px}
-#ergoscanPage .stats li+li{padding-left:20px;border-left:1px solid var(--line)}
-#ergoscanPage .stats b{font-weight:600;font-size:clamp(34px,4.4vw,60px);letter-spacing:-.025em;line-height:1}
-#ergoscanPage .stats span{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft)}
-@media(max-width:700px){#ergoscanPage .stats{grid-template-columns:1fr 1fr}#ergoscanPage .stats li:nth-child(3){padding-left:0;border-left:0}#ergoscanPage .stats li:nth-child(n+3){border-top:1px solid var(--line)}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs{padding-top:clamp(40px,6vh,64px);padding-bottom:clamp(64px,10vh,110px)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #0a0a0a;border-bottom:1px solid var(--line)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats li{padding:22px 16px 22px 0;display:flex;flex-direction:column;gap:6px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats li+li{padding-left:20px;border-left:1px solid var(--line)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats b{font-weight:600;font-size:clamp(34px,4.4vw,60px);letter-spacing:-.025em;line-height:1}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats span{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft)}
+@media(max-width:700px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats{grid-template-columns:1fr 1fr}:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats li:nth-child(3){padding-left:0;border-left:0}:is(#ergoscanPage,#shleepPage,#stuviewPage) .stats li:nth-child(n+3){border-top:1px solid var(--line)}}
 
 /* sticky section list on wide screens */
-#ergoscanPage .cs-layout{display:grid;grid-template-columns:minmax(0,1fr)}
-#ergoscanPage .toc{display:none}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-layout{display:grid;grid-template-columns:minmax(0,1fr)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .toc{display:none}
 @media(min-width:1100px){
-  #ergoscanPage .cs-layout{grid-template-columns:150px minmax(0,1fr);gap:56px}
-  #ergoscanPage .toc{display:flex;flex-direction:column;gap:2px;position:sticky;top:32px;align-self:start;margin-top:clamp(72px,11vh,120px)}
-  #ergoscanPage .toc a{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:6px 0 6px 16px;position:relative}
-  #ergoscanPage .toc a::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;border:1px solid rgba(10,10,10,.35)}
-  #ergoscanPage .toc a:hover{color:#0a0a0a}
-  #ergoscanPage .toc a.on{color:#0a0a0a}
-  #ergoscanPage .toc a.on::before{background:var(--y);border-color:#0a0a0a}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-layout{grid-template-columns:150px minmax(0,1fr);gap:56px}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc{display:flex;flex-direction:column;gap:2px;position:sticky;top:32px;align-self:start;margin-top:clamp(72px,11vh,120px)}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc a{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:6px 0 6px 16px;position:relative}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc a::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;border:1px solid rgba(10,10,10,.35)}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc a:hover{color:#0a0a0a}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc a.on{color:#0a0a0a}
+  :is(#ergoscanPage,#shleepPage,#stuviewPage) .toc a.on::before{background:var(--y);border-color:#0a0a0a}
 }
-#ergoscanPage .cs-section{padding-top:clamp(72px,11vh,120px);scroll-margin-top:24px}
-#ergoscanPage .cs-eyebrow{display:inline-block;margin:0 0 20px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--y);padding:.2em .9em;border-radius:999px;border:1px solid #0a0a0a}
-#ergoscanPage .cs-h2{margin:0 0 14px;font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(28px,3.4vw,46px);max-width:20ch}
-#ergoscanPage .cs-h3{margin:56px 0 18px;font-weight:600;letter-spacing:-.025em;font-size:clamp(20px,2vw,26px)}
-#ergoscanPage .cs-sub{font-weight:500;letter-spacing:-.02em;font-size:clamp(18px,1.8vw,24px);line-height:1.35;margin:0 0 14px;max-width:40ch}
-#ergoscanPage .cs-body{font-size:16px;line-height:1.6;color:var(--body);max-width:60ch;margin:0 0 14px}
-#ergoscanPage mark{background:rgba(45,25,248,.12);color:#0a0a0a;padding:0 3px;border-radius:3px}
-#ergoscanPage .cs-fill{color:var(--blue);font-family:'DM Mono',ui-monospace,monospace;font-size:.9em}
-#ergoscanPage .cap{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);margin:10px 0 0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-section{padding-top:clamp(72px,11vh,120px);scroll-margin-top:24px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-eyebrow{display:inline-block;margin:0 0 20px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--y);padding:.2em .9em;border-radius:999px;border:1px solid #0a0a0a}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-h2{margin:0 0 14px;font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(28px,3.4vw,46px);max-width:20ch}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-h3{margin:56px 0 18px;font-weight:600;letter-spacing:-.025em;font-size:clamp(20px,2vw,26px)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-sub{font-weight:500;letter-spacing:-.02em;font-size:clamp(18px,1.8vw,24px);line-height:1.35;margin:0 0 14px;max-width:40ch}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-body{font-size:16px;line-height:1.6;color:var(--body);max-width:60ch;margin:0 0 14px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) mark{background:rgba(45,25,248,.12);color:#0a0a0a;padding:0 3px;border-radius:3px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-fill{color:var(--blue);font-family:'DM Mono',ui-monospace,monospace;font-size:.9em}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cap{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);margin:10px 0 0}
 
-#ergoscanPage .cs-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
-@media(max-width:820px){#ergoscanPage .cs-split{grid-template-columns:1fr}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-split{grid-template-columns:1fr}}
 
 /* cards */
-#ergoscanPage .cs-tldr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-#ergoscanPage .cs-card{background:#fff;border:1px solid #0a0a0a;border-radius:14px;padding:22px 22px 24px;margin:0}
-#ergoscanPage .cs-card h4{font-size:17px;font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
-#ergoscanPage .cs-card p{font-size:15px;line-height:1.6;color:var(--body);margin:0}
-#ergoscanPage .cs-card .num{font:500 13px 'DM Mono',ui-monospace,monospace;color:var(--blue);margin:0 0 16px}
-@media(max-width:820px){#ergoscanPage .cs-tldr{grid-template-columns:1fr}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-tldr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card{background:#fff;border:1px solid #0a0a0a;border-radius:14px;padding:22px 22px 24px;margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card h4{font-size:17px;font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card p{font-size:15px;line-height:1.6;color:var(--body);margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card .num{font:500 13px 'DM Mono',ui-monospace,monospace;color:var(--blue);margin:0 0 16px}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-tldr{grid-template-columns:1fr}}
 
-#ergoscanPage .cs-two{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start;margin-top:24px}
-@media(max-width:820px){#ergoscanPage .cs-two{grid-template-columns:1fr;gap:20px}}
-#ergoscanPage .cs-list{margin:0;padding:0;list-style:none;border-top:2px solid #0a0a0a}
-#ergoscanPage .cs-list li{font-size:16px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.5}
-#ergoscanPage .cs-note{font-size:15px;line-height:1.6;color:var(--body);margin:0;padding-top:14px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-two{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start;margin-top:24px}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-two{grid-template-columns:1fr;gap:20px}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-list{margin:0;padding:0;list-style:none;border-top:2px solid #0a0a0a}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-list li{font-size:16px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.5}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-note{font-size:15px;line-height:1.6;color:var(--body);margin:0;padding-top:14px}
 
-#ergoscanPage .cs-steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 32px}
-@media(max-width:1000px){#ergoscanPage .cs-steps{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){#ergoscanPage .cs-steps{grid-template-columns:1fr}}
-#ergoscanPage .zoom{display:block}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:28px 0 32px}
+@media(max-width:1000px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-steps{grid-template-columns:1fr}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .zoom{display:block}
 
 /* before / after */
-#ergoscanPage .cs-decision{margin-top:56px}
-#ergoscanPage .cs-decision .label{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--soft);margin:0 0 8px}
-#ergoscanPage .cs-decision h3{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em;margin:0 0 20px}
-#ergoscanPage .cs-ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:820px){#ergoscanPage .cs-ba{grid-template-columns:1fr}}
-#ergoscanPage .cs-ba .side{border:1px solid #0a0a0a;border-radius:14px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:18px}
-#ergoscanPage .cs-ba .tag{align-self:flex-start;max-width:none;margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;padding:.15em .9em;border-radius:999px;border:1px solid #0a0a0a;background:#fff}
-#ergoscanPage .cs-ba .after .tag{background:var(--y)}
-#ergoscanPage .cs-ba .dv{width:min(240px,62%);align-self:center}
-#ergoscanPage .cs-ba .side{background:var(--shot)}
-#ergoscanPage .cs-ba p{font-size:15px;line-height:1.6;margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-decision{margin-top:56px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-decision .label{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--soft);margin:0 0 8px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-decision h3{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.025em;margin:0 0 20px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba{grid-template-columns:1fr}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .side{border:1px solid #0a0a0a;border-radius:14px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:18px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .tag{align-self:flex-start;max-width:none;margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;padding:.15em .9em;border-radius:999px;border:1px solid #0a0a0a;background:#fff}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .after .tag{background:var(--y)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .dv{width:min(240px,62%);align-self:center}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .side{background:var(--shot)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba p{font-size:15px;line-height:1.6;margin:0}
 
 /* features */
-#ergoscanPage .cs-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-top:56px}
-#ergoscanPage .cs-feature.flip .cs-feature-text{order:2}
-#ergoscanPage .fk{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
-#ergoscanPage .cs-feature h3{font-weight:600;letter-spacing:-.025em;font-size:clamp(24px,2.6vw,34px);margin:0 0 12px;line-height:1.1}
-#ergoscanPage .phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);background:var(--shot);border-radius:20px;padding:clamp(24px,3.4vw,44px) clamp(24px,4vw,56px)}
-#ergoscanPage .phones figure,#ergoscanPage .cs-gallery figure{margin:0}
-#ergoscanPage figcaption{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-align:center;margin-top:10px}
-@media(max-width:820px){#ergoscanPage .cs-feature{grid-template-columns:1fr;gap:20px}#ergoscanPage .cs-feature.flip .cs-feature-text{order:0}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-top:56px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature.flip .cs-feature-text{order:2}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .fk{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature h3{font-weight:600;letter-spacing:-.025em;font-size:clamp(24px,2.6vw,34px);margin:0 0 12px;line-height:1.1}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);background:var(--shot);border-radius:20px;padding:clamp(24px,3.4vw,44px) clamp(24px,4vw,56px)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .phones figure,:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery figure{margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) figcaption{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-align:center;margin-top:10px}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature{grid-template-columns:1fr;gap:20px}:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature.flip .cs-feature-text{order:0}}
 
-#ergoscanPage .cs-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px}
-#ergoscanPage .cs-gallery .dv{flex:0 0 clamp(140px,14vw,176px);scroll-snap-align:start}
-#ergoscanPage .cs-gallery{padding:20px 4px 22px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery .dv{flex:0 0 clamp(140px,14vw,176px);scroll-snap-align:start}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery{padding:20px 4px 22px}
 
-#ergoscanPage .hood-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #0a0a0a}
-#ergoscanPage .hood-list li{padding:16px 24px 16px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.55;color:var(--body)}
-#ergoscanPage .hood-list b{color:#0a0a0a;font-weight:600}
-@media(max-width:700px){#ergoscanPage .hood-list{grid-template-columns:1fr}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid #0a0a0a}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list li{padding:16px 24px 16px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.55;color:var(--body)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list b{color:#0a0a0a;font-weight:600}
+@media(max-width:700px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list{grid-template-columns:1fr}}
 
-#ergoscanPage .poster{margin:0;max-width:420px;justify-self:end;width:100%}
-@media(max-width:820px){#ergoscanPage .poster{justify-self:start}}
-#ergoscanPage .lineup{margin-top:clamp(72px,11vh,120px);background:var(--blue);border-radius:20px;padding:clamp(36px,6vw,80px) clamp(24px,8vw,140px) 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,44px);align-items:start;overflow:hidden;height:clamp(340px,42vw,560px)}
-#ergoscanPage .lineup .dv:nth-child(odd){margin-top:14%}
-#ergoscanPage .lineup .device{box-shadow:0 24px 60px rgba(8,0,90,.45)}
-@media(max-width:700px){#ergoscanPage .lineup{height:auto;padding-bottom:28px}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .poster{margin:0;max-width:420px;justify-self:end;width:100%}
+@media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .poster{justify-self:start}}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup{margin-top:clamp(72px,11vh,120px);background:var(--blue);border-radius:20px;padding:clamp(36px,6vw,80px) clamp(24px,8vw,140px) 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,44px);align-items:start;overflow:hidden;height:clamp(340px,42vw,560px)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup .dv:nth-child(odd){margin-top:14%}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup .device{box-shadow:0 24px 60px rgba(8,0,90,.45)}
+@media(max-width:700px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup{height:auto;padding-bottom:28px}}
 
 /* judge quote, reflection lists, draft note */
-#ergoscanPage .cs-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
-#ergoscanPage .cs-card li{font-size:15px;line-height:1.55;color:var(--body)}
-#ergoscanPage .pull{margin:clamp(72px,11vh,120px) auto 0;max-width:780px;text-align:center}
-#ergoscanPage .pull blockquote{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.025em;line-height:1.15;font-size:clamp(26px,3.4vw,46px)}
-#ergoscanPage .pull figcaption{margin-top:18px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-card li{font-size:15px;line-height:1.55;color:var(--body)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .pull{margin:clamp(72px,11vh,120px) auto 0;max-width:780px;text-align:center}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .pull blockquote{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.025em;line-height:1.15;font-size:clamp(26px,3.4vw,46px)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .pull figcaption{margin-top:18px}
 
 /* Impact: text on top, show photos at the bottom, lined up with the poster */
 #es-showcase .cs-split{align-items:stretch}
-#ergoscanPage .impact-col{display:flex;flex-direction:column;justify-content:space-between;gap:32px}
-#ergoscanPage .show{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-#ergoscanPage .show figure{margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .impact-col{display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .show{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .show figure{margin:0}
 
 /* CTA and next */
-#ergoscanPage .cs-cta{text-align:center;padding:clamp(80px,12vh,120px) 0 40px}
-#ergoscanPage .cs-cta h2{font-weight:600;letter-spacing:-.025em;font-size:clamp(32px,4vw,56px);margin:0 0 10px}
-#ergoscanPage .cs-cta p{color:var(--body);margin:0 0 28px;font-size:16px}
-#ergoscanPage .cs-btn{display:inline-flex;align-items:center;color:#0a0a0a;text-decoration:none;border:1.5px solid #0a0a0a;border-radius:999px;font-weight:500;font-size:clamp(17px,1.8vw,22px);letter-spacing:-.02em;padding:.6em 1.25em;transition:background var(--beat)}
-#ergoscanPage .cs-btn:hover{background:var(--y)}
-#ergoscanPage .cs-next{display:block;color:inherit;text-decoration:none;border-top:2px solid #0a0a0a;margin-top:60px;padding-top:24px}
-#ergoscanPage .cs-next .k{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);margin:0 0 8px}
-#ergoscanPage .cs-next .t{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.025em;margin:0}
-#ergoscanPage .cs-next:hover .t{color:var(--blue)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-cta{text-align:center;padding:clamp(80px,12vh,120px) 0 40px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-cta h2{font-weight:600;letter-spacing:-.025em;font-size:clamp(32px,4vw,56px);margin:0 0 10px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-cta p{color:var(--body);margin:0 0 28px;font-size:16px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-btn{display:inline-flex;align-items:center;color:#0a0a0a;text-decoration:none;border:1.5px solid #0a0a0a;border-radius:999px;font-weight:500;font-size:clamp(17px,1.8vw,22px);letter-spacing:-.02em;padding:.6em 1.25em;transition:background var(--beat)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-btn:hover{background:var(--y)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-next{display:block;color:inherit;text-decoration:none;border-top:2px solid #0a0a0a;margin-top:60px;padding-top:24px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-next .k{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);margin:0 0 8px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-next .t{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.025em;margin:0}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-next:hover .t{color:var(--blue)}
 
 /* media: swap themselves for the real file once it exists */
-#ergoscanPage .media{position:relative;overflow:hidden;border-radius:14px;background:#f4f4f4;border:1px dashed rgba(10,10,10,.45);display:flex;align-items:center;justify-content:center}
-#ergoscanPage .media .mph{font:400 12px/1.6 'DM Mono',ui-monospace,monospace;color:var(--soft);text-align:center;padding:14px}
-#ergoscanPage .media .mph b{display:block;color:#0a0a0a;font-weight:500;margin-bottom:2px}
-#ergoscanPage .media img,#ergoscanPage .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-#ergoscanPage .media.loaded{border:0;background:var(--shot)}
-#ergoscanPage .media.loaded .mph{display:none}
-#ergoscanPage .media.phone{border-radius:12px}
-#ergoscanPage .media.phone.loaded{background:transparent}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media{position:relative;overflow:hidden;border-radius:14px;background:#f4f4f4;border:1px dashed rgba(10,10,10,.45);display:flex;align-items:center;justify-content:center}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media .mph{font:400 12px/1.6 'DM Mono',ui-monospace,monospace;color:var(--soft);text-align:center;padding:14px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media .mph b{display:block;color:#0a0a0a;font-weight:500;margin-bottom:2px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media img,:is(#ergoscanPage,#shleepPage,#stuviewPage) .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media.loaded{border:0;background:var(--shot)}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media.loaded .mph{display:none}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media.phone{border-radius:12px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .media.phone.loaded{background:transparent}
+
+/* Shleep: long screens scroll slowly inside the phone, short crops start at the top */
+#shleepPage .media.scroll img{height:auto;bottom:auto;object-fit:fill;animation:scrollshot 14s ease-in-out infinite alternate}
+@keyframes scrollshot{0%,12%{transform:translateY(0)}88%,100%{transform:translateY(var(--shift,0))}}
+@media(prefers-reduced-motion:reduce){#shleepPage .media.scroll img{animation:none}}
+#shleepPage .media.top img{object-position:50% 0}
+#shleepPage .concept .cs-card{display:flex;flex-direction:column;gap:14px}
+#shleepPage .concept .media{border-radius:10px}
+#shleepPage .concept .media.app img{object-position:50% 18%}
+
+/* Stu-View: browser frames, results table, findings */
+.csh-grid.noimg{grid-template-columns:1fr}
+#stuviewPage .bw{margin:0}
+#stuviewPage .browser{border:1px solid #0a0a0a;border-radius:14px;overflow:hidden;background:#fff}
+#stuviewPage .browser .bar{height:26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 12px}
+#stuviewPage .browser .bar i{width:9px;height:9px;border-radius:50%;border:1px solid rgba(10,10,10,.5)}
+#stuviewPage .browser .media{border-radius:0;border:0}
+#stuviewPage .bw.hero{margin-bottom:8px}
+#stuviewPage .tasks{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:12px;max-width:62ch}
+#stuviewPage .tasks li{font-size:16px;line-height:1.6;color:var(--body)}
+#stuviewPage .tasks b{color:#0a0a0a}
+#stuviewPage .tbl-wrap{overflow-x:auto;margin-top:24px}
+#stuviewPage .rtable{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
+#stuviewPage .rtable th,#stuviewPage .rtable td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line)}
+#stuviewPage .rtable thead th{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);border-bottom:2px solid #0a0a0a}
+#stuviewPage .rtable tbody th{font-weight:600}
+#stuviewPage .rtable tbody th span{display:block;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);font-weight:400}
+#stuviewPage .rtable td{font-weight:600;font-size:18px;letter-spacing:-.01em}
+#stuviewPage .rtable tr.hot{background:rgba(45,25,248,.06)}
+#stuviewPage .pair{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+@media(max-width:820px){#stuviewPage .pair{grid-template-columns:1fr}}
+#stuviewPage .finding{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:56px}
+@media(max-width:820px){#stuviewPage .finding{grid-template-columns:1fr}}
+#stuviewPage .finding h3{font-weight:600;letter-spacing:-.025em;font-size:clamp(22px,2.4vw,30px);margin:0 0 12px;line-height:1.15}
+#stuviewPage .fix{font-size:15px;line-height:1.6;margin:16px 0 0;padding:14px 16px;border:1px solid #0a0a0a;border-radius:14px;background:#fff}
+#stuviewPage .fix b{display:block;font:500 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+#stuviewPage .quote{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.2;font-size:clamp(22px,2.6vw,34px);text-wrap:balance}
+#stuviewPage .quote span{display:block;margin-top:14px;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);letter-spacing:0}
+#stuviewPage .quote.wide{margin-top:72px;text-align:center;max-width:780px;margin-left:auto;margin-right:auto}
+#stuviewPage .report{display:block;max-width:420px;justify-self:end;width:100%}
+#stuviewPage .report .media{border:1px solid #0a0a0a}
+@media(max-width:820px){#stuviewPage .report{justify-self:start}}
+#stuviewPage .cs-split .cs-btn{margin-top:12px}
 </style>
 </head>
 <body>
@@ -378,9 +422,9 @@ html.hascur a[data-copy]{cursor:none!important}
   <h2><span>Selected work</span></h2>
   <div class="grid">
     <a class="card" href="#ergoscan" style="--c:#2d19f8"><div class="ph"><img src="images/ergoscan-01.jpg" alt="ErgoScan"><div class="tint"></div><div class="band">Mobile app · Product design</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Team of 2</div><div class="nm">ErgoScan<span>2026</span></div><div class="ti">An AR check for your desk setup</div></a>
-    <a class="card" href="#" style="--c:#ff4ba7"><div class="ph"><div class="tint"></div><div class="band">Mobile app · UI design</div><div class="view">View</div></div><div class="meta">Mobile app · UI design · Team of 4</div><div class="nm">Shleep<span>2026</span></div><div class="ti">Placeholder</div></a>
-    <a class="card" href="#" style="--c:#fff70d"><div class="ph"><div class="tint"></div><div class="band">Mobile app · Product design</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Solo</div><div class="nm">PawLoop<span>2025</span></div><div class="ti">Placeholder</div></a>
-    <a class="card" href="#" style="--c:#0a0a0a"><div class="ph"><div class="tint"></div><div class="band">Web · UX research</div><div class="view">View</div></div><div class="meta">Web · UX research · Solo</div><div class="nm">Stu-View<span>2025</span></div><div class="ti">Placeholder</div></a>
+    <a class="card" href="#shleep" style="--c:#ff4ba7"><div class="ph"><img src="images/shleep/cover.jpg" alt="Shleep"><div class="tint"></div><div class="band">Mobile app · UI design</div><div class="view">View</div></div><div class="meta">Mobile app · UI design · Team of 4</div><div class="nm">Shleep<span>2026</span></div><div class="ti">Making sense of what happens while you sleep</div></a>
+    <a class="card wip" href="#work" aria-disabled="true" style="--c:#fff70d"><div class="ph"><div class="tint"></div><div class="band">Work in progress</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Solo</div><div class="nm">PawLoop<span>2025</span></div><div class="ti">Giving unused cat toys a second home</div></a>
+    <a class="card" href="#stuview" style="--c:#0a0a0a"><div class="ph"><img src="images/stuview/thumb.jpg" alt="Stu-View on a monitor"><div class="tint"></div><div class="band">Web · UX research</div><div class="view">View</div></div><div class="meta">Web · UX research · Solo</div><div class="nm">Stu-View<span>2025</span></div><div class="ti">Finding out why students get lost in their own portal</div></a>
   </div>
 </div></section>
 <section class="meet"><div class="in"><p>Want to know who's behind it?</p><a class="pill" href="#about">Meet Suji <span aria-hidden="true">&rarr;</span></a></div></section>
@@ -646,9 +690,316 @@ html.hascur a[data-copy]{cursor:none!important}
     <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">Email me</a>
   </div>
 
-  <a class="cs-next" href="#work">
+  <a class="cs-next" href="#shleep">
     <p class="k">Next project</p>
-    <p class="t">Giving unused cat toys a second home &rarr;</p>
+    <p class="t">Making sense of what happens while you sleep &rarr;</p>
+  </a>
+</div>
+</div>
+<div id="shleepPage" hidden>
+<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+  <div class="in">
+    <a class="back" href="#work">&larr; All work</a>
+    <div class="csh-grid">
+      <div class="csh-text">
+        <p class="award"><span>FigBuild 2026</span>Figma's student design-a-thon</p>
+        <h1 class="cs-title">Making sense of what happens while you sleep</h1>
+        <p class="csh-sub">Shleep is a speculative sleep and dream tracking concept set in 2036. A mattress topper and an earpiece read your body and brain at night, and the app turns that data into visuals and simple insights.</p>
+        <div class="cs-meta">
+          <div><p class="k">Role</p><p class="v">UI design</p></div>
+          <div><p class="k">Team</p><p class="v">Team of 4 with Sabrina Huffman, Shivalika Reddy, Rebecca Parvaneh</p></div>
+          <div><p class="k">Event</p><p class="v">FigBuild 2026<br>George Brown &amp; <span style="white-space:nowrap">OCAD U</span></p></div>
+          <div><p class="k">Type</p><p class="v">Speculative concept<br>iOS app</p></div>
+        </div>
+      </div>
+      <figure class="csh-phone">
+        <div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div>
+        <figcaption>Home screen</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="in cs">
+  <div class="cs-layout">
+    <nav class="toc" aria-label="Sections">
+      <a href="#sl-problem">Problem</a><a href="#sl-role">My role</a><a href="#sl-concept">Concept</a><a href="#sl-solution">Solution</a><a href="#sl-care">Care</a>
+    </nav>
+    <div class="cs-main">
+
+    <!-- PROBLEM -->
+    <section class="cs-section" id="sl-problem">
+      <p class="cs-eyebrow">The problem</p>
+      <h2 class="cs-h2">Your body speaks in signals. Your mind speaks in dreams.</h2>
+      <p class="cs-sub">But most of it happens while you're asleep, out of reach.</p>
+      <p class="cs-body">Many people track their health and still wake up feeling off. There is no tool that helps them read what their sleep and dreams are trying to tell them.</p>
+      <div class="cs-tldr">
+        <div class="cs-card"><p class="num">01</p><h4>Signals we misread</h4><p>Interoception is how your body senses its own state, like heart rate, breathing and muscle tension. Most people feel these signals but misread them.</p></div>
+        <div class="cs-card"><p class="num">02</p><h4>Out of reach at night</h4><p>Some of the richest signals happen while we sleep and dream, so we never see them.</p></div>
+        <div class="cs-card"><p class="num">03</p><h4>Who it's for</h4><p>Health-aware adults, around 20 to 50, who want to understand what their body is doing while they sleep.</p></div>
+      </div>
+    </section>
+
+    <!-- ROLE -->
+    <section class="cs-section" id="sl-role">
+      <p class="cs-eyebrow">My role</p>
+      <div class="cs-two">
+        <ul class="cs-list">
+          <li>Set the visual style of the app: type, spacing, card design and corner radius. I defined these rules as I designed, so every screen stayed consistent during a fast design-a-thon.</li>
+          <li>Designed many of the app screens, and helped shape the flow while designing them.</li>
+          <li>Ideation, together with the team.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONCEPT -->
+    <section class="cs-section" id="sl-concept">
+      <p class="cs-eyebrow">The concept</p>
+      <h2 class="cs-h2">Three pieces that work together.</h2>
+      <div class="cs-tldr concept">
+        <div class="cs-card"><div class="media shot" data-src="images/shleep/topper.jpg" data-ratio="4/3"><span class="mph"><b>topper.jpg</b></span></div><h4>Mattress topper</h4><p>Tracks movement, heart rate and breathing, and maps how your body shifts through the night. Small vibrations gently guide you toward better sleep.</p></div>
+        <div class="cs-card"><div class="media shot" data-src="images/shleep/earpiece.jpg" data-ratio="4/3"><span class="mph"><b>earpiece.jpg</b></span></div><h4>Neural earpiece</h4><p>Tracks brain activity and ambient sound during sleep, to paint a fuller picture of what happens in your dreams.</p></div>
+        <div class="cs-card"><div class="media shot app" data-src="images/shleep/screen-insights.jpg" data-ratio="4/3"><span class="mph"><b>screen-insights.jpg</b></span></div><h4>Shleep app</h4><p>Pulls in data from both and turns it into nightly dream and body breakdowns, with insights you can act on.</p></div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="cs-section" id="sl-solution">
+      <p class="cs-eyebrow">Final solution</p>
+      <h2 class="cs-h2">Talk, understand, and build your dreams.</h2>
+
+      <div class="cs-feature">
+        <div class="cs-feature-text">
+          <p class="fk">01 &middot; Shleep Talk</p>
+          <h3>A conversation about your night.</h3>
+          <p class="cs-body">When something keeps showing up in your sleep and dream data, Shleep starts a conversation. You get a recap of last night, a short visual of the dream, and a gentle check-in on how you feel, so you can notice a feeling you might have missed.</p>
+        </div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-recap.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-recap.jpg</b></span></div></div><figcaption>Last night recap</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-chat.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-chat.jpg</b></span></div></div><figcaption>Talking it through</figcaption></figure></div>
+      </div>
+
+      <div class="cs-feature flip">
+        <div class="cs-feature-text">
+          <p class="fk">02 &middot; Shleep Insights</p>
+          <h3>Your whole night, in focus.</h3>
+          <p class="cs-body">Insights shows your body's rhythms and your brain's activity overnight. Every chart comes with a simple explanation, so the data never feels overwhelming.</p>
+        </div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Monthly trends</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-57.6%" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div><figcaption>Physical data</figcaption></figure></div>
+      </div>
+
+      <div class="cs-feature">
+        <div class="cs-feature-text">
+          <p class="fk">03 &middot; Build Your Dream</p>
+          <h3>Design the dream you want.</h3>
+          <p class="cs-body">Upload a photo, audio, video or text to design a dream. The earpiece and mattress topper then send gentle signals during sleep to bring it to life.</p>
+        </div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-build.jpg" data-ratio="600/1304"><span class="mph"><b>screen-build.jpg</b></span></div></div><figcaption>Build your dream</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-35.3%" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Your creations</figcaption></figure></div>
+      </div>
+
+      <h3 class="cs-h3">Screens from the prototype</h3>
+      <div class="cs-gallery">
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div><figcaption>Home</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-dreams.jpg" data-ratio="600/1304"><span class="mph"><b>screen-dreams.jpg</b></span></div></div><figcaption>Dreams</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Insights</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-settings.jpg" data-ratio="600/1304"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-recap.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-recap.jpg</b></span></div></div><figcaption>Shleep Talk</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-visual.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-visual.jpg</b></span></div></div><figcaption>Visual recap</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div><figcaption>How you feel</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-chat.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-chat.jpg</b></span></div></div><figcaption>Conversation</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-build.jpg" data-ratio="600/1304"><span class="mph"><b>screen-build.jpg</b></span></div></div><figcaption>Build your dream</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Creations</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-wrapped.jpg" data-ratio="600/1304"><span class="mph"><b>screen-wrapped.jpg</b></span></div></div><figcaption>Sleep Wrapped</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-cognitive.jpg" data-ratio="600/1304"><span class="mph"><b>screen-cognitive.jpg</b></span></div></div><figcaption>Cognitive data</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div><figcaption>Physical data</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- CARE -->
+    <section class="cs-section" id="sl-care">
+      <p class="cs-eyebrow">Designed with care</p>
+      <h2 class="cs-h2">Sleep and dream data is personal.</h2>
+      <div class="cs-tldr">
+        <div class="cs-card"><h4>Privacy</h4><p>No third-party data sharing. All sleep and body data stays on your device, protected by Face ID or a password, and you can delete it any time.</p></div>
+        <div class="cs-card"><h4>Content</h4><p>Dream imagery is checked before it reaches you. Violence, trauma and explicit content are never generated. Built dreams are limited to 2 a month to protect natural sleep, and you can stop or change a dream at any point.</p></div>
+        <div class="cs-card"><h4>Wellbeing</h4><p>If signs of distress show up in your sleep data, the app offers a gentle check-in. It is not a diagnosis, and crisis resources are always one tap away.</p></div>
+      </div>
+    </section>
+
+    </div>
+  </div>
+
+  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-57.6%" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div></figure></div>
+
+  <div class="cs-cta">
+    <h2>Want to hear more?</h2>
+    <p>I'd love to walk you through it.</p>
+    <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">Email me</a>
+  </div>
+
+  <a class="cs-next" href="#stuview">
+    <p class="k">Next project</p>
+    <p class="t">Finding out why students get lost in their own portal &rarr;</p>
+  </a>
+</div>
+</div>
+<div id="stuviewPage" hidden>
+<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+  <div class="in">
+    <a class="back" href="#work">&larr; All work</a>
+    <div class="csh-grid noimg">
+      <div class="csh-text">
+        <p class="award"><span>UX research</span>Solo project</p>
+        <h1 class="cs-title">Finding out why students get lost in their own portal</h1>
+        <p class="csh-sub">A moderated usability study of Stu-View, George Brown's student portal. I watched 5 students try 4 common tasks to find where and why they got stuck.</p>
+        <div class="cs-meta">
+          <div><p class="k">Role</p><p class="v">UX research<br>Solo</p></div>
+          <div><p class="k">Method</p><p class="v">Moderated test<br>Think-aloud</p></div>
+          <div><p class="k">Participants</p><p class="v">5 students<br>4 tasks</p></div>
+          <div><p class="k">Timeline</p><p class="v">June 2025</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="in cs">
+  <figure class="bw hero"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div><figcaption>Stu-View home: a grid of cards</figcaption></figure>
+
+  <div class="cs-layout">
+    <nav class="toc" aria-label="Sections">
+      <a href="#sv-problem">Problem</a><a href="#sv-role">My role</a><a href="#sv-method">Method</a><a href="#sv-results">Results</a><a href="#sv-findings">Findings</a><a href="#sv-report">Report</a>
+    </nav>
+    <div class="cs-main">
+
+    <!-- PROBLEM -->
+    <section class="cs-section" id="sv-problem">
+      <p class="cs-eyebrow">The problem</p>
+      <h2 class="cs-h2">Students use Stu-View for almost everything. Simple tasks still feel hard.</h2>
+      <p class="cs-body">Stu-View is where George Brown students find their records, registration, tuition and campus services. Some important tasks, like applying for awards or replacing a photo ID, are hidden behind vague labels and many cards.</p>
+      <p class="cs-body">I wanted to find out where students get stuck, and why.</p>
+    </section>
+
+    <!-- ROLE -->
+    <section class="cs-section" id="sv-role">
+      <p class="cs-eyebrow">My role</p>
+      <div class="cs-two">
+        <ul class="cs-list">
+          <li>Planned the study: goals, tasks, metrics and a severity scale</li>
+          <li>Ran 5 in-person sessions as the facilitator, with think-aloud</li>
+          <li>Logged task data and ran a short survey after each session</li>
+          <li>Analyzed the results and wrote the final report with recommendations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section class="cs-section" id="sv-method">
+      <p class="cs-eyebrow">Method</p>
+      <h2 class="cs-h2">Four real tasks, five students.</h2>
+      <div class="cs-tldr">
+        <div class="cs-card"><h4>Participants</h4><p>5 Interaction Design students who already use Stu-View. Average familiarity was 3.6 out of 5.</p></div>
+        <div class="cs-card"><h4>Setup</h4><p>In person on campus, using Safari on my MacBook. About 20 minutes each, with the screen recorded.</p></div>
+        <div class="cs-card"><h4>What I measured</h4><p>Task success, time on task, critical and non-critical errors, difficulty ratings, and what people said while thinking aloud.</p></div>
+      </div>
+      <h3 class="cs-h3">The tasks</h3>
+      <ol class="tasks">
+        <li><b>Apply for student awards.</b> The location and name of this feature are not intuitive.</li>
+        <li><b>Apply for a payment plan.</b> Important for many students, but not easy to see, and the wording can mislead.</li>
+        <li><b>Reissue a student photo ID.</b> Rare but important, and students may not know which section it belongs to.</li>
+        <li><b>Check the day, time and room of a hybrid class.</b> Finding the right term and reading the timetable takes many steps.</li>
+      </ol>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="cs-section" id="sv-results">
+      <p class="cs-eyebrow">Results</p>
+      <h2 class="cs-h2">The fastest task had the most critical errors.</h2>
+      <div class="tbl-wrap">
+        <table class="rtable">
+          <thead><tr><th scope="col">Task</th><th scope="col">Completion</th><th scope="col">Avg. time</th><th scope="col">Critical errors</th><th scope="col">Non-critical errors</th><th scope="col">Difficulty (1 to 5)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><span>Task 1</span>Student awards</th><td>100%</td><td>56s</td><td>0</td><td>2</td><td>2.8</td></tr>
+            <tr class="hot"><th scope="row"><span>Task 2</span>Payment plan</th><td>60%</td><td>36s</td><td>2</td><td>2</td><td>2.4</td></tr>
+            <tr class="hot"><th scope="row"><span>Task 3</span>Photo ID</th><td>80%</td><td>128s</td><td>1</td><td>1</td><td>4.6</td></tr>
+            <tr><th scope="row"><span>Task 4</span>Class schedule</th><td>100%</td><td>103s</td><td>0</td><td>2</td><td>2.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cap">Difficulty: 5 is the hardest.</p>
+      <div class="cs-two" style="margin-top:28px">
+        <ul class="cs-list">
+          <li><b>Task 2</b> was the quickest, but 2 people clicked "Pay Fees" and ended up in the wrong place. A fast wrong answer means the path is misleading.</li>
+          <li><b>Task 3</b> was the hardest, with the highest difficulty and the longest time.</li>
+          <li><b>3 of 5</b> participants gave up on the menus and used the search bar instead.</li>
+        </ul>
+      </div>
+      <div class="pair">
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/payment.jpg" data-ratio="1600/842"><span class="mph"><b>payment.jpg</b></span></div></div><figcaption>Task 2: the payment portal, reached through "Pay Fees"</figcaption></figure>
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/class.jpg" data-ratio="1600/842"><span class="mph"><b>class.jpg</b></span></div></div><figcaption>Task 4: class details for a hybrid class</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- FINDINGS -->
+    <section class="cs-section" id="sv-findings">
+      <p class="cs-eyebrow">Key findings</p>
+      <h2 class="cs-h2">Three things got in the way.</h2>
+
+      <div class="finding">
+        <div class="finding-text">
+          <p class="fk">01 &middot; Layout</p>
+          <h3>The card layout was hard to scan.</h3>
+          <p class="cs-body">The homepage is a grid of cards. Participants called it cluttered and confusing, and important links often sat at the bottom of a card, so people had to scroll inside it.</p>
+          <p class="fix"><b>Recommendation</b> Replace the cards with a structured menu, and surface seasonal actions, like "Register for Courses" during enrollment.</p>
+        </div>
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div></figure>
+      </div>
+
+      <div class="finding">
+        <div class="finding-text">
+          <p class="fk">02 &middot; Homepage space</p>
+          <h3>The top of the page did very little.</h3>
+          <p class="cs-body">A wide banner took up the top with only a Help Desk link. Two locked cards for applicants sat right below it, even though they are not useful for enrolled students.</p>
+          <p class="fix"><b>Recommendation</b> A simple three-part homepage: a top navigation bar, 5 or 6 quick actions, and a dashboard students can customize.</p>
+        </div>
+        <blockquote class="quote">&ldquo;The cards are not clear to navigate to what I am looking for.&rdquo;<span>Participant</span></blockquote>
+      </div>
+
+      <div class="finding">
+        <div class="finding-text">
+          <p class="fk">03 &middot; Labels</p>
+          <h3>Categories and labels were vague.</h3>
+          <p class="cs-body">People went back and forth between "My Account" and "Registration". Labels were long or unclear, like "Check your timetable (Schedule) frequently".</p>
+          <p class="fix"><b>Recommendation</b> Group features under clear parent categories, and use short action labels, like "View Timetable" or "Photo ID Reissue".</p>
+        </div>
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/registration.jpg" data-ratio="1600/842"><span class="mph"><b>registration.jpg</b></span></div></div></figure>
+      </div>
+      <blockquote class="quote wide">&ldquo;Reorganize it, set the categories right starting with the titles.&rdquo;<span>Participant</span></blockquote>
+    </section>
+
+    <!-- REPORT -->
+    <section class="cs-section" id="sv-report">
+      <p class="cs-eyebrow">Final report</p>
+      <div class="cs-split">
+        <div>
+          <h2 class="cs-h2">One page, for the people who could fix it.</h2>
+          <p class="cs-body">I summed up the study on one page: the tasks, the results, what participants said, and a recommendation for each issue.</p>
+          <a class="cs-btn" href="images/stuview/report.jpg" target="_blank" rel="noopener">Open the full report &nearr;</a>
+        </div>
+        <a class="report" href="images/stuview/report.jpg" target="_blank" rel="noopener"><div class="media shot" data-src="images/stuview/report.jpg" data-ratio="2400/3200"><span class="mph"><b>report.jpg</b></span></div></a>
+      </div>
+    </section>
+
+    </div>
+  </div>
+
+  <div class="cs-cta">
+    <h2>Want to hear more?</h2>
+    <p>I'd love to walk you through it.</p>
+    <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">Email me</a>
+  </div>
+
+  <a class="cs-next" href="#ergoscan">
+    <p class="k">Next project</p>
+    <p class="t">Turning a desk scan into posture fixes anyone can make &rarr;</p>
   </a>
 </div>
 </div>
@@ -780,9 +1131,9 @@ html.hascur a[data-copy]{cursor:none!important}
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
   // simple page routing: #about shows the About page, anything else shows Home
-  var homeEl=document.getElementById('home'),aboutEl=document.getElementById('aboutPage'),ergoEl=document.getElementById('ergoscanPage');
-  function route(){var a=location.hash==='#about',e=location.hash==='#ergoscan';homeEl.hidden=a||e;aboutEl.hidden=!a;ergoEl.hidden=!e;
-    if(a||e)scrollTo(0,0);else if(location.hash==='#work'){var w=document.getElementById('work');if(w)setTimeout(function(){w.scrollIntoView()},0)}else scrollTo(0,0)}
+  var homeEl=document.getElementById('home'),aboutEl=document.getElementById('aboutPage'),ergoEl=document.getElementById('ergoscanPage'),shleepEl=document.getElementById('shleepPage'),stuEl=document.getElementById('stuviewPage');
+  function route(){var a=location.hash==='#about',e=location.hash==='#ergoscan',sl=location.hash==='#shleep',sv=location.hash==='#stuview';homeEl.hidden=a||e||sl||sv;aboutEl.hidden=!a;ergoEl.hidden=!e;shleepEl.hidden=!sl;stuEl.hidden=!sv;
+    if(a||e||sl||sv)scrollTo(0,0);else if(location.hash==='#work'){var w=document.getElementById('work');if(w)setTimeout(function(){w.scrollIntoView()},0)}else scrollTo(0,0)}
   addEventListener('hashchange',route);route();
   document.getElementById('totop').addEventListener('click',function(e){e.preventDefault();scrollTo({top:0,behavior:'smooth'})});
   (function(){var b=document.body;b.classList.add('hint');function off(){b.classList.remove('hint')}
@@ -819,7 +1170,7 @@ document.querySelectorAll('.media').forEach(function(m){
 });
 
 // case study: highlight the current section in the side list
-(function(){var links=[].slice.call(document.querySelectorAll('#ergoscanPage .toc a'));if(!links.length||!('IntersectionObserver' in window))return;
+(function(){var links=[].slice.call(document.querySelectorAll('.cs-layout .toc a'));if(!links.length||!('IntersectionObserver' in window))return;
   links.forEach(function(l){l.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(l.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-35% 0px -60% 0px'});
   links.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)io.observe(t)})})();
@@ -831,10 +1182,10 @@ document.querySelectorAll('.media').forEach(function(m){
 // scroll reveal (subtle). Skips the hero and anything nested in an element that already reveals.
 (function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
   var sel=['.work h2','.grid .card','.meet .in','.bio p','.pic','.xp h2','.rows li','.off h2','.tiles','footer.end h3','footer.end .fl',
-    '#ergoscanPage .stats li','#ergoscanPage .cs-eyebrow','#ergoscanPage .cs-h2','#ergoscanPage .cs-h3','#ergoscanPage .cs-sub','#ergoscanPage .cs-body',
-    '#ergoscanPage .cs-split > .media','#ergoscanPage .cs-tldr > *','#ergoscanPage .cs-list','#ergoscanPage .cs-note','#ergoscanPage .cs-steps > li',
-    '#ergoscanPage .zoom','#ergoscanPage .cs-decision','#ergoscanPage .cs-feature-text','#ergoscanPage .phones','#ergoscanPage .cs-gallery',
-    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .show figure','#ergoscanPage .lineup','#ergoscanPage .pull','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
+    ':is(#ergoscanPage,#shleepPage,#stuviewPage) .stats li',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-eyebrow',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-h2',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-h3',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-sub',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-body',
+    ':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-split > .media',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-tldr > *',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-list',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-note',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-steps > li',
+    ':is(#ergoscanPage,#shleepPage,#stuviewPage) .zoom',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-decision',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature-text',':is(#ergoscanPage,#shleepPage,#stuviewPage) .phones',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery',
+    ':is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list li',':is(#ergoscanPage,#shleepPage,#stuviewPage) .poster','#stuviewPage .bw','#stuviewPage .tbl-wrap','#stuviewPage .finding-text','#stuviewPage .quote','#stuviewPage .tasks','#stuviewPage .report',':is(#ergoscanPage,#shleepPage,#stuviewPage) .show figure',':is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup',':is(#ergoscanPage,#shleepPage,#stuviewPage) .pull',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-cta',':is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-next'].join(',');
   var els=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')});
   var set=new Set(els);els=els.filter(function(el){var a=el.parentElement;while(a){if(set.has(a))return false;a=a.parentElement}return true});
   els.forEach(function(el){var sib=[].filter.call(el.parentElement.children,function(c){return els.indexOf(c)>-1});var i=sib.indexOf(el);
@@ -862,7 +1213,12 @@ document.querySelectorAll('.media').forEach(function(m){
     document.addEventListener('mouseleave',function(){pill.classList.remove('on')})}})();
 
 // pages without the tuner (About, case studies): keep the sound button in the corner
-(function(){function pg(){var h=location.hash;document.body.classList.toggle('pg-about',h==='#about'||h==='#ergoscan')}addEventListener('hashchange',pg);pg()})();
+(function(){function pg(){var h=location.hash;document.body.classList.toggle('pg-about',h==='#about'||h==='#ergoscan'||h==='#shleep'||h==='#stuview')}addEventListener('hashchange',pg);pg()})();
+
+// work-in-progress cards: stay on the page, and the cursor pill says "Soon"
+(function(){document.querySelectorAll('.card.wip').forEach(function(c){c.addEventListener('click',function(e){e.preventDefault()})});
+  var pill=document.getElementById('curv');if(!pill)return;
+  addEventListener('mousemove',function(e){var w=!!(e.target.closest&&e.target.closest('.card.wip'));var t=w?'Soon':'View';if(pill.textContent!==t)pill.textContent=t},{passive:true})})();
 </script>
 </body>
 </html>
