@@ -190,6 +190,14 @@ html.hascur a[data-copy]{cursor:none!important}
 .tile{position:relative}
 .tile::after{content:"WIP";position:absolute;top:16px;right:16px;font:500 11px 'DM Mono',ui-monospace,monospace;letter-spacing:.06em;background:#0a0a0a;color:#fff;border-radius:999px;padding:.35em .8em;opacity:0;transform:translateY(-4px);transition:opacity var(--beat),transform var(--beat)}
 @media(hover:hover){.tile:hover::after{opacity:1;transform:none}}
+/* Hero to work: the hero stays put and the white work section slides over it like a card */
+#home .hero{position:sticky;top:0;z-index:0}
+#home .hero #cv,#home .hero .txt{transform-origin:50% 30%;transform:scale(calc(1 - var(--hp,0)*.06))}
+#home .hero::after{content:"";position:absolute;inset:0;background:#0a0a0a;opacity:calc(var(--hp,0)*.45);pointer-events:none;z-index:4}
+#home .work{position:relative;z-index:1;background:#fff}
+#home .meet{position:relative;z-index:1;background:#fff}
+@media(prefers-reduced-motion:reduce){#home .hero #cv,#home .hero .txt{transform:none}#home .hero::after{display:none}}
+body.pg-about .tuner{display:none!important}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
@@ -1225,6 +1233,16 @@ document.querySelectorAll('.media').forEach(function(m){
 (function(){document.querySelectorAll('.card.wip').forEach(function(c){c.addEventListener('click',function(e){e.preventDefault()})});
   var pill=document.getElementById('curv');if(!pill)return;
   addEventListener('mousemove',function(e){var w=!!(e.target.closest&&e.target.closest('.card.wip'));var t=w?'Soon':'View';if(pill.textContent!==t)pill.textContent=t},{passive:true})})();
+
+// always open at the top: do not let the browser restore an old scroll position on reload
+try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
+if(!location.hash||location.hash==='#'){scrollTo(0,0);addEventListener('load',function(){scrollTo(0,0)})}
+// the sticky hero is its own layer, so lift the tuner out of it to keep it above the white card
+(function(){var t=document.getElementById('tuner');if(t&&t.parentNode!==document.body)document.body.appendChild(t)})();
+// hero to work: dim and shrink the hero a little as the work section covers it
+(function(){var hero=document.getElementById('hero');if(!hero||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var tk=0;
+  function upd(){tk=0;var p=Math.max(0,Math.min(1,scrollY/(innerHeight||1)));hero.style.setProperty('--hp',p.toFixed(3))}
+  addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd()})();
 </script>
 </body>
 </html>
