@@ -179,6 +179,12 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 /* scroll reveal: fade + small rise, added by script only when motion is OK */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.8,.2,1) var(--rvd,0s),transform .7s cubic-bezier(.2,.8,.2,1) var(--rvd,0s)}
 .rv.rvin{opacity:1;transform:none}
+/* copy email: cursor pill on desktop, toast everywhere */
+html.hascur a[data-copy]{cursor:none!important}
+#curc{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;opacity:0;scale:.6;transition:opacity .15s,scale .18s cubic-bezier(.2,.8,.2,1);margin:-17px 0 0 -50px;width:100px;height:34px;border-radius:999px;background:var(--y);color:#0a0a0a;border:1.5px solid #0a0a0a;display:flex;align-items:center;justify-content:center;font:600 12px var(--f);letter-spacing:.02em}
+#curc.on{opacity:1;scale:1}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:10000;transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);background:#0a0a0a;color:#fff;border-radius:999px;padding:10px 18px;font:500 14px var(--f)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
@@ -309,10 +315,15 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 /* judge quote, reflection lists, draft note */
 #ergoscanPage .cs-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
 #ergoscanPage .cs-card li{font-size:15px;line-height:1.55;color:var(--body)}
-#ergoscanPage .draft-note{display:inline-block;margin:0 0 18px 10px;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);border:1px dashed var(--blue);border-radius:999px;padding:.3em .9em}
 #ergoscanPage .pull{margin:clamp(72px,11vh,120px) auto 0;max-width:780px;text-align:center}
 #ergoscanPage .pull blockquote{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.025em;line-height:1.15;font-size:clamp(26px,3.4vw,46px)}
 #ergoscanPage .pull figcaption{margin-top:18px}
+
+/* Impact: text on top, show photos at the bottom, lined up with the poster */
+#es-showcase .cs-split{align-items:stretch}
+#ergoscanPage .impact-col{display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+#ergoscanPage .show{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#ergoscanPage .show figure{margin:0}
 
 /* CTA and next */
 #ergoscanPage .cs-cta{text-align:center;padding:clamp(80px,12vh,120px) 0 40px}
@@ -415,7 +426,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
         <h1 class="cs-title">Turning a desk scan into posture fixes anyone can make</h1>
         <p class="csh-sub">ErgoScan is an iOS app that measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
         <div class="cs-meta">
-          <div><p class="k">Role</p><p class="v">UX/UI Designer<br>Front-end build</p></div>
+          <div><p class="k">Role</p><p class="v">UX/UI design &middot; <span style="white-space:nowrap">Front-end prototype</span></p></div>
           <div><p class="k">Team</p><p class="v">Team of 2<br>with Diana Amriyeva</p></div>
           <div><p class="k">Timeline</p><p class="v">2026<br>4 weeks</p></div>
           <div><p class="k">Built with</p><p class="v">SwiftUI, ARKit<br>OpenAI API</p></div>
@@ -432,7 +443,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 <div class="in cs">
   <div class="cs-layout">
     <nav class="toc" aria-label="Sections">
-      <a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-judges">Judges</a><a href="#es-reflection">Reflection</a>
+      <a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-reflection">Reflection</a>
     </nav>
     <div class="cs-main">
 
@@ -458,7 +469,6 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
     <!-- ROLE -->
     <section class="cs-section" id="es-role">
       <p class="cs-eyebrow">My role</p>
-      <h2 class="cs-h2">Your personal ergonomist, in your pocket.</h2>
       <div class="cs-two">
         <ul class="cs-list">
           <li>UX/UI design, from lo-fi wireframes to hi-fi screens</li>
@@ -582,31 +592,24 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
     <section class="cs-section" id="es-showcase">
       <p class="cs-eyebrow">Impact</p>
       <div class="cs-split">
-        <div>
+        <div class="impact-col">
+          <div>
           <h2 class="cs-h2">It felt useful, not just like a school project.</h2>
           <p class="cs-body">At our year-end show, visitors told us this wasn't just a school project. It was something they'd actually use at their own desk.</p>
-          <p class="cs-body">ErgoScan also received an Honorable Mention at the RGD Student Awards 2026.</p>
+          <p class="cs-body">ErgoScan also received an Honorable Mention at the RGD Student Awards 2026. The judges pointed to the clear problem, the user flow, and the accessibility.</p>
+          </div>
+          <div class="show">
+            <figure><div class="media shot" data-src="images/ergoscan/show-visitors.jpg" data-ratio="4/3"><span class="mph"><b>show-visitors.jpg</b></span></div><figcaption>Visitors trying the app</figcaption></figure>
+            <figure><div class="media shot" data-src="images/ergoscan/show-booth.jpg" data-ratio="4/3"><span class="mph"><b>show-booth.jpg</b></span></div><figcaption>Our booth at the year-end show</figcaption></figure>
+          </div>
         </div>
         <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg" data-ratio="1600/2036"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
       </div>
     </section>
 
-    <!-- JUDGES -->
-    <section class="cs-section" id="es-judges">
-      <p class="cs-eyebrow">What the judges said</p>
-      <ul class="cs-list">
-        <li>The problem, and how the design solves it, was clear.</li>
-        <li>The user flow, and how user feedback shaped the design.</li>
-        <li>Light and dark mode for accessibility.</li>
-        <li>The crosshair for measuring.</li>
-        <li>The video and the visual storytelling.</li>
-      </ul>
-    </section>
-
     <!-- REFLECTION (DRAFT: written from the RGD 2026 judge feedback, Suji to edit) -->
     <section class="cs-section" id="es-reflection">
       <p class="cs-eyebrow">Reflection</p>
-      <p class="draft-note">Draft based on judge feedback. Suji to edit before publishing.</p>
       <div class="cs-tldr">
         <div class="cs-card"><h4>What worked</h4><ul>
           <li>Using a pattern people already know. The crosshair and plus button for measuring feels like the iPhone Measure app, so people knew what to do.</li>
@@ -640,7 +643,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
   <div class="cs-cta">
     <h2>Want to hear more?</h2>
     <p>I'd love to walk you through it.</p>
-    <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com">Email me</a>
+    <a class="cs-btn" href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">Email me</a>
   </div>
 
   <a class="cs-next" href="#work">
@@ -651,7 +654,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 </div>
 <footer class="end"><div class="in">
   <h3>Stay tuned.</h3>
-  <p class="fl"><a href="mailto:suji.shin.ca@gmail.com">suji.shin.ca@gmail.com</a><a href="https://www.linkedin.com/in/suji-shin">LinkedIn</a><a href="#">Resume</a></p>
+  <p class="fl"><a href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">suji.shin.ca@gmail.com</a><a href="https://www.linkedin.com/in/suji-shin">LinkedIn</a><a href="#">Resume</a></p>
   <div class="fb"><span>&copy; 2026 Suji Shin</span><span id="clock">Toronto</span><a href="#" id="totop">Back to top &uarr;</a></div>
 </div></footer>
 
@@ -831,7 +834,7 @@ document.querySelectorAll('.media').forEach(function(m){
     '#ergoscanPage .stats li','#ergoscanPage .cs-eyebrow','#ergoscanPage .cs-h2','#ergoscanPage .cs-h3','#ergoscanPage .cs-sub','#ergoscanPage .cs-body',
     '#ergoscanPage .cs-split > .media','#ergoscanPage .cs-tldr > *','#ergoscanPage .cs-list','#ergoscanPage .cs-note','#ergoscanPage .cs-steps > li',
     '#ergoscanPage .zoom','#ergoscanPage .cs-decision','#ergoscanPage .cs-feature-text','#ergoscanPage .phones','#ergoscanPage .cs-gallery',
-    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .lineup','#ergoscanPage .pull','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
+    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .show figure','#ergoscanPage .lineup','#ergoscanPage .pull','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
   var els=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')});
   var set=new Set(els);els=els.filter(function(el){var a=el.parentElement;while(a){if(set.has(a))return false;a=a.parentElement}return true});
   els.forEach(function(el){var sib=[].filter.call(el.parentElement.children,function(c){return els.indexOf(c)>-1});var i=sib.indexOf(el);
@@ -843,6 +846,23 @@ document.querySelectorAll('.media').forEach(function(m){
   function soon(){if(!tm)tm=setTimeout(check,60)}
   addEventListener('scroll',soon,{passive:true});addEventListener('resize',soon);addEventListener('hashchange',function(){setTimeout(check,80)});addEventListener('load',check);
   setTimeout(check,120)})();
+
+// copy email instead of opening the mail app
+(function(){var links=document.querySelectorAll('a[data-copy]');if(!links.length)return;
+  var toast=document.createElement('div');toast.className='toast';toast.setAttribute('role','status');document.body.appendChild(toast);
+  var pill=document.createElement('div');pill.id='curc';pill.setAttribute('aria-hidden','true');pill.textContent='Copy email';document.body.appendChild(pill);
+  var tt=0;function show(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},1800)}
+  function legacy(text){return new Promise(function(ok,no){var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var done=false;try{done=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);done?ok():no()})}
+  function copy(text){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(text).catch(function(){return legacy(text)});return legacy(text)}
+  links.forEach(function(a){a.setAttribute('title','Copy email');a.addEventListener('click',function(e){e.preventDefault();var t=a.getAttribute('data-copy');
+    copy(t).then(function(){show('Email copied: '+t);pill.textContent='Copied!';setTimeout(function(){pill.textContent='Copy email'},1400)},function(){show(t)})})});
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    addEventListener('mousemove',function(e){var on=!!(e.target.closest&&e.target.closest('a[data-copy]'));pill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';pill.classList.toggle('on',on)},{passive:true});
+    document.addEventListener('mouseleave',function(){pill.classList.remove('on')})}})();
+
+// pages without the tuner (About, case studies): keep the sound button in the corner
+(function(){function pg(){var h=location.hash;document.body.classList.toggle('pg-about',h==='#about'||h==='#ergoscan')}addEventListener('hashchange',pg);pg()})();
 </script>
 </body>
 </html>
