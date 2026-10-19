@@ -61,6 +61,7 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 
 - Never use em dashes in any text written for Suji.
 - Copy must sound like Suji, not like AI. English is her second language at an advanced level, so keep it natural, plain and short. Not polished marketing copy.
+- On case studies, describe only Suji's own role. Never describe what teammates did (professor feedback, 2026-10-18). No TL;DR and no number/stat summaries.
 - Do not invent facts about her or her projects. Leave a visible placeholder and ask her instead. (A made-up "Mostly by ear" caption on the piano tile was already removed because it was not true.)
 - Minimal words. Simple English.
 
@@ -79,7 +80,7 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 - [ ] Piano tile caption is empty on purpose. Ask Suji what to write.
 - [ ] Resume link and LinkedIn link (Resume is `#` for now).
 - [x] ErgoScan media in `images/ergoscan/`. App screens (`screen-*.jpg`) and looping clips (`clip-*.mp4` + same-name `.jpg` fallback) come from Suji's screen recording `IMG_9004.MP4` at full resolution, shown inside a CSS phone frame (`.dv > .device`). Only `before-*.jpg` (old versions), `problem.jpg`, `ux-flow.jpg` and `poster.jpg` come from the slides/poster, rendered at high resolution. Do not use low-res slide crops. A real photo from the year-end show would still be good.
-- [ ] ErgoScan reflection cards have DRAFT text written by Claude (2026-10-15) based on the case study facts. Suji should confirm or rewrite them in her own words. Timeline is 4 weeks.
+- [ ] ErgoScan Reflection is a DRAFT written from the RGD 2026 judge feedback (marked on the page with a dashed "Draft" note). Suji edits it, then remove the note.
 - [ ] Build PawLoop, Shleep and Stu-View case studies in the same structure, then link their cards.
 - [ ] Check in a real browser: DM Sans rendering, needle drag, cursor, the 700px to tablet layout, and the phone hero.
 

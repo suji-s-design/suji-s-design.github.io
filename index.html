@@ -306,6 +306,14 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 #ergoscanPage .lineup .device{box-shadow:0 24px 60px rgba(8,0,90,.45)}
 @media(max-width:700px){#ergoscanPage .lineup{height:auto;padding-bottom:28px}}
 
+/* judge quote, reflection lists, draft note */
+#ergoscanPage .cs-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
+#ergoscanPage .cs-card li{font-size:15px;line-height:1.55;color:var(--body)}
+#ergoscanPage .draft-note{display:inline-block;margin:0 0 18px 10px;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--blue);border:1px dashed var(--blue);border-radius:999px;padding:.3em .9em}
+#ergoscanPage .pull{margin:clamp(72px,11vh,120px) auto 0;max-width:780px;text-align:center}
+#ergoscanPage .pull blockquote{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.025em;line-height:1.15;font-size:clamp(26px,3.4vw,46px)}
+#ergoscanPage .pull figcaption{margin-top:18px}
+
 /* CTA and next */
 #ergoscanPage .cs-cta{text-align:center;padding:clamp(80px,12vh,120px) 0 40px}
 #ergoscanPage .cs-cta h2{font-weight:600;letter-spacing:-.025em;font-size:clamp(32px,4vw,56px);margin:0 0 10px}
@@ -408,7 +416,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
         <p class="csh-sub">ErgoScan is an iOS app that measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
         <div class="cs-meta">
           <div><p class="k">Role</p><p class="v">UX/UI Designer<br>Front-end build</p></div>
-          <div><p class="k">Team</p><p class="v">Suji Shin<br>Diana Amriyeva</p></div>
+          <div><p class="k">Team</p><p class="v">Team of 2<br>with Diana Amriyeva</p></div>
           <div><p class="k">Timeline</p><p class="v">2026<br>4 weeks</p></div>
           <div><p class="k">Built with</p><p class="v">SwiftUI, ARKit<br>OpenAI API</p></div>
         </div>
@@ -422,37 +430,11 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 </section>
 
 <div class="in cs">
-  <ul class="stats">
-    <li><b>3</b><span>AR measurements</span></li>
-    <li><b>&lt;30s</b><span>to scan a desk</span></li>
-    <li><b>2</b><span>rounds of user testing</span></li>
-    <li><b>~20</b><span>visitors surveyed</span></li>
-  </ul>
-
   <div class="cs-layout">
     <nav class="toc" aria-label="Sections">
-      <a href="#es-tldr">TL;DR</a><a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-reflection">Reflection</a>
+      <a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-judges">Judges</a><a href="#es-reflection">Reflection</a>
     </nav>
     <div class="cs-main">
-
-    <!-- TL;DR -->
-    <section class="cs-section" id="es-tldr">
-      <p class="cs-eyebrow">TL;DR</p>
-      <div class="cs-tldr">
-        <div class="cs-card">
-          <h4>The problem</h4>
-          <p>Desk workers and students feel <mark>pain and discomfort</mark> but <mark>don't know why</mark>, and getting help usually means paying an expert.</p>
-        </div>
-        <div class="cs-card">
-          <h4>What I did</h4>
-          <p>Designed the app from lo-fi to hi-fi, <mark>built the front end in Xcode</mark>, and ran two rounds of testing that reshaped the measuring and results screens.</p>
-        </div>
-        <div class="cs-card">
-          <h4>The outcome</h4>
-          <p>A working iOS prototype that <mark>measures a desk in three steps</mark> and turns it into simple fixes. Recognized with an <mark>RGD Student Award Honorable Mention</mark>.</p>
-        </div>
-      </div>
-    </section>
 
     <!-- PROBLEM -->
     <section class="cs-section" id="es-problem">
@@ -483,7 +465,6 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
           <li>Front-end prototype in Xcode (SwiftUI + ARKit), built with help from Claude</li>
           <li>User testing and iteration</li>
         </ul>
-        <p class="cs-note">Diana led the concept, the UX flow and the backend, including the OpenAI API integration.</p>
       </div>
     </section>
 
@@ -492,7 +473,7 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
       <p class="cs-eyebrow">Process</p>
       <h2 class="cs-h2">How we got there</h2>
       <ol class="cs-steps">
-        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>Diana mapped the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
+        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>The project started with the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
         <li class="cs-card"><p class="num">02</p><h4>Lo-fi to hi-fi</h4><p>I designed every screen, from wireframes to the final UI in Figma.</p></li>
         <li class="cs-card"><p class="num">03</p><h4>Building it</h4><p>I built the front end in Xcode with SwiftUI and ARKit, using Claude to help with the code.</p></li>
         <li class="cs-card"><p class="num">04</p><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then a survey with about 20 visitors at our year-end show.</p></li>
@@ -593,8 +574,6 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
         <ul class="hood-list">
           <li><b>Surface first.</b> ARKit looks for the desk surface, and Start Measurement stays off until it finds one.</li>
           <li><b>Two taps per measurement.</b> The app places two points, draws a line between them and shows the distance in cm.</li>
-          <li><b>AI for the advice.</b> The three numbers go to the OpenAI API, which returns a score and a fix for each item.</li>
-          <li><b>Never stuck.</b> If the AI call fails, simple built-in rules still score the setup, so people always get a result.</li>
         </ul>
       </div>
     </section>
@@ -612,13 +591,39 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
       </div>
     </section>
 
-    <!-- REFLECTION -->
+    <!-- JUDGES -->
+    <section class="cs-section" id="es-judges">
+      <p class="cs-eyebrow">What the judges said</p>
+      <ul class="cs-list">
+        <li>The problem, and how the design solves it, was clear.</li>
+        <li>The user flow, and how user feedback shaped the design.</li>
+        <li>Light and dark mode for accessibility.</li>
+        <li>The crosshair for measuring.</li>
+        <li>The video and the visual storytelling.</li>
+      </ul>
+    </section>
+
+    <!-- REFLECTION (DRAFT: written from the RGD 2026 judge feedback, Suji to edit) -->
     <section class="cs-section" id="es-reflection">
       <p class="cs-eyebrow">Reflection</p>
+      <p class="draft-note">Draft based on judge feedback. Suji to edit before publishing.</p>
       <div class="cs-tldr">
-        <div class="cs-card"><h4>What worked</h4><p>Borrowing a pattern people already knew. Once measuring worked like iPhone's Measure app, testers stopped asking where to tap.</p></div>
-        <div class="cs-card"><h4>What I'd do differently</h4><p>Test with real desk workers earlier, not only classmates, and check how accurate the AR measurements are against a tape measure.</p></div>
-        <div class="cs-card"><h4>If this shipped, I'd measure</h4><p>How many people actually change their setup after a scan, and whether their score goes up on the next one.</p></div>
+        <div class="cs-card"><h4>What worked</h4><ul>
+          <li>Using a pattern people already know. The crosshair and plus button for measuring feels like the iPhone Measure app, so people knew what to do.</li>
+          <li>Testing with real people. Two rounds of testing changed the measuring and results screens.</li>
+          <li>Thinking about accessibility early, with light and dark mode.</li>
+        </ul></div>
+        <div class="cs-card"><h4>What I'd do differently</h4><ul>
+          <li>Explain the score. Show what each color and range means, and make good and poor results feel stronger.</li>
+          <li>Help people learn the app with short tooltips.</li>
+          <li>Add a small section about why ergonomics matters for health, so the app teaches people as well as measures.</li>
+          <li>Make the transparent progress bar on the measure screens easier to read.</li>
+          <li>Keep the app and the poster more consistent, and give the brand a more unique feel.</li>
+        </ul></div>
+        <div class="cs-card"><h4>If this shipped, I'd measure</h4><ul>
+          <li>Whether people understand their score and know what to fix first.</li>
+          <li>Whether people come back to scan again and see their score improve.</li>
+        </ul></div>
       </div>
     </section>
 
@@ -626,6 +631,11 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
   </div>
 
   <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
+
+  <figure class="pull">
+    <blockquote>&ldquo;The submission clearly explained both the problem and how the design solved it.&rdquo;</blockquote>
+    <figcaption>RGD Student Awards 2026, judge feedback</figcaption>
+  </figure>
 
   <div class="cs-cta">
     <h2>Want to hear more?</h2>
@@ -821,7 +831,7 @@ document.querySelectorAll('.media').forEach(function(m){
     '#ergoscanPage .stats li','#ergoscanPage .cs-eyebrow','#ergoscanPage .cs-h2','#ergoscanPage .cs-h3','#ergoscanPage .cs-sub','#ergoscanPage .cs-body',
     '#ergoscanPage .cs-split > .media','#ergoscanPage .cs-tldr > *','#ergoscanPage .cs-list','#ergoscanPage .cs-note','#ergoscanPage .cs-steps > li',
     '#ergoscanPage .zoom','#ergoscanPage .cs-decision','#ergoscanPage .cs-feature-text','#ergoscanPage .phones','#ergoscanPage .cs-gallery',
-    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .lineup','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
+    '#ergoscanPage .hood-list li','#ergoscanPage .poster','#ergoscanPage .lineup','#ergoscanPage .pull','#ergoscanPage .cs-cta','#ergoscanPage .cs-next'].join(',');
   var els=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')});
   var set=new Set(els);els=els.filter(function(el){var a=el.parentElement;while(a){if(set.has(a))return false;a=a.parentElement}return true});
   els.forEach(function(el){var sib=[].filter.call(el.parentElement.children,function(c){return els.indexOf(c)>-1});var i=sib.indexOf(el);
