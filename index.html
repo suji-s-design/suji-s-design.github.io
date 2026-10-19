@@ -363,7 +363,6 @@ html.hascur a[data-copy]{cursor:none!important}
 #stuviewPage .browser .bar{height:26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 12px}
 #stuviewPage .browser .bar i{width:9px;height:9px;border-radius:50%;border:1px solid rgba(10,10,10,.5)}
 #stuviewPage .browser .media{border-radius:0;border:0}
-#stuviewPage .bw.hero{margin-bottom:8px}
 #stuviewPage .tasks{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:12px;max-width:62ch}
 #stuviewPage .tasks li{font-size:16px;line-height:1.6;color:var(--body)}
 #stuviewPage .tasks b{color:#0a0a0a}
@@ -862,8 +861,6 @@ html.hascur a[data-copy]{cursor:none!important}
 </section>
 
 <div class="in cs">
-  <figure class="bw hero"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div><figcaption>Stu-View home: a grid of cards</figcaption></figure>
-
   <div class="cs-layout">
     <nav class="toc" aria-label="Sections">
       <a href="#sv-problem">Problem</a><a href="#sv-role">My role</a><a href="#sv-method">Method</a><a href="#sv-results">Results</a><a href="#sv-findings">Findings</a><a href="#sv-report">Report</a>
@@ -873,9 +870,14 @@ html.hascur a[data-copy]{cursor:none!important}
     <!-- PROBLEM -->
     <section class="cs-section" id="sv-problem">
       <p class="cs-eyebrow">The problem</p>
-      <h2 class="cs-h2">Students use Stu-View for almost everything. Simple tasks still feel hard.</h2>
-      <p class="cs-body">Stu-View is where George Brown students find their records, registration, tuition and campus services. Some important tasks, like applying for awards or replacing a photo ID, are hidden behind vague labels and many cards.</p>
-      <p class="cs-body">I wanted to find out where students get stuck, and why.</p>
+      <div class="cs-split">
+        <div>
+          <h2 class="cs-h2">Students use Stu-View for almost everything. Simple tasks still feel hard.</h2>
+          <p class="cs-body">Stu-View is where George Brown students find their records, registration, tuition and campus services. Some important tasks, like applying for awards or replacing a photo ID, are hidden behind vague labels and many cards.</p>
+          <p class="cs-body">I wanted to find out where students get stuck, and why.</p>
+        </div>
+        <figure class="bw"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div><figcaption>Stu-View home: a grid of cards</figcaption></figure>
+      </div>
     </section>
 
     <!-- ROLE -->
