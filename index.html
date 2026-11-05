@@ -108,10 +108,10 @@ nav .nsnd i{font-style:normal}
 #cv{filter:blur(1.1px)}
 .lit{text-wrap:pretty}
 @keyframes hgl{0%,100%{box-shadow:inset 0 1px 0 #fff,0 14px 40px rgba(8,0,90,.4),0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:inset 0 1px 0 #fff,0 14px 40px rgba(8,0,90,.4),0 0 0 2px rgba(255,255,255,.22),0 0 28px 4px rgba(255,255,255,.3)}}
-@keyframes hbk{0%,100%{opacity:1;color:#4a5057}50%{opacity:1;color:#0a0a0a}}
+@keyframes hbk{0%,100%{opacity:1;color:#3a3f45}50%{opacity:1;color:#0a0a0a}}
 @keyframes hpl{0%{box-shadow:0 8px 30px rgba(8,0,90,.3),0 0 0 0 rgba(255,255,255,.75)}100%{box-shadow:0 8px 30px rgba(8,0,90,.3),0 0 0 14px rgba(255,255,255,0)}}
 body.hint .tuner.dev{animation:hgl 2.4s ease-in-out infinite}
-body.hint .tuner.dev .eng{animation:hbk 1.2s ease-in-out infinite}
+body:not(.dragged) .tuner.dev .eng{animation:hbk 1.2s ease-in-out infinite}
 body.hint .snd.corner{animation:hpl 1.5s ease-out infinite}
 #cur{position:fixed;left:0;top:0;width:28px;height:20px;margin:-10px 0 0 -14px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .15s,scale .15s}
 #cur.on{opacity:1}#cur.ov{opacity:0}
@@ -136,7 +136,7 @@ body.pg-about .snd.corner{display:flex}
 .tuner.dev{width:min(270px,calc(100% - 32px));padding:22px 14px 10px;display:flex;flex-direction:column;gap:8px;grid-template-columns:none;border-radius:14px;background:#d6dade;border:1.5px solid #0a0a0a;box-shadow:inset 0 1px 0 #fff,0 14px 40px rgba(8,0,90,.4)}
 .sc{position:absolute!important;width:7px;height:7px;border-radius:50%;background:#aeb3ba;border:1px solid #8c929a}.sc::after{content:"";position:absolute;left:1px;right:1px;top:2px;height:1px;background:#6f757d;transform:rotate(35deg)}
 .sc.a{left:6px;top:6px}.sc.b{right:6px;top:6px}.sc.c{left:6px;bottom:6px}.sc.d{right:6px;bottom:6px}
-.eng{position:absolute!important;top:5px;left:0;right:0;text-align:center;font:500 9px 'DM Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#4a5057;pointer-events:none;transition:opacity var(--beat)}
+.eng{position:absolute!important;top:4px;left:0;right:0;text-align:center;font:600 10px 'DM Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#3a3f45;pointer-events:none;transition:opacity var(--beat)}
 .lcd{position:relative;background:#fbe94a;border-radius:6px;border:1.5px solid #6f757d;box-shadow:inset 0 2px 0 rgba(0,0,0,.12);padding:7px 10px 6px;color:#1a1a1a}
 .lcd .tt{font:500 11px 'DM Mono',ui-monospace,monospace;letter-spacing:0}
 .lcd .gauge{height:58px;width:190px;margin:4px auto 0;overflow:hidden}
@@ -195,6 +195,22 @@ html.hascur a[data-copy]{cursor:none!important}
 #workWave{position:absolute;left:0;top:-1px;width:100%;height:clamp(56px,11vh,110px);pointer-events:none;display:block;z-index:2}
 @media(prefers-reduced-motion:reduce){#workWave{display:none}}
 body.pg-about .tuner{display:none!important}
+/* Tuner shine: a soft diagonal highlight keeps sweeping across the tuner so people notice they can play with it.
+   One slow, soft sweep takes about 3.6s and the next one starts right after (3.8s loop, almost no gap).
+   It runs until the visitor first presses the needle (body.dragged), then fades out for good. The old white pulse is turned off. */
+@keyframes tshine{0%{background-position:150% 0}95%,100%{background-position:-50% 0}}
+.tuner.dev::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;transition:opacity .6s;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.1) 38%,rgba(255,255,255,.4) 45%,rgba(255,255,255,.68) 50%,rgba(255,255,255,.4) 55%,rgba(255,255,255,.1) 62%,transparent 70%) 150% 0/250% 100% no-repeat;
+  animation:tshine 3.8s cubic-bezier(.4,0,.6,1) infinite}
+/* Edge glint: the same light also lights up the stretch of black border it is crossing, in sync with the sweep, so it reads as one shine. */
+.tuner.dev::before{content:"";position:absolute;inset:-1.5px;padding:1.5px;border-radius:15.5px;pointer-events:none;z-index:3;transition:opacity .6s;
+  background:linear-gradient(115deg,transparent 36%,rgba(255,255,255,.5) 44%,#fff 50%,rgba(255,255,255,.5) 56%,transparent 64%) 150% 0/250% 100% no-repeat;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:tshine 3.8s cubic-bezier(.4,0,.6,1) infinite}
+body.dragged .tuner.dev::before{opacity:0}
+body.dragged .tuner.dev::after{opacity:0}
+body.hint .tuner.dev{animation:none}
+@media(prefers-reduced-motion:reduce){.tuner.dev::after,.tuner.dev::before{animation:none;display:none}}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
