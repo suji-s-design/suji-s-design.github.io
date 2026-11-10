@@ -100,7 +100,7 @@ nav .nsnd i{font-style:normal}
 .abh{grid-area:auto;margin:0;font-weight:600;letter-spacing:-.025em;line-height:.9;font-size:clamp(52px,9vw,128px);color:var(--y)}
 .pic{position:relative;aspect-ratio:4/5;border-radius:20px;background:#fff;color:rgba(10,10,10,.4);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;text-transform:uppercase;max-width:420px;width:100%}
 .pic em{position:absolute;left:16px;bottom:14px;font-style:normal;color:#0a0a0a}
-.bio{max-width:34em}.bio p{margin:0 0 1.1em;font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:rgba(255,255,255,.82)}.bio b{color:#fff;font-weight:600}
+.bio{max-width:34em}.bio p{margin:0 0 1.1em;font-size:clamp(16px,1.3vw,18px);line-height:1.5;color:rgba(255,255,255,.82)}.bio b{color:#fff;font-weight:600}
 @media(min-width:900px){.abg{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);grid-template-areas:"h pic" "bio pic";grid-template-rows:auto 1fr;gap:36px 56px}.abh{grid-area:h}.pic{grid-area:pic;justify-self:end}.bio{grid-area:bio}}
 .xp{padding-block:clamp(56px,9vh,100px) 24px}
 .xp h2,.off h2{margin:0 0 28px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
@@ -211,6 +211,23 @@ body.dragged .tuner.dev::before{opacity:0}
 body.dragged .tuner.dev::after{opacity:0}
 body.hint .tuner.dev{animation:none}
 @media(prefers-reduced-motion:reduce){.tuner.dev::after,.tuner.dev::before{animation:none;display:none}}
+/* About lanyard: the photo hangs as a 3D ID card (lanyard.js, three.js). Drag or throw it, click to flip.
+   Until it loads (or without WebGL) the plain photo shows as before. */
+.pic.ly-on{--lyh:clamp(520px,72vh,680px);border:0;background:transparent;border-radius:0;aspect-ratio:auto;height:var(--lyh);overflow:visible;touch-action:pan-y}
+/* phones: the card hangs higher (band length 0.2), the hint sits right under it, and the empty bottom of the canvas is pulled up so the bio follows closely */
+@media(max-width:899px){.pic.ly-on{max-width:none;width:100%;margin-bottom:calc(var(--lyh) * -0.22 + 40px)}.pic.ly-on .ly-tip{top:calc(78% + 18px)}}
+.pic.ly-on>img{display:none}
+.lanyard-canvas{display:block;width:100%;height:100%}
+.ly-tip{position:absolute;left:50%;top:calc(85% + 24px);text-transform:none;transform:translateX(-50%);white-space:nowrap;font:500 14px var(--f);letter-spacing:0;color:rgba(255,255,255,.72);pointer-events:none}
+/* Desktop: text on the left, a bigger card on the right whose band comes down from the very top of the page */
+@media(min-width:900px){
+  .abg:has(.pic.ly-on) .abh{grid-column:1/span 7}
+  .abg:has(.pic.ly-on) .bio{grid-column:1/span 6}
+  .pic.ly-on{grid-column:7/-1;grid-row:1/3;align-self:start;justify-self:stretch;max-width:none;width:auto;margin-top:calc(-1*clamp(96px,14vh,150px));height:min(100vh,880px);margin-right:calc(-1*(max(0px,(100vw - 1240px)/2) + 16px))}
+  .ab{overflow-x:clip}
+  .pic.ly-on .ly-tip{left:44%} /* same x as the band's anchor (0.44), so it sits centered under the card */
+  .abg:has(.pic.ly-on){row-gap:22px;grid-template-rows:auto 1fr} /* extra height goes below the bio, not under the heading */
+}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
@@ -457,20 +474,20 @@ body.hint .tuner.dev{animation:none}
 <section class="ab"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about" aria-current="page">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in"><div class="abg">
     <h1 class="abh">Hi, I'm Suji.</h1>
-    <div class="pic"><img src="images/suji.jpg" alt="Suji Shin smiling, in a white top"></div>
+    <div class="pic" id="lyard"><img src="images/suji.jpg" alt="Suji Shin smiling, in a white top"></div>
     <div class="bio">
-      <p><b>I trained as a classical singer before I trained as a designer.</b> I grew up with voice and piano, and spent years fixing small things until they sounded right.</p>
-      <p><b>Design gave me the same feeling in a new form.</b> I'm a third-year Interaction Design student at George Brown Polytechnic. I like work where a small detail changes how a whole experience feels, like ErgoScan, an AR app that helps people sit better. I start with the real problem, not the screen, and I keep testing until the solution feels obvious to the person using it.</p>
-      <p><b>AI is my fastest collaborator.</b> I stay current with new tools so I can move quickly, but I decide what's worth building.</p>
-      <p><b>I'm looking for a UX/product design internship in Toronto.</b> I want to work on products that people use every day, with a team that cares about the small details.</p>
+      <p><b>I trained as a classical singer before I found design, and I'm now a third-year Interaction Design student at George Brown Polytechnic.</b> I grew up with voice and piano, and I spent years adjusting small things until they sounded right.</p>
+      <p><b>Design gives me that same feeling in a new form.</b> I like work where one small detail changes how a whole experience feels. I start from real problems and test until the solution feels obvious to use.</p>
+      <p><b>I keep up with new technology and use AI to bring my ideas to life.</b> I make the design decisions, and I check and fix every result myself.</p>
+      <p><b>I'm looking for a product design or UX/UI internship in Toronto,</b> where I can learn from a team and help ship things people use.</p>
     </div>
   </div></div>
 </section>
 <section class="xp"><div class="in">
   <h2><span>Education</span></h2>
   <ul class="rows">
-    <li><b>Interaction Design, Advanced Diploma</b><span>George Brown Polytechnic</span><i>2025 to Present</i></li>
-    <li><b>Graphic Design, Coursework</b><span>George Brown Polytechnic</span><i>2023 to 2024</i></li>
+    <li><b>Interaction Design, Advanced Diploma</b><span>George Brown Polytechnic</span><i>2025–Present</i></li>
+    <li><b>Graphic Design, Coursework</b><span>George Brown Polytechnic</span><i>2023–2024</i></li>
   </ul>
 </div></section>
 <section class="xp"><div class="in">
@@ -689,7 +706,6 @@ body.hint .tuner.dev{animation:none}
           <li>Help people learn the app with short tooltips.</li>
           <li>Add a small section about why ergonomics matters for health, so the app teaches people as well as measures.</li>
           <li>Make the transparent progress bar on the measure screens easier to read.</li>
-          <li>Keep the app and the poster more consistent, and give the brand a more unique feel.</li>
         </ul></div>
         <div class="cs-card"><h4>If this shipped, I'd measure</h4><ul>
           <li>Whether people understand their score and know what to fix first.</li>
@@ -1168,7 +1184,7 @@ body.hint .tuner.dev{animation:none}
     document.getElementById('snd').addEventListener('click',off,{once:true});document.querySelector('.nsnd').addEventListener('click',off,{once:true});
     addEventListener('scroll',function(){if(scrollY>innerHeight*.8)off()},{passive:true});setTimeout(off,40000)})();
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){var cu=document.getElementById('cur'),cpill=document.getElementById('curv');document.documentElement.classList.add('hascur');
-    addEventListener('mousemove',function(e){cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cu.classList.add('on');var t=e.target;cu.classList.toggle('ov',!!(t.closest&&t.closest('a,button,.card,.gauge,.knob,.tile')));var onc=!!(t.closest&&t.closest('.ph'));cpill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cpill.classList.toggle('on',onc)},{passive:true});
+    addEventListener('pointermove',function(e){cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cu.classList.add('on');var t=e.target;cu.classList.toggle('ov',!!(t.closest&&t.closest('a,button,.card,.gauge,.knob,.tile')));var onc=!!(t.closest&&t.closest('.ph'))||document.body.classList.contains('lyhov');cpill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cpill.classList.toggle('on',onc)},{passive:true});
     document.addEventListener('mouseleave',function(){cu.classList.remove('on');cpill.classList.remove('on')})}
 })();
 </script>
@@ -1236,7 +1252,7 @@ document.querySelectorAll('.media').forEach(function(m){
   links.forEach(function(a){a.setAttribute('title','Copy email');a.addEventListener('click',function(e){e.preventDefault();var t=a.getAttribute('data-copy');
     copy(t).then(function(){show('Email copied: '+t);pill.textContent='Copied!';setTimeout(function(){pill.textContent='Copy email'},1400)},function(){show(t)})})});
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){
-    addEventListener('mousemove',function(e){var on=!!(e.target.closest&&e.target.closest('a[data-copy]'));pill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';pill.classList.toggle('on',on)},{passive:true});
+    addEventListener('pointermove',function(e){var on=!!(e.target.closest&&e.target.closest('a[data-copy]'));pill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';pill.classList.toggle('on',on)},{passive:true});
     document.addEventListener('mouseleave',function(){pill.classList.remove('on')})}})();
 
 // pages without the tuner (About, case studies): keep the sound button in the corner
@@ -1245,7 +1261,7 @@ document.querySelectorAll('.media').forEach(function(m){
 // work-in-progress cards: stay on the page, and the cursor pill says "Soon"
 (function(){document.querySelectorAll('.card.wip').forEach(function(c){c.addEventListener('click',function(e){e.preventDefault()})});
   var pill=document.getElementById('curv');if(!pill)return;
-  addEventListener('mousemove',function(e){var w=!!(e.target.closest&&e.target.closest('.card.wip'));var t=w?'Soon':'View';if(pill.textContent!==t)pill.textContent=t},{passive:true})})();
+  addEventListener('pointermove',function(e){var w=!!(e.target.closest&&e.target.closest('.card.wip'));var t=w?'Soon':(document.body.classList.contains('lyhov')?'Drag':'View');if(pill.textContent!==t)pill.textContent=t},{passive:true})})();
 
 // always open at the top: do not let the browser restore an old scroll position on reload
 try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
@@ -1260,6 +1276,85 @@ if(!location.hash||location.hash==='#'){scrollTo(0,0);addEventListener('load',fu
     for(var i=0;i<=40;i++){var x=i*2.5,w=.5+.5*Math.sin(x/100*Math.PI*3+p*Math.PI*2);d+=' L '+x.toFixed(1)+' '+(100*a*w).toFixed(2)}
     path.setAttribute('d',d+' L 100 0 Z')}
   addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(draw)}},{passive:true});addEventListener('resize',draw);draw()})();
+</script>
+<script type="module">
+// About page: hang the profile photo as a 3D ID card on a black band. Loads only the first time the About page opens.
+import { mountLanyard } from './lanyard.js';
+const box = document.getElementById('lyard');
+let started = false;
+const W = 1024, H = 1440; // card face size in px (same ratio as the card)
+const canvasURL = draw => { const c = document.createElement('canvas'); c.width = W; c.height = H; draw(c.getContext('2d'), c); return c.toDataURL('image/jpeg', 0.92); };
+const loadImg = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+async function start() {
+  if (started || !box) return; started = true;
+  try { await Promise.all([document.fonts.load("800 120px 'TikTok Sans'"), document.fonts.load("500 40px 'DM Mono'")]); } catch (e) {}
+  let photo; try { photo = await loadImg('images/suji.jpg'); } catch (e) { return; }
+  // front: the photo, moved down a little so the clip slot sits in the gray background, not on the hair
+  const front = canvasURL(g => {
+    const sc = W / photo.width, h = photo.height * sc, top = 70;
+    g.drawImage(photo, 0, 0, photo.width, 3, 0, 0, W, top + 2);
+    g.drawImage(photo, 0, top, W, h);
+  });
+  // back: yellow card with name and role
+  const back = canvasURL(g => {
+    g.fillStyle = '#fff70d'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#0a0a0a'; g.textBaseline = 'alphabetic';
+    g.font = "800 150px 'TikTok Sans', 'Inter Tight', sans-serif";
+    g.fillText('SUJI', 80, 900); g.fillText('SHIN', 80, 1040);
+    g.fillStyle = '#2d19f8'; g.font = "500 46px 'DM Mono', monospace";
+    g.fillText('PRODUCT DESIGNER', 84, 1150);
+    g.fillStyle = 'rgba(10,10,10,.6)'; g.font = "400 34px 'DM Mono', monospace";
+    g.fillText('TORONTO', 84, 1330);
+    g.fillStyle = '#2d19f8'; g.beginPath(); g.arc(W - 120, 1318, 22, 0, Math.PI * 2); g.fill();
+  });
+  // band: black with the name repeating in white (the About page is blue, so a blue band would disappear)
+  const sc = document.createElement('canvas'); sc.width = 1400; sc.height = 140;
+  const s = sc.getContext('2d'); s.fillStyle = '#0a0a0a'; s.fillRect(0, 0, 1400, 140);
+  s.fillStyle = '#fff'; s.font = "500 58px 'DM Mono', monospace"; s.textBaseline = 'middle'; s.textAlign = 'center';
+  s.fillText('SUJI SHIN  \u00b7  PRODUCT DESIGNER  \u00b7', 700, 74);
+  const ly = mountLanyard(box, {
+    frontImage: front, backImage: back, strapImage: sc.toDataURL('image/png'),
+    strapColor: '#0a0a0a', cardColor: '#ffffff', finish: 'glossy', metal: 'silver',
+    size: matchMedia('(min-width:900px)').matches ? 0.6 : 0.62, anchor: matchMedia('(min-width:900px)').matches ? 0.44 : 'center', /* desktop: card on the right, a little in from the menu's right end */ strapLength: 0.2, /* keep 0.6 and 0.2 in sync with SIZE and STRAP above */ cornerRadius: 0.35,
+    onHover: on => document.body.classList.toggle('lyhov', on)
+  });
+  if (!ly) return; // no WebGL: keep the plain photo
+  box.classList.add('ly-on');
+  const tip = document.createElement('div'); tip.className = 'ly-tip';
+  // desktop: heading lines up with the card's top edge; the hint sits under the card, and the bio's last line ends on the hint's line
+  const lastP = document.querySelector('#aboutPage .bio p:last-child'), wide = matchMedia('(min-width:900px)');
+  const heading = document.querySelector('#aboutPage .abh');
+  const bio = document.querySelector('#aboutPage .bio');
+  const SIZE = 0.6, STRAP = 0.2; /* desktop card size and band length, same as passed to mountLanyard below */
+  const placeTip = () => {
+    if (!wide.matches || !heading || !lastP) { tip.style.top = tip.style.lineHeight = bio.style.marginTop = ''; if (heading) heading.style.marginTop = ''; return; }
+    /* where the resting card's top and bottom edges are, in px from the canvas top (same math as lanyard.js frameView) */
+    const bw = box.clientWidth, bh = box.clientHeight;
+    let vh = 2.25 / SIZE; if (vh * bw / bh < 1.6 / 0.72) vh = (1.6 / 0.72) / (bw / bh);
+    const cardTop = bh * (0.12 + 0.3 * STRAP) + 14, cardBottom = cardTop + bh * 2.25 / vh; /* +14px: the band stretches a little under the card weight */
+    /* line the top of the heading's letters up with the card's top edge */
+    const cs = getComputedStyle(heading), g = document.createElement('canvas').getContext('2d');
+    g.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    const m = g.measureText('H'), fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) || fs * 0.9;
+    const inkTop = (lh - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2 + (m.fontBoundingBoxAscent - m.actualBoundingBoxAscent);
+    const cur = parseFloat(cs.marginTop) || 0;
+    const want = box.getBoundingClientRect().top + cardTop;
+    heading.style.marginTop = Math.max(0, cur + want - (heading.getBoundingClientRect().top + inkTop)) + 'px';
+    /* hint: a bit below the card, with room for its swing. It uses the bio's line height so the two lines match */
+    const plh = parseFloat(getComputedStyle(lastP).lineHeight) || 27;
+    tip.style.lineHeight = plh + 'px';
+    tip.style.top = (cardBottom + 40) + 'px';
+    /* push the bio down so its last line ends on the same line as the hint */
+    const bioCur = parseFloat(getComputedStyle(bio).marginTop) || 0;
+    const tipBottom = box.getBoundingClientRect().top + cardBottom + 40 + plh;
+    bio.style.marginTop = Math.max(0, bioCur + tipBottom - lastP.getBoundingClientRect().bottom) + 'px';
+  };
+  new ResizeObserver(placeTip).observe(box); new ResizeObserver(placeTip).observe(lastP); wide.addEventListener('change', placeTip);
+  setTimeout(placeTip, 0); setTimeout(placeTip, 1500); /* again after the scroll-reveal slide-in finishes */
+  tip.textContent = matchMedia('(pointer:coarse)').matches ? 'Drag it around, or tap to flip' : 'Drag it around, or click to flip'; box.appendChild(tip);
+}
+const check = () => { if (location.hash === '#about') setTimeout(start, 0); };
+addEventListener('hashchange', check); check();
 </script>
 </body>
 </html>
