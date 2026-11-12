@@ -37,7 +37,7 @@ Steps:
 ## Design system
 
 Palette (CSS tokens in `:root`):
-- `--blue #2d19f8` (hero, About top, footer), `--y #fff70d` (name, labels), `--pink #ff4ba7` (the "Want to know who's behind it?" text only), `--black #0a0a0a`, white page background.
+- `--blue #1d12b5` (hero, About top, footer), `--y #fff70d` (name, labels), `--pink #ff4ba7` (the "Want to know who's behind it?" text only), `--black #0a0a0a`, white page background.
 - Tuner: body `#d6dade`, LCD `#fbe94a`, needle `#e5262d`, in-tune lamp `#25e06a`.
 - Do not lower the pink saturation. Suji tried it and rejected it. Avoid gradients on the tuner, avoid hot pink dominance.
 
