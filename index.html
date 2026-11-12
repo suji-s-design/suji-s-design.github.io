@@ -353,6 +353,9 @@ body.hint .tuner.dev{animation:none}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .tag{align-self:flex-start;max-width:none;margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;padding:.15em .9em;border-radius:999px;border:1px solid #0a0a0a;background:#fff}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .after .tag{background:var(--y)}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .dv{width:min(240px,62%);align-self:center}
+/* Before, measuring: a magnifier circle over the phone, allowed to sit outside the frame so it is never cut off */
+.cs-ba .mag-wrap{position:relative}
+.cs-ba .mag{position:absolute;left:15%;top:43%;width:77%;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 10px 22px rgba(10,10,10,.28));pointer-events:none;z-index:2}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba .side{background:var(--shot)}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-ba p{font-size:15px;line-height:1.6;margin:0}
 
@@ -590,7 +593,7 @@ body.hint .tuner.dev{animation:none}
       <p class="cs-eyebrow">Process</p>
       <h2 class="cs-h2">How we got there</h2>
       <ol class="cs-steps">
-        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>The project started with research on ergonomic workspaces, then the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
+        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>We started by setting the flow: measure, AI analysis, then save to history. Then we researched ergonomic guidelines to decide what to measure and which values count as a good setup, and added a quick assessment step after that.</p></li>
         <li class="cs-card"><p class="num">02</p><h4>Lo-fi &amp; design system</h4><p>Lo-fi sketches first, then a design system to build the prototype on.</p></li>
         <li class="cs-card"><p class="num">03</p><h4>Building it</h4><p>The front end was built in Xcode with SwiftUI and ARKit, with Claude helping on the code.</p></li>
         <li class="cs-card"><p class="num">04</p><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then our year-end show, where about 20 visitors tried the app and 5 of them filled out a survey.</p></li>
@@ -610,7 +613,7 @@ body.hint .tuner.dev{animation:none}
         <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-measure.jpg" data-ratio="600/1301" data-alt="Old measuring screen"><span class="mph"><b>before-measure.jpg</b></span></div></div></figure>
+            <figure class="dv mag-wrap"><div class="device"><div class="media phone" data-src="images/ergoscan/before-measure.jpg?v=2" data-ratio="600/1301" data-alt="Old measuring screen: tap two points on a small camera view to measure desk depth"><span class="mph"><b>before-measure.jpg</b></span></div></div><img class="mag" src="images/ergoscan/before-zoom.png" alt="Close-up: two fingers tapping tiny points on the desk edge"></figure>
             <p>Free tap to place points on a small camera view. During the in-class showcase, testers weren't sure where to tap and couldn't aim precisely.</p>
           </div>
           <div class="side after">
