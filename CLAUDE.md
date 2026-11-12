@@ -63,7 +63,7 @@ Hero behavior (do not change without asking):
 
 ## Copy
 
-The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with older wording from the previous `index.html`. Do not add these back anywhere: Korea-based experience, server/host or music instructor jobs, Shleep in the About text, ShelfGuard. Do not add more "tune" puns (it appears only in the hero intro and "Stay tuned."). Hero intro (2026-11-11): "I'm an Interaction Design student in Toronto. I design thoughtful digital experiences that feel in tune with the people using them." ("in tune" is the highlighted word). Footer "Stay tuned." is clamp(34px,5vw,72px).
+The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with older wording from the previous `index.html`. Do not add these back anywhere: Korea-based experience, server/host or music instructor jobs, Shleep in the About text, ShelfGuard. Do not add more "tune" puns (it appears only in the hero intro and "Stay tuned."). Hero intro (2026-11-11): "I design thoughtful digital experiences that feel in tune with the people using them." ("in tune" is the highlighted word; the student/Toronto line was removed). Under it is a plain "See my work ↓" cue (.seew, not a link, the arrow bobs). The desktop tuner's right edge lines up with the end of SOUND[OFF] (right 24px, follows the 1240px nav on wide screens). Footer "Stay tuned." is clamp(34px,5vw,72px).
 
 ## Writing rules (important)
 
