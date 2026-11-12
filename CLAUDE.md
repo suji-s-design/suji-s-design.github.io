@@ -120,3 +120,4 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 - Big screens: `.rrow` (Product Designer pill) margin-top clamp(56px,3.8vw,84px) so it is not crowded under the bigger name.
 - Big screens: the black outline on the big yellow headings is 5px (shows as about 2.5px because paint-order puts the stroke behind the fill); 3px disappeared at 200px+.
 - Big screens: hero `.txt` padding-bottom 22vh (the 190px cap left the text too low on an iMac).
+- Big screens: nav text 17px (14px elsewhere), gap 30px, padding-top 36px; SUJI logo 23px (19px elsewhere).
