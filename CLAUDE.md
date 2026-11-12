@@ -121,3 +121,4 @@ The final copy is whatever is in `portfolio-tuning.html`. Do not replace it with
 - Big screens: the black outline on the big yellow headings is 5px (shows as about 2.5px because paint-order puts the stroke behind the fill); 3px disappeared at 200px+.
 - Big screens: hero `.txt` padding-bottom 22vh (the 190px cap left the text too low on an iMac).
 - Big screens: nav text 17px (14px elsewhere), gap 30px, padding-top 36px; SUJI logo 23px (19px elsewhere).
+- "See my work ↓" (`a.seew`) is a real link now (Suji saw visitors clicking it): click/Enter glides the work section up with the same snap animation (`window.__snapToWork`), no hash change; hover turns it yellow. `.txt` has pointer-events:none, so `.seew` sets pointer-events:auto.
