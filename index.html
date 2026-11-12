@@ -25,7 +25,7 @@ nav{max-width:1240px;margin:0 auto}nav a.lg{padding-left:0}@media(min-width:900p
 .hi{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
 h1{margin:0;font-weight:600;line-height:.88;letter-spacing:-.025em;font-size:clamp(64px,min(13vw,19vh),180px);color:var(--y);white-space:nowrap}
 .txt{width:fit-content;max-width:100%}
-#name,.abh,footer.end h3{-webkit-text-stroke:3px #0a0a0a;paint-order:stroke fill}.meet p{-webkit-text-stroke:2px #0a0a0a;paint-order:stroke fill}.rrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(30px,4.2vw,56px)}
+#name,.abh,footer.end h3{-webkit-text-stroke:min(3px,.03em) #0a0a0a;paint-order:stroke fill}.meet p{-webkit-text-stroke:min(2px,.04em) #0a0a0a;paint-order:stroke fill}.rrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(30px,4.2vw,56px)}
 .role{display:inline-block;border:1.5px solid #0a0a0a;background:#fff;color:#0a0a0a;border-radius:999px;padding:.12em .6em .16em;font-weight:500;font-size:clamp(22px,3.4vw,44px);letter-spacing:-.03em;line-height:1}
 .tag{font-size:16px;margin:16px 0 0;max-width:34ch;line-height:1.5}
 .cue{margin-top:16px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
@@ -92,6 +92,8 @@ nav .nsnd i{font-style:normal}
 .meet .pill{color:#0a0a0a;border:1.5px solid #0a0a0a}.meet .pill:hover{background:var(--y)}
 .meet .in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .meet p{color:var(--pink);margin:0;font-weight:400;letter-spacing:-.02em;line-height:.95;font-size:clamp(26px,3.6vw,52px);max-width:14em}
+/* outlines scale with the text (capped at the desktop width), so phones get a thinner outline; on phones the pink line is a bit bolder so it reads */
+@media(max-width:899px){.meet p{font-weight:500}}
 .pill{display:inline-flex;align-items:center;gap:.4em;background:transparent;color:var(--y);border:2px solid var(--y);text-decoration:none;font-weight:500;font-size:clamp(18px,2vw,26px);letter-spacing:-.02em;padding:.62em 1.25em;border-radius:999px;transition:background var(--beat),color var(--beat),transform var(--beat) cubic-bezier(.2,.8,.2,1)}
 .pill span{display:inline-block;transition:transform var(--beat) cubic-bezier(.2,.8,.2,1)}.pill:hover{background:var(--y);color:#0a0a0a}.pill:hover span{transform:translateX(5px)}
 .ab{background:var(--blue);color:#fff;position:relative;padding-block:0 clamp(64px,10vh,110px)}
@@ -154,7 +156,7 @@ body.pg-about .snd.corner{display:flex}
 .tuner.dev .lamp{background:#9aa0a8;width:8px;height:8px}.tuner.dev .lamp{width:9px;height:9px}.tuner.dev .lamp.on{background:#25e06a;box-shadow:0 0 0 1.5px #2a2f35,0 0 12px 2px #25e06a}
 @media(max-width:700px){.tuner.dev{width:min(270px,calc(100% - 32px))}.txt{padding-bottom:190px}}
 footer.end{background:var(--blue);color:#fff;padding-block:clamp(64px,12vh,120px) 28px}
-footer.end h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:.9;font-size:clamp(40px,7vw,100px);color:var(--y)}
+footer.end h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:.9;font-size:clamp(34px,5vw,72px);color:var(--y)}
 footer.end h3 span{background:none;padding:0}
 footer.end .fl{margin:clamp(28px,5vh,48px) 0 0;display:flex;gap:10px 32px;flex-wrap:wrap;font-size:clamp(18px,2vw,26px);letter-spacing:-.02em}
 footer.end .fl a{color:#fff;text-decoration:none;border-bottom:1.5px solid rgba(255,255,255,.35);transition:color var(--beat),border-color var(--beat)}
@@ -228,6 +230,17 @@ body.hint .tuner.dev{animation:none}
   .pic.ly-on .ly-tip{left:44%} /* same x as the band's anchor (0.44), so it sits centered under the card */
   .abg:has(.pic.ly-on){row-gap:22px;grid-template-rows:auto 1fr} /* extra height goes below the bio, not under the heading */
 }
+/* Click to enlarge (case study show photos and poster): a dark overlay with the full image and its caption. */
+.lbz{cursor:zoom-in}
+.lbz img{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.lbz:hover img{transform:scale(1.02)}
+.lb{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 16px;background:rgba(10,10,10,.88);opacity:0;pointer-events:none;transition:opacity .25s}
+.lb.on{opacity:1;pointer-events:auto}
+.lb img{max-width:min(1200px,94vw);max-height:84vh;width:auto;height:auto;border-radius:10px;object-fit:contain;transform:scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.lb.on img{transform:none}
+.lb p{margin:0;color:rgba(255,255,255,.8);font:400 14px var(--f);text-align:center}
+.lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1.5px solid #fff;background:#0a0a0a;color:#fff;font:400 22px/1 var(--f);cursor:pointer}
+@media(prefers-reduced-motion:reduce){.lb,.lb img,.lbz img{transition:none}}
 /* About photo */
 .pic{overflow:hidden;background:#d9d9d9;border:1.5px solid #0a0a0a}
 .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
@@ -251,7 +264,7 @@ body.hint .tuner.dev{animation:none}
 .csh .cs-meta .v{font-size:15px;line-height:1.5;margin:0;color:#fff}
 .csh .cs-fill{color:var(--y)}
 .csh-phone{margin:0;justify-self:center;width:100%;max-width:300px}
-.csh-phone figcaption{margin-top:14px;text-align:center;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.csh-phone figcaption{margin-top:14px;text-align:center;font:400 13px var(--f);color:rgba(255,255,255,.7)}
 @media(max-width:900px){.csh-grid{grid-template-columns:1fr}.csh-phone{max-width:260px}}
 @media(max-width:700px){.csh .cs-meta{grid-template-columns:1fr 1fr}}
 
@@ -336,7 +349,7 @@ body.hint .tuner.dev{animation:none}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature h3{font-weight:600;letter-spacing:-.025em;font-size:clamp(24px,2.6vw,34px);margin:0 0 12px;line-height:1.1}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);background:var(--shot);border-radius:20px;padding:clamp(24px,3.4vw,44px) clamp(24px,4vw,56px)}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .phones figure,:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery figure{margin:0}
-:is(#ergoscanPage,#shleepPage,#stuviewPage) figcaption{font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;color:var(--soft);text-align:center;margin-top:10px}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) figcaption{font:400 13px var(--f);color:var(--soft);text-align:center;margin-top:10px} /* captions in normal case, body font (no all-caps mono) */
 @media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature{grid-template-columns:1fr;gap:20px}:is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-feature.flip .cs-feature-text{order:0}}
 
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .cs-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px}
@@ -348,7 +361,7 @@ body.hint .tuner.dev{animation:none}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list b{color:#0a0a0a;font-weight:600}
 @media(max-width:700px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .hood-list{grid-template-columns:1fr}}
 
-:is(#ergoscanPage,#shleepPage,#stuviewPage) .poster{margin:0;max-width:420px;justify-self:end;width:100%}
+:is(#ergoscanPage,#shleepPage,#stuviewPage) .poster{margin:0;max-width:420px;justify-self:end;align-self:end;width:100%} /* bottom-aligned so it always ends level with the show photos */
 @media(max-width:820px){:is(#ergoscanPage,#shleepPage,#stuviewPage) .poster{justify-self:start}}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup{margin-top:clamp(72px,11vh,120px);background:var(--blue);border-radius:20px;padding:clamp(36px,6vw,80px) clamp(24px,8vw,140px) 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,44px);align-items:start;overflow:hidden;height:clamp(340px,42vw,560px)}
 :is(#ergoscanPage,#shleepPage,#stuviewPage) .lineup .dv:nth-child(odd){margin-top:14%}
@@ -443,7 +456,7 @@ body.hint .tuner.dev{animation:none}
       
       <h1 id="name"></h1>
       <div class="rrow"><div class="role">Product Designer</div></div>
-      <p class="lit" id="lit">I'm an Interaction Design student in Toronto.<br>I <span class="k">tune</span> the small details until products feel right<br>for the people using them.</p>
+      <p class="lit" id="lit">I'm an Interaction Design student in Toronto.<br>I design thoughtful digital experiences<br>that feel <span class="k">in tune</span> with the people using them.</p>
     </div>
     <div class="tuner dev" id="tuner">
       <i class="sc a"></i><i class="sc b"></i><i class="sc c"></i><i class="sc d"></i>
@@ -511,14 +524,14 @@ body.hint .tuner.dev{animation:none}
         <h1 class="cs-title">Turning a desk scan into posture fixes anyone can make</h1>
         <p class="csh-sub">ErgoScan is an iOS app that measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
         <div class="cs-meta">
-          <div><p class="k">Role</p><p class="v">UX/UI design &middot; <span style="white-space:nowrap">Front-end prototype</span></p></div>
+          <div><p class="k">Role</p><p class="v">UX/UI design &middot; <span style="white-space:nowrap">Design system</span> &middot; <span style="white-space:nowrap">Front-end prototype</span></p></div>
           <div><p class="k">Team</p><p class="v">Team of 2<br>with Diana Amriyeva</p></div>
           <div><p class="k">Timeline</p><p class="v">2026<br>4 weeks</p></div>
           <div><p class="k">Built with</p><p class="v">SwiftUI, ARKit<br>OpenAI API</p></div>
         </div>
       </div>
       <figure class="csh-phone">
-        <div class="device"><div class="media phone" data-src="images/ergoscan/demo.mp4" data-type="video" data-ratio="600/1298"><span class="mph"><b>demo.mp4</b>App walkthrough</span></div></div>
+        <div class="device"><div class="media phone" data-src="images/ergoscan/demo.mp4?v=2" data-type="video" data-ratio="600/1298"><span class="mph"><b>demo.mp4</b>App walkthrough</span></div></div>
         <figcaption>The full flow, recorded on iPhone</figcaption>
       </figure>
     </div>
@@ -528,7 +541,7 @@ body.hint .tuner.dev{animation:none}
 <div class="in cs">
   <div class="cs-layout">
     <nav class="toc" aria-label="Sections">
-      <a href="#es-problem">Problem</a><a href="#es-role">My role</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-reflection">Reflection</a>
+      <a href="#es-problem">Problem</a><a href="#es-process">Process</a><a href="#es-testing">Testing</a><a href="#es-solution">Solution</a><a href="#es-showcase">Showcase</a><a href="#es-reflection">Reflection</a>
     </nav>
     <div class="cs-main">
 
@@ -551,26 +564,14 @@ body.hint .tuner.dev{animation:none}
       </div>
     </section>
 
-    <!-- ROLE -->
-    <section class="cs-section" id="es-role">
-      <p class="cs-eyebrow">My role</p>
-      <div class="cs-two">
-        <ul class="cs-list">
-          <li>UX/UI design, from lo-fi wireframes to hi-fi screens</li>
-          <li>Front-end prototype in Xcode (SwiftUI + ARKit), built with help from Claude</li>
-          <li>User testing and iteration</li>
-        </ul>
-      </div>
-    </section>
-
     <!-- PROCESS -->
     <section class="cs-section" id="es-process">
       <p class="cs-eyebrow">Process</p>
       <h2 class="cs-h2">How we got there</h2>
       <ol class="cs-steps">
-        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>The project started with the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
-        <li class="cs-card"><p class="num">02</p><h4>Lo-fi to hi-fi</h4><p>I designed every screen, from wireframes to the final UI in Figma.</p></li>
-        <li class="cs-card"><p class="num">03</p><h4>Building it</h4><p>I built the front end in Xcode with SwiftUI and ARKit, using Claude to help with the code.</p></li>
+        <li class="cs-card"><p class="num">01</p><h4>Concept &amp; UX flow</h4><p>The project started with research on ergonomic workspaces, then the full flow: measure, a quick assessment, AI analysis, then save to history.</p></li>
+        <li class="cs-card"><p class="num">02</p><h4>Lo-fi &amp; design system</h4><p>Lo-fi sketches first, then a design system to build the prototype on.</p></li>
+        <li class="cs-card"><p class="num">03</p><h4>Building it</h4><p>The front end was built in Xcode with SwiftUI and ARKit, with Claude helping on the code.</p></li>
         <li class="cs-card"><p class="num">04</p><h4>User testing</h4><p>Two rounds: classmates at an in-class showcase, then our year-end show, where about 20 visitors tried the app and 5 of them filled out a survey.</p></li>
       </ol>
       <a class="zoom" href="images/ergoscan/ux-flow.jpg" target="_blank" rel="noopener"><div class="media shot" data-src="images/ergoscan/ux-flow.jpg" data-ratio="2600/1341"><span class="mph"><b>ux-flow.jpg</b>UX flow diagram</span></div></a>
@@ -593,7 +594,7 @@ body.hint .tuner.dev{animation:none}
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-distance.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-distance.mp4</b></span></div></div></figure>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-distance.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-distance.mp4</b></span></div></div></figure>
             <p>A crosshair and a plus button on a full-screen camera. People already know this from iPhone's Measure app, so there's nothing new to learn and fewer misplaced points.</p>
           </div>
         </div>
@@ -605,13 +606,13 @@ body.hint .tuner.dev{animation:none}
         <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-results.jpg" data-ratio="600/1298"><span class="mph"><b>before-results.jpg</b></span></div></div></figure>
-            <p>Raw measurements in a flat list, colored by brand instead of status. Related info was spread across the screen, and each card had too much text to scan.</p>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-results.mp4?v=2" data-ratio="600/1298" data-type="video"><span class="mph"><b>before-results.mp4</b></span></div></div></figure>
+            <p>The results were split into three lists: overview, recommendations and health risks. To understand one problem, you had to read about it in three places.</p>
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure>
-            <p>A score you can read at a glance, using traffic light colors (green, yellow, red). What needs fixing comes first, and each measurement lives in one card.</p>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure>
+            <p>Each measurement lives in one card, with the problem, a specific fix and why it matters. What needs fixing comes first.</p>
           </div>
         </div>
       </div>
@@ -625,10 +626,10 @@ body.hint .tuner.dev{animation:none}
       <div class="cs-feature">
         <div class="cs-feature-text">
           <p class="fk">01 &middot; Measure</p>
-          <h3>Three steps, one camera.</h3>
+          <h3>No tape measure needed.</h3>
           <p class="cs-body">Viewing height, monitor distance and keyboard position, each measured by aiming and tapping. A quick two-question check covers elbows and wrists.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-measure.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-measure.mp4</b></span></div></div><figcaption>Three measurements</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-assess.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-assess.mp4</b></span></div></div><figcaption>Quick assessment</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-measure.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-measure.mp4</b></span></div></div><figcaption>Three measurements</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-assess.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-assess.mp4</b></span></div></div><figcaption>Quick assessment</figcaption></figure></div>
       </div>
 
       <div class="cs-feature flip">
@@ -637,7 +638,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Know what's wrong first.</h3>
           <p class="cs-body">The score shows how your setup is doing. Anything that needs improvement comes first, with a specific fix and why it matters.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div><figcaption>Score and fixes</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div><figcaption>Score and fixes</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure></div>
       </div>
 
       <div class="cs-feature">
@@ -646,22 +647,23 @@ body.hint .tuner.dev{animation:none}
           <h3>Watch yourself improve.</h3>
           <p class="cs-body">Every scan is saved, so you can compare setups and see your score change over time.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Workspaces</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Workspaces</figcaption></figure></div>
       </div>
 
       <h3 class="cs-h3">Every screen in the flow</h3>
       <div class="cs-gallery">
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div><figcaption>Start</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-height.jpg" data-ratio="600/1298"><span class="mph"><b>screen-height.jpg</b></span></div></div><figcaption>Viewing height</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-distance.jpg" data-ratio="600/1298"><span class="mph"><b>screen-distance.jpg</b></span></div></div><figcaption>Monitor distance</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-keyboard.jpg" data-ratio="600/1298"><span class="mph"><b>screen-keyboard.jpg</b></span></div></div><figcaption>Keyboard position</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-assessment.jpg" data-ratio="600/1298"><span class="mph"><b>screen-assessment.jpg</b></span></div></div><figcaption>Quick assessment</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-analyzing.jpg" data-ratio="600/1298"><span class="mph"><b>screen-analyzing.jpg</b></span></div></div><figcaption>Analyzing</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-score.jpg" data-ratio="600/1298"><span class="mph"><b>screen-score.jpg</b></span></div></div><figcaption>Score</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-improve.jpg" data-ratio="600/1298"><span class="mph"><b>screen-improve.jpg</b></span></div></div><figcaption>Needs improvement</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div><figcaption>Start</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start-dark.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-start-dark.jpg</b></span></div></div><figcaption>Dark mode</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-height.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-height.jpg</b></span></div></div><figcaption>Viewing height</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-distance.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-distance.jpg</b></span></div></div><figcaption>Monitor distance</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-keyboard.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-keyboard.jpg</b></span></div></div><figcaption>Keyboard position</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-assessment.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-assessment.jpg</b></span></div></div><figcaption>Quick assessment</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-analyzing.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-analyzing.jpg</b></span></div></div><figcaption>Analyzing</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-score.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-score.jpg</b></span></div></div><figcaption>Score</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-improve.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-improve.jpg</b></span></div></div><figcaption>Needs improvement</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure>
       </div>
 
       <div class="hood">
@@ -688,7 +690,7 @@ body.hint .tuner.dev{animation:none}
             <figure><div class="media shot" data-src="images/ergoscan/show-booth.jpg" data-ratio="4/3"><span class="mph"><b>show-booth.jpg</b></span></div><figcaption>Our booth at the year-end show</figcaption></figure>
           </div>
         </div>
-        <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg" data-ratio="1600/2036"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
+        <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg?v=2" data-ratio="1600/2031"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
       </div>
     </section>
 
@@ -699,11 +701,9 @@ body.hint .tuner.dev{animation:none}
         <div class="cs-card"><h4>What worked</h4><ul>
           <li>Using a pattern people already know. The crosshair and plus button for measuring feels like the iPhone Measure app, so people knew what to do.</li>
           <li>Testing with real people. Two rounds of testing changed the measuring and results screens.</li>
-          <li>Thinking about accessibility early, with light and dark mode.</li>
         </ul></div>
         <div class="cs-card"><h4>What I'd do differently</h4><ul>
-          <li>Explain the score. Show what each color and range means, and make good and poor results feel stronger.</li>
-          <li>Help people learn the app with short tooltips.</li>
+          <li>Show what score range counts as a good setup.</li>
           <li>Add a small section about why ergonomics matters for health, so the app teaches people as well as measures.</li>
           <li>Make the transparent progress bar on the measure screens easier to read.</li>
         </ul></div>
@@ -717,7 +717,7 @@ body.hint .tuner.dev{animation:none}
     </div>
   </div>
 
-  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
+  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
 
   <figure class="pull">
     <blockquote>&ldquo;[ErgoScan] clearly explained both the problem and how the design solved it.&rdquo;</blockquote>
@@ -753,8 +753,8 @@ body.hint .tuner.dev{animation:none}
         </div>
       </div>
       <figure class="csh-phone">
-        <div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div>
-        <figcaption>Home screen</figcaption>
+        <div class="device"><div class="media phone" data-src="images/shleep/demo.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>demo.mp4</b>Prototype walkthrough</span></div></div>
+        <figcaption>The full flow, from the Figma prototype</figcaption>
       </figure>
     </div>
   </div>
@@ -823,7 +823,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Your whole night, in focus.</h3>
           <p class="cs-body">Insights shows your body's rhythms and your brain's activity overnight. Every chart comes with a simple explanation, so the data never feels overwhelming.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Monthly trends</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-57.6%" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div><figcaption>Physical data</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-body.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-body.mp4</b></span></div></div><figcaption>Physical data</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-brain.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-brain.mp4</b></span></div></div><figcaption>Cognitive data</figcaption></figure></div>
       </div>
 
       <div class="cs-feature">
@@ -832,7 +832,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Design the dream you want.</h3>
           <p class="cs-body">Upload a photo, audio, video or text to design a dream. The earpiece and mattress topper then send gentle signals during sleep to bring it to life.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-build.jpg" data-ratio="600/1304"><span class="mph"><b>screen-build.jpg</b></span></div></div><figcaption>Build your dream</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-35.3%" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Your creations</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-build.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-build.mp4</b></span></div></div><figcaption>Build your dream</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-35.3%" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Your creations</figcaption></figure></div>
       </div>
 
       <h3 class="cs-h3">Screens from the prototype</h3>
@@ -840,7 +840,6 @@ body.hint .tuner.dev{animation:none}
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div><figcaption>Home</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-dreams.jpg" data-ratio="600/1304"><span class="mph"><b>screen-dreams.jpg</b></span></div></div><figcaption>Dreams</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Insights</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-settings.jpg" data-ratio="600/1304"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-recap.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-recap.jpg</b></span></div></div><figcaption>Shleep Talk</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-visual.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-visual.jpg</b></span></div></div><figcaption>Visual recap</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div><figcaption>How you feel</figcaption></figure>
@@ -1068,7 +1067,7 @@ body.hint .tuner.dev{animation:none}
   var dots=[],sp=30;
   function size(){measure();var r=cv.getBoundingClientRect();dpr=Math.min(1.5,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;
     sp=W<700?24:30;dots=[];var cols=Math.ceil(W/sp)+1,rows=Math.ceil(H/sp)+1;
-    for(var j=0;j<rows;j++)for(var i=0;i<cols;i++){dots.push({x:i*sp+sp/2,y:j*sp+sp/2,rx:Math.random()*2-1,ry:Math.random()*2-1,ph:Math.random()*6.28,tn:(function(r){return r<.72?0:r<.86?1:2})(Math.random())})}}
+    for(var j=0;j<rows;j++)for(var i=0;i<cols;i++){dots.push({x:i*sp+sp/2,y:j*sp+sp/2,rx:Math.random()*2-1,ry:Math.random()*2-1,ph:Math.random()*6.28,rz:Math.random()*2-1,tn:(function(r){return r<.72?0:r<.86?1:2})(Math.random())})}}
   var obs=[];
   function measure(){var cr=cv.getBoundingClientRect();obs=[];
     function add(el,m){if(!el)return;var rg=document.createRange();rg.selectNodeContents(el);var rs=rg.getClientRects();for(var i=0;i<rs.length;i++){var r=rs[i];if(r.width<4)continue;obs.push([r.left-cr.left,r.top-cr.top,r.right-cr.left,r.bottom-cr.top,m])}}
@@ -1143,6 +1142,9 @@ body.hint .tuner.dev{animation:none}
       var lens=0;if(mx>-900){var dist=Math.hypot(p.x-mx,p.y-my);lens=Math.max(0,1-dist/R);lens=lens*lens*(3-2*lens)}
       var de=d*(1-lens);
       var x=p.x+(p.rx*A+Math.sin(t*.9+p.ph)*sp*.3)*de+Math.sin(t*.7+p.ph)*1.2,y=p.y+(p.ry*A+Math.cos(t*.8+p.ph)*sp*.3)*de+Math.cos(t*.6+p.ph)*1.2;
+      /* depth: out of tune the grid also scatters toward and away from you, and the cloud turns slowly. In tune (de=0) it is the flat grid. */
+      var sc=1;if(de>0.001){var dz=Math.pow(de,0.6),zz=p.rz*dz*Math.min(W,H)*1.1+Math.sin(t*.5+p.ph)*24*dz,ang=0.45*de*Math.sin(t*.21),ca=Math.cos(ang),sa=Math.sin(ang),ddx=x-W/2,xr=ddx*ca+zz*sa,zr=-ddx*sa+zz*ca,FF=W*0.8+500;
+        sc=FF/Math.max(FF*0.4,FF-zr);x=W/2+xr*sc+(mx>-900?(W/2-mx)*0.05*(sc-1):0);y=H/2+(y-H/2)*sc+(mx>-900?(H/2-my)*0.05*(sc-1):0)}
       var hide=1;for(var o=0;o<obs.length;o++){var ob=obs[o],M=ob[4],ox=Math.max(ob[0]-x,0,x-ob[2]),oy=Math.max(ob[1]-y,0,y-ob[3]);
         if(ox===0&&oy===0){hide=0;var dl=x-ob[0],dr=ob[2]-x,dt=y-ob[1],db=ob[3]-y,mn=Math.min(dl,dr,dt,db);
           if(mn===dl)x=ob[0]-M*.5;else if(mn===dr)x=ob[2]+M*.5;else if(mn===dt)y=ob[1]-M*.5;else y=ob[3]+M*.5;break}
@@ -1150,9 +1152,10 @@ body.hint .tuner.dev{animation:none}
           if(sx)x+=sx*ox*k;if(sy)y+=sy*oy*k}}
       var bo=0,bc=0,bci=0;for(var q=0;q<act.length;q++){var a_=act[q],dd=Math.hypot(p.x-a_[0],p.y-a_[1])-a_[2];var cn=Math.exp(-(dd*dd)/(a_[4]*a_[4]))*a_[3];bo+=cn;if(cn>bc){bc=cn;bci=a_[5]}}
       bo=Math.min(1,bo);
-      var rad=base+lens*1.8+bo*3.2;
+      var rad=(base+lens*1.8+bo*3.2)*sc,depA=Math.min(1,0.25+0.75*sc);
       ctx.fillStyle=bo>0.12?'rgba('+PAL[bci]+','+(0.5+0.5*bo)+')':lens>0.05?'rgba(255,247,13,'+(0.55+0.45*lens)+')':'rgba('+TONE[p.tn]+','+((0.38+0.4*(1-de)+0.12*Math.sin(t*.8+p.x*.012+p.y*.009))*dm)+')';
-      ctx.globalAlpha=hide*Math.max(0,Math.min(1,Math.pow(Math.max(0,(H-y)/(H*.5)),1.3),(y-34)/46));ctx.beginPath();ctx.arc(x,y,rad,0,6.2832);ctx.fill()}
+      var ga_=hide*depA*Math.max(0,Math.min(1,Math.pow(Math.max(0,(H-y)/(H*.5)),1.3),(y-34)/46));ctx.globalAlpha=ga_;ctx.beginPath();ctx.arc(x,y,rad,0,6.2832);ctx.fill();
+      if(sc>1.15){ctx.globalAlpha=ga_*Math.min(0.22,(sc-1.15)*0.35);ctx.beginPath();ctx.arc(x,y,rad*2.8,0,6.2832);ctx.fill()}}
     ctx.globalAlpha=1;
   }
 
@@ -1184,7 +1187,7 @@ body.hint .tuner.dev{animation:none}
     document.getElementById('snd').addEventListener('click',off,{once:true});document.querySelector('.nsnd').addEventListener('click',off,{once:true});
     addEventListener('scroll',function(){if(scrollY>innerHeight*.8)off()},{passive:true});setTimeout(off,40000)})();
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){var cu=document.getElementById('cur'),cpill=document.getElementById('curv');document.documentElement.classList.add('hascur');
-    addEventListener('pointermove',function(e){cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cu.classList.add('on');var t=e.target;cu.classList.toggle('ov',!!(t.closest&&t.closest('a,button,.card,.gauge,.knob,.tile')));var onc=!!(t.closest&&t.closest('.ph'))||document.body.classList.contains('lyhov');cpill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cpill.classList.toggle('on',onc)},{passive:true});
+    addEventListener('pointermove',function(e){cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cu.classList.add('on');var t=e.target;cu.classList.toggle('ov',!!(t.closest&&t.closest('a,button,.card,.gauge,.knob,.tile')));var onc=!!(t.closest&&t.closest('.ph,.lbz'))||document.body.classList.contains('lyhov');cpill.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';cpill.classList.toggle('on',onc)},{passive:true});
     document.addEventListener('mouseleave',function(){cu.classList.remove('on');cpill.classList.remove('on')})}
 })();
 </script>
@@ -1201,7 +1204,7 @@ document.querySelectorAll('.media').forEach(function(m){
       // no video yet, try a still image with the same name
       var img=new Image();
       img.onload=function(){m.appendChild(img);m.classList.add('loaded');};
-      img.src=src.replace(/\.mp4$/,'.jpg');
+      img.src=src.replace(/\.mp4(\?.*)?$/,'.jpg$1');
     });
     v.src=src;m.appendChild(v);
   } else {
@@ -1276,6 +1279,18 @@ if(!location.hash||location.hash==='#'){scrollTo(0,0);addEventListener('load',fu
     for(var i=0;i<=40;i++){var x=i*2.5,w=.5+.5*Math.sin(x/100*Math.PI*3+p*Math.PI*2);d+=' L '+x.toFixed(1)+' '+(100*a*w).toFixed(2)}
     path.setAttribute('d',d+' L 100 0 Z')}
   addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(draw)}},{passive:true});addEventListener('resize',draw);draw()})();
+</script>
+<script>
+// case studies: click (or Enter) on a show photo or the poster opens it large; click anywhere, the close button or Esc closes it
+(function(){var lb=document.createElement('div');lb.className='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','Enlarged image');
+  lb.innerHTML='<button type="button" aria-label="Close">&times;</button><img alt=""><p></p>';document.body.appendChild(lb);
+  var im=lb.querySelector('img'),cap=lb.querySelector('p'),btn=lb.querySelector('button'),last=null,SEL=':is(#ergoscanPage,#shleepPage,#stuviewPage) :is(.show,.poster) .media';
+  document.querySelectorAll(SEL).forEach(function(m){m.classList.add('lbz');m.tabIndex=0;m.setAttribute('role','button');var fc=m.closest('figure')&&m.closest('figure').querySelector('figcaption');m.setAttribute('aria-label','Enlarge: '+(fc?fc.textContent:'image'))});
+  function open(m){var src=m.querySelector('img');if(!src)return;last=m;im.src=src.currentSrc||src.src;im.alt=src.alt||'';var fc=m.closest('figure')&&m.closest('figure').querySelector('figcaption');cap.textContent=fc?fc.textContent:'';lb.classList.add('on');document.documentElement.style.overflow='hidden';btn.focus()}
+  function close(){if(!lb.classList.contains('on'))return;lb.classList.remove('on');document.documentElement.style.overflow='';if(last)last.focus()}
+  document.addEventListener('click',function(e){var m=e.target.closest&&e.target.closest('.lbz');if(m){open(m);return}if(lb.contains(e.target))close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();else if((e.key==='Enter'||e.key===' ')&&document.activeElement&&document.activeElement.classList.contains('lbz')){e.preventDefault();open(document.activeElement)}});
+  addEventListener('hashchange',close)})();
 </script>
 <script type="module">
 // About page: hang the profile photo as a 3D ID card on a black band. Loads only the first time the About page opens.
