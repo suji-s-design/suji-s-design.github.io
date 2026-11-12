@@ -17,10 +17,11 @@ nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-conten
 nav a,nav button{color:#fff;text-decoration:none;font:inherit;background:none;border:0;padding:8px;cursor:pointer;text-transform:uppercase}
 nav .lg{font-family:'TikTok Sans','Inter Tight',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0}
 nav .r{display:flex;gap:6px;color:#fff}nav a:hover,nav button:hover{color:var(--y)}
-nav{max-width:1240px;margin:0 auto}nav a.lg{padding-left:0}@media(min-width:900px){nav{padding-top:28px}nav .r{gap:22px}}
+nav{max-width:1240px;margin:0 auto}
+@media(max-width:480px){nav{font-size:12px;gap:8px}nav a.lg{white-space:nowrap}nav .r>a,nav .r>button{padding-left:5px;padding-right:5px}} /* four menu items + logo fit on one line on phones */nav a.lg{padding-left:0}@media(min-width:900px){nav{padding-top:28px}nav .r{gap:22px}}
 .hero .in{min-height:100svh;display:flex;flex-direction:column}
 #cv{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-.txt{position:relative;z-index:2;margin-top:auto;padding-bottom:clamp(72px,11vh,110px);pointer-events:none}
+.txt{position:relative;z-index:2;margin-top:auto;padding-bottom:clamp(100px,17vh,190px);pointer-events:none}
 @media(max-width:700px){.txt{padding-bottom:190px}.lit{margin-top:32px}}
 .hi{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
 h1{margin:0;font-weight:600;line-height:.88;letter-spacing:-.025em;font-size:clamp(64px,min(13vw,19vh),180px);color:var(--y);white-space:nowrap}
@@ -119,20 +120,22 @@ body.hint .snd.corner{animation:hpl 1.5s ease-out infinite}
 #cur{position:fixed;left:0;top:0;width:28px;height:20px;margin:-10px 0 0 -14px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .15s,scale .15s}
 #cur.on{opacity:1}#cur.ov{opacity:0}
 html.hascur,html.hascur *{cursor:none!important}
+:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px;box-shadow:0 0 0 6px var(--y)} /* keyboard focus: black ring with a yellow halo, visible on blue and on white */
 html.hascur a,html.hascur button,html.hascur .card,html.hascur .gauge,html.hascur .gauge *,html.hascur .knob,html.hascur .tile{cursor:pointer!important}
 html.hascur .gauge,html.hascur .gauge *{cursor:grab!important}
 html.hascur .card .ph,html.hascur .card .ph *{cursor:none!important}
 #curv{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;opacity:0;scale:.6;transition:opacity .15s,scale .18s cubic-bezier(.2,.8,.2,1);margin:-17px 0 0 -34px;width:68px;height:34px;border-radius:999px;background:#0a0a0a;color:#fff;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.04em}
 #curv.on{opacity:1;scale:1}
 .rows{list-style:none;margin:0;padding:0;border-top:2px solid #0a0a0a}
-.rows li{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px 24px;padding:18px 0;border-bottom:1px solid rgba(10,10,10,.18);align-items:baseline}
+.rows li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px 24px;padding:18px 0;border-bottom:1px solid rgba(10,10,10,.18);align-items:baseline}
 .rows b{font-size:clamp(18px,1.9vw,24px);letter-spacing:-.03em}.rows span{font-size:16px}.rows i{font-style:normal;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;text-transform:uppercase;color:rgba(10,10,10,.6)}
-@media(max-width:700px){.rows li{grid-template-columns:1fr}}
+.rows b{grid-column:1/span 6}.rows span{grid-column:7/span 4}.rows i{grid-column:11/span 2;text-align:right} /* same 12 columns as the About top: role under the bio (1-6), organization from the card column (7-10), dates last (11-12) */
+@media(max-width:700px){.rows li{grid-template-columns:1fr}.rows b,.rows span,.rows i{grid-column:auto;text-align:left}}
 .off{padding-block:clamp(56px,9vh,100px) 40px}
-.off h2{font-size:clamp(28px,4.4vw,56px);letter-spacing:-.05em;text-transform:none;line-height:1}
+.off h2{font-size:clamp(20px,2.2vw,28px);letter-spacing:-.05em;text-transform:none;line-height:1}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.tile{border:2px solid #0a0a0a;border-radius:20px;padding:20px;aspect-ratio:1/.8;display:flex;flex-direction:column;justify-content:space-between;transition:background var(--beat),transform var(--beat) cubic-bezier(.2,.8,.2,1)}
-.tile span{font-weight:600;font-size:clamp(22px,3vw,40px);letter-spacing:-.04em}.tile i{font-style:normal;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase}
+.tile{border:2px solid #0a0a0a;border-radius:20px;padding:20px;aspect-ratio:1/.55;display:flex;flex-direction:column;justify-content:space-between;transition:background var(--beat),transform var(--beat) cubic-bezier(.2,.8,.2,1)}
+.tile span{font-weight:600;font-size:clamp(18px,1.7vw,24px);letter-spacing:-.04em}.tile i{font-style:normal;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase}
 @media(hover:hover){.tile:hover{background:var(--y);transform:translateY(-4px)}}
 @media(max-width:700px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:auto;min-height:110px}}
 body.pg-about .snd.corner{display:flex}
@@ -167,12 +170,12 @@ footer.end .fb a{color:inherit;text-decoration:none}footer.end .fb a:hover{color
 @media(min-width:701px){
 .tuner.dev{left:auto;right:max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px));transform:none}
 body.thide .tuner.dev{transform:translateY(calc(100% + 60px))}
-.snd.corner{right:calc(max(16px,env(safe-area-inset-right,0px)) + 282px);transition:right var(--beat) cubic-bezier(.7,0,.2,1),background var(--beat),color var(--beat),border-color var(--beat),transform var(--beat)}
+.snd.corner{right:calc(max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px)) + 282px);transition:right var(--beat) cubic-bezier(.7,0,.2,1),background var(--beat),color var(--beat),border-color var(--beat),transform var(--beat)}
 body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-inset-right,0px))}
 }
 @media(min-width:1400px) and (min-height:760px){
-.tuner.dev{zoom:1.18}
-.snd.corner{right:calc(max(16px,env(safe-area-inset-right,0px)) + 334px)}
+.tuner.dev{zoom:1.18;right:max(calc(24px/1.18),calc((100% - 1240px/1.18)/2 + 24px/1.18))}
+.snd.corner{right:calc(max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px)) + 334px)}
 body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-inset-right,0px))}
 }
 </style>
@@ -189,15 +192,25 @@ html.hascur a[data-copy]{cursor:none!important}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:10000;transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);background:#0a0a0a;color:#fff;border-radius:999px;padding:10px 18px;font:500 14px var(--f)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .card.wip{cursor:default}
+/* PawLoop is not finished: the thumbnail says so on purpose instead of showing an empty box */
+.wip .ph{background:#f3f2ea}.wip .band{display:none}
+.soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+.soon img{width:52%;max-width:300px;height:auto;position:static;object-fit:contain}
+.soon span{font:500 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em;background:#fff;border:1px solid #0a0a0a;border-radius:999px;padding:.4em 1em;color:#0a0a0a}
 /* About tiles: "WIP" tag on hover */
 .tile{position:relative}
 .tile::after{content:"WIP";position:absolute;top:16px;right:16px;font:500 11px 'DM Mono',ui-monospace,monospace;letter-spacing:.06em;background:#0a0a0a;color:#fff;border-radius:999px;padding:.35em .8em;opacity:0;transform:translateY(-4px);transition:opacity var(--beat),transform var(--beat)}
 @media(hover:hover){.tile:hover::after{opacity:1;transform:none}}
 /* Hero to work: the blue hero scrolls away normally, trailing one soft blue wave over the flat white section */
-#home .work{position:relative;background:#fff}
-#workWave{position:absolute;left:0;top:-1px;width:100%;height:clamp(56px,11vh,110px);pointer-events:none;display:block;z-index:2}
-@media(prefers-reduced-motion:reduce){#workWave{display:none}}
+/* hero to work: the hero stays put and the white work section slides up over it like a sheet (and snaps the rest of the way), while the hero dims a little underneath */
+#home .hero{position:sticky;top:var(--heroTop,0px);z-index:0}
+html,body{overflow-anchor:none} /* no browser scroll anchoring next to the sticky hero */
+#home .hero::after{content:"";position:absolute;inset:0;background:#05003a;opacity:calc(var(--cov,0) * .5);pointer-events:none;z-index:3}
+#home .work{position:relative;z-index:1;background:#fff;box-shadow:0 -18px 50px rgba(8,0,60,.22)}
+#home .meet{position:relative;z-index:1;background:#fff}
+
 body.pg-about .tuner{display:none!important}
+#ptr{position:fixed;inset:0;width:100%;height:100%;z-index:9998;pointer-events:none;display:none}#ptr.on{display:block;pointer-events:auto}
 /* Tuner shine: a soft diagonal highlight keeps sweeping across the tuner so people notice they can play with it.
    One slow, soft sweep takes about 3.6s and the next one starts right after (3.8s loop, almost no gap).
    It runs until the visitor first presses the needle (body.dragged), then fades out for good. The old white pulse is turned off. */
@@ -451,7 +464,7 @@ body.hint .tuner.dev{animation:none}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="goo" x="-10%" y="-35%" width="125%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur id="gb" in="SourceGraphic" stdDeviation="0"/><feColorMatrix id="gm" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -10"/><feGaussianBlur id="gb2" stdDeviation="0"/></filter></svg>
 <div id="home">
 <header class="hero" id="hero">
-  <canvas id="cv" aria-label="A field of dots that scatter when out of tune and settle into a grid when tuned"></canvas><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+  <canvas id="cv" aria-label="A field of dots that scatter when out of tune and settle into a grid when tuned"></canvas><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#contact" class="tocontact">CONTACT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in">
     <div class="txt">
       
@@ -477,16 +490,16 @@ body.hint .tuner.dev{animation:none}
 <section class="work" id="work"><div class="in">
   <h2><span>Selected work</span></h2>
   <div class="grid">
-    <a class="card" href="#ergoscan" style="--c:#1d12b5"><div class="ph"><img src="images/ergoscan-01.jpg" alt="ErgoScan"><div class="tint"></div><div class="band">Mobile app · Product design</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Team of 2</div><div class="nm">ErgoScan<span>2026</span></div><div class="ti">An AR check for your desk setup</div></a>
+    <a class="card" href="#ergoscan" style="--c:#1d12b5"><div class="ph"><img src="images/ergoscan-01.jpg?v=2" alt="ErgoScan"><div class="tint"></div><div class="band">Mobile app · Product design</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Team of 2</div><div class="nm">ErgoScan<span>2026</span></div><div class="ti">An AR check for your desk setup</div></a>
     <a class="card" href="#shleep" style="--c:#ff4ba7"><div class="ph"><img src="images/shleep/cover.jpg" alt="Shleep"><div class="tint"></div><div class="band">Mobile app · UI design</div><div class="view">View</div></div><div class="meta">Mobile app · UI design · Team of 4</div><div class="nm">Shleep<span>2026</span></div><div class="ti">Making sense of what happens while you sleep</div></a>
-    <a class="card wip" href="#work" aria-disabled="true" style="--c:#fff70d"><div class="ph"><div class="tint"></div><div class="band">Work in progress</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Solo</div><div class="nm">PawLoop<span>2025</span></div><div class="ti">Giving unused cat toys a second home</div></a>
-    <a class="card" href="#stuview" style="--c:#0a0a0a"><div class="ph"><img src="images/stuview/thumb.jpg" alt="Stu-View on a monitor"><div class="tint"></div><div class="band">Web · UX research</div><div class="view">View</div></div><div class="meta">Web · UX research · Solo</div><div class="nm">Stu-View<span>2025</span></div><div class="ti">Finding out why students get lost in their own portal</div></a>
+    <a class="card wip" href="#work" aria-disabled="true" style="--c:#fff70d"><div class="ph"><div class="soon"><img src="images/pawloop/logo.png" alt="PawLoop logo"><span>Coming soon</span></div><div class="tint"></div><div class="band">Work in progress</div><div class="view">View</div></div><div class="meta">Mobile app · Product design · Solo</div><div class="nm">PawLoop<span>2025</span></div><div class="ti">Giving unused cat toys a second home</div></a>
+    <a class="card" href="#stuview" style="--c:#0a0a0a"><div class="ph"><img src="images/stuview/thumb.jpg?v=2" alt="Stu-View on a monitor"><div class="tint"></div><div class="band">Web · UX research</div><div class="view">View</div></div><div class="meta">Web · UX research · Solo</div><div class="nm">Stu-View Usability Test<span>2025</span></div><div class="ti">Finding out why students get lost in their own portal</div></a>
   </div>
 </div></section>
 <section class="meet"><div class="in"><p>Want to know who's behind it?</p><a class="pill" href="#about">Meet Suji <span aria-hidden="true">&rarr;</span></a></div></section>
 </div>
 <div id="aboutPage" hidden>
-<section class="ab"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about" aria-current="page">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+<section class="ab"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about" aria-current="page">ABOUT</a><a href="#contact" class="tocontact">CONTACT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in"><div class="abg">
     <h1 class="abh">Hi, I'm Suji.</h1>
     <div class="pic" id="lyard"><img src="images/suji.jpg" alt="Suji Shin smiling, in a white top"></div>
@@ -498,6 +511,12 @@ body.hint .tuner.dev{animation:none}
     </div>
   </div></div>
 </section>
+<section class="xp"><div class="in">
+  <h2><span>Experience</span></h2>
+  <ul class="rows">
+    <li><b>Student Researcher, Interaction &amp; Digital Design</b><span>George Brown Polytechnic &middot; Brain Toolkit Project</span><i>2026–Present</i></li>
+  </ul>
+</div></section>
 <section class="xp"><div class="in">
   <h2><span>Education</span></h2>
   <ul class="rows">
@@ -517,7 +536,7 @@ body.hint .tuner.dev{animation:none}
 </div></section>
 </div>
 <div id="ergoscanPage" hidden>
-<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#contact" class="tocontact">CONTACT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in">
     <a class="back" href="#work">&larr; All work</a>
     <div class="csh-grid">
@@ -591,12 +610,12 @@ body.hint .tuner.dev{animation:none}
         <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-measure.jpg" data-ratio="600/1301"><span class="mph"><b>before-measure.jpg</b></span></div></div></figure>
+            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-measure.jpg" data-ratio="600/1301" data-alt="Old measuring screen"><span class="mph"><b>before-measure.jpg</b></span></div></div></figure>
             <p>Free tap to place points on a small camera view. During the in-class showcase, testers weren't sure where to tap and couldn't aim precisely.</p>
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-distance.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-distance.mp4</b></span></div></div></figure>
+            <figure class="dv"><div class="device"><div class="media phone" data-alt="Measuring screen distance in ErgoScan" data-src="images/ergoscan/clip-distance.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-distance.mp4</b></span></div></div></figure>
             <p>A crosshair and a plus button on a full-screen camera. People already know this from iPhone's Measure app, so there's nothing new to learn and fewer misplaced points.</p>
           </div>
         </div>
@@ -608,12 +627,12 @@ body.hint .tuner.dev{animation:none}
         <div class="cs-ba">
           <div class="side before">
             <span class="tag">Before</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/before-results.mp4?v=2" data-ratio="600/1298" data-type="video"><span class="mph"><b>before-results.mp4</b></span></div></div></figure>
+            <figure class="dv"><div class="device"><div class="media phone" data-alt="Old results screens, split into three lists" data-src="images/ergoscan/before-results.mp4?v=2" data-ratio="600/1298" data-type="video"><span class="mph"><b>before-results.mp4</b></span></div></div></figure>
             <p>The results were split into three lists: overview, recommendations and health risks. To understand one problem, you had to read about it in three places.</p>
           </div>
           <div class="side after">
             <span class="tag">After</span>
-            <figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure>
+            <figure class="dv"><div class="device"><div class="media phone" data-alt="ErgoScan results" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure>
             <p>Each measurement lives in one card, with the problem, a specific fix and why it matters. What needs fixing comes first.</p>
           </div>
         </div>
@@ -640,7 +659,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Know what's wrong first.</h3>
           <p class="cs-body">The score shows how your setup is doing. Anything that needs improvement comes first, with a specific fix and why it matters.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div><figcaption>Score and fixes</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-alt="ErgoScan results" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div><figcaption>Score and fixes</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-good.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-good.jpg</b></span></div></div><figcaption>Good setup</figcaption></figure></div>
       </div>
 
       <div class="cs-feature">
@@ -649,7 +668,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Watch yourself improve.</h3>
           <p class="cs-body">Every scan is saved, so you can compare setups and see your score change over time.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Workspaces</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div><figcaption>History</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-settings.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-settings.jpg</b></span></div></div><figcaption>Settings</figcaption></figure></div>
       </div>
 
       <h3 class="cs-h3">Every screen in the flow</h3>
@@ -684,7 +703,7 @@ body.hint .tuner.dev{animation:none}
         <div class="impact-col">
           <div>
           <h2 class="cs-h2">It felt useful, not just like a school project.</h2>
-          <p class="cs-body">At our year-end show, visitors told us this wasn't just a school project. It was something they'd actually use at their own desk.</p>
+          <p class="cs-body">At our year-end show, visitors told us this was something they'd actually use at their own desk.</p>
           <p class="cs-body">ErgoScan also received an Honorable Mention at the RGD Student Awards 2026. The judges pointed to the clear problem, the user flow, and the accessibility.</p>
           </div>
           <div class="show">
@@ -692,7 +711,7 @@ body.hint .tuner.dev{animation:none}
             <figure><div class="media shot" data-src="images/ergoscan/show-booth.jpg" data-ratio="4/3"><span class="mph"><b>show-booth.jpg</b></span></div><figcaption>Our booth at the year-end show</figcaption></figure>
           </div>
         </div>
-        <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg?v=2" data-ratio="1600/2031"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
+        <figure class="poster"><div class="media shot" data-src="images/ergoscan/poster.jpg?v=3" data-ratio="1575/2000"><span class="mph"><b>poster.jpg</b>Year-end show poster</span></div><figcaption>Our poster for the year-end show</figcaption></figure>
       </div>
     </section>
 
@@ -719,7 +738,7 @@ body.hint .tuner.dev{animation:none}
     </div>
   </div>
 
-  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
+  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-start.jpg?v=2" data-ratio="600/1298" data-alt="ErgoScan start screen"><span class="mph"><b>screen-start.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-alt="ErgoScan results" data-src="images/ergoscan/clip-results.mp4?v=2" data-ratio="540/1168" data-type="video"><span class="mph"><b>clip-results.mp4</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/ergoscan/screen-history.jpg?v=2" data-ratio="600/1298" data-alt="ErgoScan history screen"><span class="mph"><b>screen-history.jpg</b></span></div></div></figure></div>
 
   <figure class="pull">
     <blockquote>&ldquo;[ErgoScan] clearly explained both the problem and how the design solved it.&rdquo;</blockquote>
@@ -739,7 +758,7 @@ body.hint .tuner.dev{animation:none}
 </div>
 </div>
 <div id="shleepPage" hidden>
-<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#contact" class="tocontact">CONTACT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in">
     <a class="back" href="#work">&larr; All work</a>
     <div class="csh-grid">
@@ -751,11 +770,11 @@ body.hint .tuner.dev{animation:none}
           <div><p class="k">Role</p><p class="v">UI design</p></div>
           <div><p class="k">Team</p><p class="v">Team of 4 with Sabrina Huffman, Shivalika Reddy, Rebecca Parvaneh</p></div>
           <div><p class="k">Event</p><p class="v">FigBuild 2026</p></div>
-          <div><p class="k">Type</p><p class="v">Speculative concept<br>iOS app</p></div>
+          <div><p class="k">Type</p><p class="v">Speculative concept<br>Mobile app</p></div>
         </div>
       </div>
       <figure class="csh-phone">
-        <div class="device"><div class="media phone" data-src="images/shleep/demo.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>demo.mp4</b>Prototype walkthrough</span></div></div>
+        <div class="device"><div class="media phone" data-src="images/shleep/demo.mp4?v=2" data-ratio="600/1300" data-type="video"><span class="mph"><b>demo.mp4</b>Prototype walkthrough</span></div></div>
         <figcaption>The full flow, from the Figma prototype</figcaption>
       </figure>
     </div>
@@ -799,9 +818,9 @@ body.hint .tuner.dev{animation:none}
       <p class="cs-eyebrow">The concept</p>
       <h2 class="cs-h2">Three pieces that work together.</h2>
       <div class="cs-tldr concept">
-        <div class="cs-card"><div class="media shot" data-src="images/shleep/topper.jpg" data-ratio="4/3"><span class="mph"><b>topper.jpg</b></span></div><h4>Mattress topper</h4><p>Tracks movement, heart rate and breathing, and maps how your body shifts through the night. Small vibrations gently guide you toward better sleep.</p></div>
-        <div class="cs-card"><div class="media shot" data-src="images/shleep/earpiece.jpg" data-ratio="4/3"><span class="mph"><b>earpiece.jpg</b></span></div><h4>Neural earpiece</h4><p>Tracks brain activity and ambient sound during sleep, to paint a fuller picture of what happens in your dreams.</p></div>
-        <div class="cs-card"><div class="media shot app" data-src="images/shleep/screen-insights.jpg" data-ratio="4/3"><span class="mph"><b>screen-insights.jpg</b></span></div><h4>Shleep app</h4><p>Pulls in data from both and turns it into nightly dream and body breakdowns, with insights you can act on.</p></div>
+        <div class="cs-card"><div class="media shot" data-alt="Shleep mattress topper" data-src="images/shleep/topper.jpg" data-ratio="4/3"><span class="mph"><b>topper.jpg</b></span></div><h4>Mattress topper</h4><p>Tracks movement, heart rate and breathing, and maps how your body shifts through the night. Small vibrations gently guide you toward better sleep.</p></div>
+        <div class="cs-card"><div class="media shot" data-alt="Shleep neural earpiece" data-src="images/shleep/earpiece.jpg" data-ratio="4/3"><span class="mph"><b>earpiece.jpg</b></span></div><h4>Neural earpiece</h4><p>Tracks brain activity and ambient sound during sleep, to paint a fuller picture of what happens in your dreams.</p></div>
+        <div class="cs-card"><div class="media shot app" data-alt="Shleep Sleep Insights screen" data-src="images/shleep/screen-insights.jpg" data-ratio="4/3"><span class="mph"><b>screen-insights.jpg</b></span></div><h4>Shleep app</h4><p>Pulls in data from both and turns it into nightly dream and body breakdowns, with insights you can act on.</p></div>
       </div>
     </section>
 
@@ -825,7 +844,7 @@ body.hint .tuner.dev{animation:none}
           <h3>Your whole night, in focus.</h3>
           <p class="cs-body">Insights shows your body's rhythms and your brain's activity overnight. Every chart comes with a simple explanation, so the data never feels overwhelming.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-body.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-body.mp4</b></span></div></div><figcaption>Physical data</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-brain.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-brain.mp4</b></span></div></div><figcaption>Cognitive data</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-body.mp4?v=2" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-body.mp4</b></span></div></div><figcaption>Physical data</figcaption></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-brain.mp4?v=2" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-brain.mp4</b></span></div></div><figcaption>Cognitive data</figcaption></figure></div>
       </div>
 
       <div class="cs-feature">
@@ -834,23 +853,23 @@ body.hint .tuner.dev{animation:none}
           <h3>Design the dream you want.</h3>
           <p class="cs-body">Upload a photo, audio, video or text to design a dream. The earpiece and mattress topper then send gentle signals during sleep to bring it to life.</p>
         </div>
-        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-build.mp4" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-build.mp4</b></span></div></div><figcaption>Build your dream</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-35.3%" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Your creations</figcaption></figure></div>
+        <div class="phones"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/clip-build.mp4?v=2" data-ratio="600/1300" data-type="video"><span class="mph"><b>clip-build.mp4</b></span></div></div><figcaption>Build your dream</figcaption></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-35.3%" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Your creations</figcaption></figure></div>
       </div>
 
       <h3 class="cs-h3">Screens from the prototype</h3>
       <div class="cs-gallery">
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div><figcaption>Home</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-alt="Shleep home screen" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div><figcaption>Home</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-dreams.jpg" data-ratio="600/1304"><span class="mph"><b>screen-dreams.jpg</b></span></div></div><figcaption>Dreams</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Insights</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-alt="Shleep Sleep Insights screen" data-src="images/shleep/screen-insights.jpg" data-ratio="600/1304"><span class="mph"><b>screen-insights.jpg</b></span></div></div><figcaption>Insights</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-recap.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-recap.jpg</b></span></div></div><figcaption>Shleep Talk</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-visual.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-visual.jpg</b></span></div></div><figcaption>Visual recap</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div><figcaption>How you feel</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone" data-alt="Shleep Talk conversation screen" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div><figcaption>How you feel</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-chat.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-chat.jpg</b></span></div></div><figcaption>Conversation</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-build.jpg" data-ratio="600/1304"><span class="mph"><b>screen-build.jpg</b></span></div></div><figcaption>Build your dream</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-creations.jpg" data-ratio="600/1304"><span class="mph"><b>screen-creations.jpg</b></span></div></div><figcaption>Creations</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-wrapped.jpg" data-ratio="600/1304"><span class="mph"><b>screen-wrapped.jpg</b></span></div></div><figcaption>Sleep Wrapped</figcaption></figure>
         <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-cognitive.jpg" data-ratio="600/1304"><span class="mph"><b>screen-cognitive.jpg</b></span></div></div><figcaption>Cognitive data</figcaption></figure>
-        <figure class="dv"><div class="device"><div class="media phone top" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div><figcaption>Physical data</figcaption></figure>
+        <figure class="dv"><div class="device"><div class="media phone top" data-alt="Shleep Physical Data screen" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div><figcaption>Physical data</figcaption></figure>
       </div>
     </section>
 
@@ -868,7 +887,7 @@ body.hint .tuner.dev{animation:none}
     </div>
   </div>
 
-  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-57.6%" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div></figure></div>
+  <div class="lineup"><figure class="dv"><div class="device"><div class="media phone" data-alt="Shleep home screen" data-src="images/shleep/screen-home.jpg" data-ratio="600/1304"><span class="mph"><b>screen-home.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone scroll" style="--shift:-57.6%" data-alt="Shleep Physical Data screen" data-src="images/shleep/screen-physical.jpg" data-ratio="600/1304"><span class="mph"><b>screen-physical.jpg</b></span></div></div></figure><figure class="dv"><div class="device"><div class="media phone" data-alt="Shleep Talk conversation screen" data-src="images/shleep/screen-talk-feeling.jpg" data-ratio="600/1304"><span class="mph"><b>screen-talk-feeling.jpg</b></span></div></div></figure></div>
 
   <div class="cs-cta">
     <h2>Want to hear more?</h2>
@@ -883,7 +902,7 @@ body.hint .tuner.dev{animation:none}
 </div>
 </div>
 <div id="stuviewPage" hidden>
-<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
+<section class="csh"><nav><a class="lg" href="#">SUJI SHIN</a><div class="r"><a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#contact" class="tocontact">CONTACT</a><button type="button" class="nsnd">SOUND[<i class="nsi">OFF</i>]</button></div></nav>
   <div class="in">
     <a class="back" href="#work">&larr; All work</a>
     <div class="csh-grid noimg">
@@ -905,7 +924,7 @@ body.hint .tuner.dev{animation:none}
 <div class="in cs">
   <div class="cs-layout">
     <nav class="toc" aria-label="Sections">
-      <a href="#sv-problem">Problem</a><a href="#sv-role">My role</a><a href="#sv-method">Method</a><a href="#sv-results">Results</a><a href="#sv-findings">Findings</a><a href="#sv-report">Report</a>
+      <a href="#sv-problem">Problem</a><a href="#sv-method">Method</a><a href="#sv-results">Results</a><a href="#sv-findings">Findings</a><a href="#sv-report">Report</a>
     </nav>
     <div class="cs-main">
 
@@ -918,20 +937,7 @@ body.hint .tuner.dev{animation:none}
           <p class="cs-body">Stu-View is where George Brown students find their records, registration, tuition and campus services. Some important tasks, like applying for awards or replacing a photo ID, are hidden behind vague labels and many cards.</p>
           <p class="cs-body">I wanted to find out where students get stuck, and why.</p>
         </div>
-        <figure class="bw"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div><figcaption>Stu-View home: a grid of cards</figcaption></figure>
-      </div>
-    </section>
-
-    <!-- ROLE -->
-    <section class="cs-section" id="sv-role">
-      <p class="cs-eyebrow">My role</p>
-      <div class="cs-two">
-        <ul class="cs-list">
-          <li>Planned the study: goals, tasks, metrics and a severity scale</li>
-          <li>Ran 5 in-person sessions as the facilitator, with think-aloud</li>
-          <li>Logged task data and ran a short survey after each session</li>
-          <li>Analyzed the results and wrote the final report with recommendations</li>
-        </ul>
+        <figure class="bw"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-alt="Stu-View home page" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div><figcaption>Stu-View home: a grid of cards</figcaption></figure>
       </div>
     </section>
 
@@ -994,7 +1000,7 @@ body.hint .tuner.dev{animation:none}
           <p class="cs-body">The homepage is a grid of cards. Participants called it cluttered and confusing, and important links often sat at the bottom of a card, so people had to scroll inside it.</p>
           <p class="fix"><b>Recommendation</b> Replace the cards with a structured menu, and surface seasonal actions, like "Register for Courses" during enrollment.</p>
         </div>
-        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div></figure>
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-alt="Stu-View home page" data-src="images/stuview/home.jpg" data-ratio="1600/842"><span class="mph"><b>home.jpg</b></span></div></div></figure>
       </div>
 
       <div class="finding">
@@ -1014,7 +1020,7 @@ body.hint .tuner.dev{animation:none}
           <p class="cs-body">People went back and forth between "My Account" and "Registration". Labels were long or unclear, like "Check your timetable (Schedule) frequently".</p>
           <p class="fix"><b>Recommendation</b> Group features under clear parent categories, and use short action labels, like "View Timetable" or "Photo ID Reissue".</p>
         </div>
-        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-src="images/stuview/registration.jpg" data-ratio="1600/842"><span class="mph"><b>registration.jpg</b></span></div></div></figure>
+        <figure class="bw "><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="media shot" data-alt="Stu-View registration page" data-src="images/stuview/registration.jpg" data-ratio="1600/842"><span class="mph"><b>registration.jpg</b></span></div></div></figure>
       </div>
       <blockquote class="quote wide">&ldquo;Reorganize it, set the categories right starting with the titles.&rdquo;<span>Participant</span></blockquote>
     </section>
@@ -1026,9 +1032,9 @@ body.hint .tuner.dev{animation:none}
         <div>
           <h2 class="cs-h2">One page, for the people who could fix it.</h2>
           <p class="cs-body">I summed up the study on one page: the tasks, the results, what participants said, and a recommendation for each issue.</p>
-          <a class="cs-btn" href="images/stuview/report.jpg" target="_blank" rel="noopener">Open the full report &nearr;</a>
+          <a class="cs-btn" href="images/stuview/report.jpg?v=2" target="_blank" rel="noopener">Open the full report &nearr;</a>
         </div>
-        <a class="report" href="images/stuview/report.jpg" target="_blank" rel="noopener"><div class="media shot" data-src="images/stuview/report.jpg" data-ratio="2400/3200"><span class="mph"><b>report.jpg</b></span></div></a>
+        <a class="report" href="images/stuview/report.jpg?v=2" target="_blank" rel="noopener"><div class="media shot" data-alt="One-page usability test report for Stu-View" data-src="images/stuview/report.jpg?v=2" data-ratio="2400/3200"><span class="mph"><b>report.jpg</b></span></div></a>
       </div>
     </section>
 
@@ -1047,9 +1053,9 @@ body.hint .tuner.dev{animation:none}
   </a>
 </div>
 </div>
-<footer class="end"><div class="in">
+<footer class="end" id="contact"><div class="in">
   <h3>Stay tuned.</h3>
-  <p class="fl"><a href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">suji.shin.ca@gmail.com</a><a href="https://www.linkedin.com/in/suji-shin">LinkedIn</a><a href="#">Resume</a></p>
+  <p class="fl"><a href="mailto:suji.shin.ca@gmail.com" data-copy="suji.shin.ca@gmail.com">suji.shin.ca@gmail.com</a><a href="https://www.linkedin.com/in/suji-shin">LinkedIn</a><a href="Suji_Shin_Resume.pdf" target="_blank" rel="noopener">Resume</a></p>
   <div class="fb"><span>&copy; 2026 Suji Shin</span><span id="clock">Toronto</span><a href="#" id="totop">Back to top &uarr;</a></div>
 </div></footer>
 
@@ -1070,11 +1076,13 @@ body.hint .tuner.dev{animation:none}
   function size(){measure();var r=cv.getBoundingClientRect();dpr=Math.min(1.5,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;
     sp=W<700?24:30;dots=[];var cols=Math.ceil(W/sp)+1,rows=Math.ceil(H/sp)+1;
     for(var j=0;j<rows;j++)for(var i=0;i<cols;i++){dots.push({x:i*sp+sp/2,y:j*sp+sp/2,rx:Math.random()*2-1,ry:Math.random()*2-1,ph:Math.random()*6.28,rz:Math.random()*2-1,tn:(function(r){return r<.72?0:r<.86?1:2})(Math.random())})}}
-  var obs=[];
+  var obs=[],qz=null;
   function measure(){var cr=cv.getBoundingClientRect();obs=[];
     function add(el,m){if(!el)return;var rg=document.createRange();rg.selectNodeContents(el);var rs=rg.getClientRects();for(var i=0;i<rs.length;i++){var r=rs[i];if(r.width<4)continue;obs.push([r.left-cr.left,r.top-cr.top,r.right-cr.left,r.bottom-cr.top,m])}}
     add(document.getElementById('lit'),14);
     var rl=document.querySelector('.role');if(rl){var r=rl.getBoundingClientRect();obs.push([r.left-cr.left,r.top-cr.top,r.right-cr.left,r.bottom-cr.top,16])}
+    /* quiet zone: the name, role and intro block. Music ripples fade out around it so the text stays calm */
+    var tx=document.querySelector('.hero .txt');if(tx){var q=tx.getBoundingClientRect();qz=[q.left-cr.left,q.top-cr.top,q.right-cr.left,q.bottom-cr.top]}
     }
   size();addEventListener('resize',size);addEventListener('load',size);try{document.fonts.ready.then(size)}catch(e){}setTimeout(size,600);try{new ResizeObserver(size).observe(cv)}catch(e){}
   try{var f=new Intl.DateTimeFormat('en-CA',{hour:'numeric',minute:'2-digit',timeZone:'America/Toronto'});var c=document.getElementById('clock')||{};(function tick(){c.textContent='Toronto '+f.format(new Date());setTimeout(tick,30000)})()}catch(e){}
@@ -1108,25 +1116,19 @@ body.hint .tuner.dev{animation:none}
     for(var i=0;i<lts.length;i++){var on=i<n;if(lts[i]._on!==on){lts[i]._on=on;lts[i].classList.toggle('on',on)}}
     if(p<1)requestAnimationFrame(litTick)})();
 
-  // ---- generative BGM, off by default ----
-  var ac=null,master,lp,an,busA,padA,pitch,on=false,timer=null,nextT=0,step=0,td;
+  // ---- music: Bach, Prelude in C major (royalty-free, audio/prelude.m4a), off by default, never autoplays.
+  // The tuner bends its pitch (playback rate follows the cents), and note onsets send ripples through the dots.
+  var ac=null,master,lp,an,au=null,on=false,td,rate=1,env=0,lastOn=0;
   var ripples=[],kick=0,kdir=1;
-  var chords=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]],EIGHTH=0.42;
-  function mtof(m){return 440*Math.pow(2,(m-69)/12)}
-  function note(fr,t,dur,vol){var o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=fr;pitch.connect(o.detune);o.onended=function(){try{pitch.disconnect(o.detune)}catch(e){}};
-    g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(vol,t+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);o.connect(g);g.connect(busA);o.start(t);o.stop(t+dur+0.05)}
-  function playStep(st,t){var ch=chords[Math.floor(st/8)%4],pos=st%8;
-    if(pos===0){var rf=mtof(ch[0]-12);padA.frequency.setValueAtTime(rf,t);note(rf,t,2.6,0.22);ripples.push({t:t,x:0.5,y:0.55,big:1,fired:false})}
-    var tones=[ch[0],ch[1],ch[2],ch[0]+12],pat=[0,1,2,3,2,1,2,1];var mm=tones[pat[pos]];note(mtof(mm),t,1.5,0.12);ripples.push({ci:((mm%3)+3)%3,t:t,x:(mm-52)/26,y:0.2+0.6*Math.random(),big:0,fired:false});if(ripples.length>14)ripples.shift()}
-  function schedule(){while(nextT<ac.currentTime+0.4){playStep(step,nextT);nextT+=EIGHTH;step++}}
-  function startAudio(){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=0.0001;lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=3000;
-    busA=ac.createGain();pitch=ac.createConstantSource();pitch.offset.value=sgn*d*100;pitch.start();an=ac.createAnalyser();an.fftSize=1024;td=new Float32Array(an.fftSize);busA.connect(lp);lp.connect(an);an.connect(master);master.connect(ac.destination);
-    padA=ac.createOscillator();var pg=ac.createGain();padA.type='sine';padA.frequency.value=mtof(45);pg.gain.value=0.08;pitch.connect(padA.detune);padA.connect(pg);pg.connect(busA);padA.start();
-    master.gain.linearRampToValueAtTime(0.6,ac.currentTime+0.8);nextT=ac.currentTime+0.1;step=0;timer=setInterval(schedule,100)}
+  function startAudio(){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=0.0001;lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=6000;
+    an=ac.createAnalyser();an.fftSize=1024;td=new Float32Array(an.fftSize);
+    au=new Audio('audio/prelude.m4a');au.loop=true;au.preload='auto';au.preservesPitch=false;au.mozPreservesPitch=false;au.webkitPreservesPitch=false;
+    var src=ac.createMediaElementSource(au);src.connect(lp);lp.connect(an);an.connect(master);master.connect(ac.destination);
+    au.play().catch(function(){});master.gain.linearRampToValueAtTime(0.8,ac.currentTime+0.8)}
   var btn=document.getElementById('snd'),nsis=document.querySelectorAll('.nsi');document.querySelectorAll('.nsnd').forEach(function(b){b.addEventListener('click',function(){btn.click()})});
   btn.addEventListener('click',function(){on=!on;btn.setAttribute('aria-pressed',on);nsis.forEach(function(e){e.textContent=on?'ON':'OFF'});btn.setAttribute('aria-label',on?'Sound on. Click to mute':'Sound off. Click to play sound');
-    try{if(on){if(!ac)startAudio();else{ac.resume();master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(0.6,ac.currentTime+0.6)}}
-    else if(ac){master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(0.0001,ac.currentTime+0.4);setTimeout(function(){if(!on)ac.suspend()},500)}}
+    try{if(on){if(!ac)startAudio();else{ac.resume();au.play().catch(function(){});master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(0.8,ac.currentTime+0.6)}}
+    else if(ac){master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(0.0001,ac.currentTime+0.4);setTimeout(function(){if(!on){au.pause();ac.suspend()}},500)}}
     catch(e){on=false;btn.setAttribute('aria-pressed',false)}});
 
   var hzEl=document.getElementById('hz'),gbEl=document.getElementById('gb'),gmEl=document.getElementById('gm'),gb2El=document.getElementById('gb2');
@@ -1135,6 +1137,8 @@ body.hint .tuner.dev{animation:none}
     ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);dm+=((on?1:.62)-dm)*.07;
     var PAL=['255,247,13','255,90,175','120,205,255'],TONE=['255,255,255','150,170,255','255,150,205'],A=sp*2.4,R=170,base=2+lvl*1.4+pulse*1.6;
     var tn=(ac&&on)?ac.currentTime:-1,act=[];
+    /* scroll tilt: as you scroll past the hero the grid leans back into a floor, hinged at the hero's bottom edge */
+    var tq=reduce?0:Math.max(0,Math.min(1,scrollY/(H*0.9))),tq2=tq*tq*(3-2*tq),tth=tq2*1.1,tco=Math.cos(tth),tsi=Math.sin(tth),TF=Math.max(W,H)*0.9;
     if(tn>=0)for(var q=0;q<ripples.length;q++){var rp=ripples[q],age=tn-rp.t;if(age<0)continue;
       if(!rp.fired){rp.fired=true;kick=(rp.big?11:6)*kdir;kdir=-kdir}
       var life=rp.big?2.2:1.5;if(age<life)act.push([rp.x*W,rp.y*H,age*(rp.big?420:300),1-age/life,rp.big?60:36,rp.big?0:(rp.ci||0)])}
@@ -1144,16 +1148,17 @@ body.hint .tuner.dev{animation:none}
       var lens=0;if(mx>-900){var dist=Math.hypot(p.x-mx,p.y-my);lens=Math.max(0,1-dist/R);lens=lens*lens*(3-2*lens)}
       var de=d*(1-lens);
       var x=p.x+(p.rx*A+Math.sin(t*.9+p.ph)*sp*.3)*de+Math.sin(t*.7+p.ph)*1.2,y=p.y+(p.ry*A+Math.cos(t*.8+p.ph)*sp*.3)*de+Math.cos(t*.6+p.ph)*1.2;
-      /* depth: out of tune the grid also scatters toward and away from you, and the cloud turns slowly. In tune (de=0) it is the flat grid. */
-      var sc=1;if(de>0.001){var dz=Math.pow(de,0.6),zz=p.rz*dz*Math.min(W,H)*1.1+Math.sin(t*.5+p.ph)*24*dz,ang=0.45*de*Math.sin(t*.21),ca=Math.cos(ang),sa=Math.sin(ang),ddx=x-W/2,xr=ddx*ca+zz*sa,zr=-ddx*sa+zz*ca,FF=W*0.8+500;
+      /* depth: out of tune the grid also scatters toward and away from you, and the cloud turns (sharp one way, flat the other). In tune (de=0) it is the flat grid. */
+      var sc=1;if(de>0.001){var dz=Math.pow(de,0.6),zz=p.rz*dz*Math.min(W,H)*1.1+Math.sin(t*.5+p.ph)*24*dz,ang=rotA*Math.min(1,de*2),ca=Math.cos(ang),sa=Math.sin(ang),ddx=x-W/2,xr=ddx*ca+zz*sa,zr=-ddx*sa+zz*ca,FF=W*0.8+500;
         sc=FF/Math.max(FF*0.4,FF-zr);x=W/2+xr*sc+(mx>-900?(W/2-mx)*0.05*(sc-1):0);y=H/2+(y-H/2)*sc+(mx>-900?(H/2-my)*0.05*(sc-1):0)}
+      if(tq>0.001){var tdy=y-H,tz=-tdy*tsi,ts=TF/(TF+tz);x=W/2+(x-W/2)*ts;y=H+tdy*tco*ts;sc*=ts}
       var hide=1;for(var o=0;o<obs.length;o++){var ob=obs[o],M=ob[4],ox=Math.max(ob[0]-x,0,x-ob[2]),oy=Math.max(ob[1]-y,0,y-ob[3]);
         if(ox===0&&oy===0){hide=0;var dl=x-ob[0],dr=ob[2]-x,dt=y-ob[1],db=ob[3]-y,mn=Math.min(dl,dr,dt,db);
           if(mn===dl)x=ob[0]-M*.5;else if(mn===dr)x=ob[2]+M*.5;else if(mn===dt)y=ob[1]-M*.5;else y=ob[3]+M*.5;break}
         var ds=Math.hypot(ox,oy);if(ds<M){var nd=ds+.5*(M-ds)*(M-ds)/M,sx=x<ob[0]?-1:x>ob[2]?1:0,sy=y<ob[1]?-1:y>ob[3]?1:0,k=nd/Math.max(ds,.001)-1;
           if(sx)x+=sx*ox*k;if(sy)y+=sy*oy*k}}
       var bo=0,bc=0,bci=0;for(var q=0;q<act.length;q++){var a_=act[q],dd=Math.hypot(p.x-a_[0],p.y-a_[1])-a_[2];var cn=Math.exp(-(dd*dd)/(a_[4]*a_[4]))*a_[3];bo+=cn;if(cn>bc){bc=cn;bci=a_[5]}}
-      bo=Math.min(1,bo);
+      bo=Math.min(1,bo);if(qz&&bo>0){var qx=Math.max(qz[0]-x,0,x-qz[2]),qy=Math.max(qz[1]-y,0,y-qz[3]);bo*=Math.min(1,Math.hypot(qx,qy)/140)}
       var rad=(base+lens*1.8+bo*3.2)*sc,depA=Math.min(1,0.25+0.75*sc);
       ctx.fillStyle=bo>0.12?'rgba('+PAL[bci]+','+(0.5+0.5*bo)+')':lens>0.05?'rgba(255,247,13,'+(0.55+0.45*lens)+')':'rgba('+TONE[p.tn]+','+((0.38+0.4*(1-de)+0.12*Math.sin(t*.8+p.x*.012+p.y*.009))*dm)+')';
       var ga_=hide*depA*Math.max(0,Math.min(1,Math.pow(Math.max(0,(H-y)/(H*.5)),1.3),(y-34)/46));ctx.globalAlpha=ga_;ctx.beginPath();ctx.arc(x,y,rad,0,6.2832);ctx.fill();
@@ -1161,21 +1166,29 @@ body.hint .tuner.dev{animation:none}
     ctx.globalAlpha=1;
   }
 
-  var last=performance.now();
+  var last=performance.now(),rotA=0;
+  var wkEl=null,homeEl0=document.getElementById('home'),txtC={};
+  function setT(el,k,v){if(txtC[k]!==v){txtC[k]=v;el.textContent=v}}
   function frame(now){
-    var dt=Math.max(0,Math.min(0.25,(now-last)/1000));last=now;if(!isFinite(d)||!isFinite(v)){d=0;v=0}
+    var dt=Math.max(0,Math.min(0.25,(now-last)/1000));last=now;
+    /* the dot cloud turns one way when sharp and the other way when flat; it eases back to flat-on as the needle returns to center */
+    rotA=d<0.02?rotA*Math.pow(0.02,dt):rotA+sgn*Math.min(1,d)*dt*0.7;if(!isFinite(d)||!isFinite(v)){d=0;v=0}
     scrollP=innerHeight>0?Math.min(1,Math.max(0,scrollY/(innerHeight*0.6))):0;if(held&&scrollP>0.5)held=false;
     if(!manual&&!held){var rest=0,target;if(!settled&&!reduce)target=1;else target=rest*(1-scrollP);if(reduce)target=0;
       var k=26,cc=2*Math.sqrt(k),n=Math.max(1,Math.ceil(dt/.016)),h=dt/n;for(var si=0;si<n;si++){v+=(k*(target-d)-cc*v)*h;d+=v*h}if(d<0)d=0}
     var t=(now-t0)/1000,cents=sgn*d*100;var gd=Math.min(1,d),sh=cents>0,gs=d>0.03?(sh?gd*12:gd*4):0,gt=sh?0.5-gd*0.12:0.5+gd*0.1,gq=sh?(24-gd*8):(22-gd*8),g2=sh?gd*3.5:gd*1.2,gk=gs.toFixed(1)+'|'+gt.toFixed(2)+'|'+gq.toFixed(1)+'|'+g2.toFixed(1);
     if(gk!==nameEl._gk){nameEl._gk=gk;if(gs===0){nameEl.style.filter=''}else{gbEl.setAttribute('stdDeviation',gs.toFixed(2));gb2El.setAttribute('stdDeviation',g2.toFixed(2));gmEl.setAttribute('values','1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 '+gq.toFixed(1)+' '+(0.5-gq*gt).toFixed(2));nameEl.style.filter='url(#goo)'}}
-    if(ac&&on){pitch.offset.setTargetAtTime(cents,ac.currentTime,0.03);lp.frequency.value=800+ (mx>-900?(1-my/H):0.5)*5200;an.getFloatTimeDomainData(td);var pk=0;for(var i=0;i<td.length;i++){var m=Math.abs(td[i]);if(m>pk)pk=m}lvl+=(Math.min(1,pk*2.5)-lvl)*0.2}else lvl*=0.9;
+    if(ac&&on){var nr=Math.pow(2,cents/1200);if(Math.abs(nr-rate)>0.0005){rate=nr;try{au.playbackRate=nr}catch(e){}}lp.frequency.value=1500+(mx>-900?(1-my/H):0.6)*6000;an.getFloatTimeDomainData(td);var pk=0;for(var i=0;i<td.length;i++){var m=Math.abs(td[i]);if(m>pk)pk=m}lvl+=(Math.min(1,pk*1.1)-lvl)*0.12;
+      /* a note starts when the level jumps above its recent average: send a ripple (a bigger one for a strong jump) */
+      var tn_=ac.currentTime;if(pk>0.04&&pk>env*1.45&&tn_-lastOn>0.55){lastOn=tn_;var big=pk>env*2.1?1:0;ripples.push({t:tn_,x:big?0.74:0.5+0.45*Math.random(),y:big?0.42:0.15+0.7*Math.random(),big:big,ci:Math.floor(Math.random()*3),fired:false});if(ripples.length>14)ripples.shift()}env+=(pk-env)*0.08}else lvl*=0.9;
     var engT=(held||(manual&&d>0.03))?'click outside to retune':'drag the needle';if(engT!==engK){engK=engT;if(engEl)engEl.textContent=engT}
     var tunedNow=Math.abs(cents)<2;if(tunedNow&&!tunedPrev&&settled)pulse=1;tunedPrev=tunedNow;pulse*=0.94;
-    draw(reduce?0:t);
+    /* only draw the dots while the hero can be seen: once the work section covers it (or another page is open) the canvas is skipped */
+    if(!wkEl)wkEl=document.getElementById('work');var heroSeen=!homeEl0.hidden&&(!wkEl||wkEl.getBoundingClientRect().top>0);
+    if(heroSeen)draw(reduce?0:t);
     kick*=0.9;needle.style.transform='rotate('+(cents/2+Math.sin(t*14)*d*1.5+kick).toFixed(2)+'deg)';
-    hzEl.textContent='A3 · '+(220*Math.pow(2,cents/1200)).toFixed(1)+' Hz';var rc=Math.round(cents);rd.textContent=(rc>0?'+':'')+rc+' cents';lamp.classList.toggle('on',tunedNow);document.getElementById('triL').classList.toggle('on',cents<-2);document.getElementById('triR').classList.toggle('on',cents>2);
-    state.textContent=tunedNow?'in tune':(Math.abs(cents)<10?'almost':(cents<0?'flat':'sharp'));
+    setT(hzEl,'hz','A3 · '+(220*Math.pow(2,cents/1200)).toFixed(1)+' Hz');var rc=Math.round(cents);setT(rd,'rd',(rc>0?'+':'')+rc+' cents');lamp.classList.toggle('on',tunedNow);document.getElementById('triL').classList.toggle('on',cents<-2);document.getElementById('triR').classList.toggle('on',cents>2);
+    setT(state,'st',tunedNow?'in tune':(Math.abs(cents)<10?'almost':(cents<0?'flat':'sharp')));
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
   // simple page routing: #about shows the About page, anything else shows Home
@@ -1195,23 +1208,26 @@ body.hint .tuner.dev{animation:none}
 </script>
 <script>
 // media placeholders: drop a file with the same name into images/ergoscan/ and it replaces the box
+/* alt text: data-alt if given, else the figure's caption, else the placeholder note (never the file name) */
+function altFor(m){if(m.dataset.alt)return m.dataset.alt;var f=m.closest('figure'),c=f&&f.querySelector('figcaption');if(c&&c.textContent.trim())return c.textContent.trim();
+  var ph=m.querySelector('.mph');if(!ph)return '';var t='';ph.childNodes.forEach(function(n){if(n.nodeName!=='B')t+=n.textContent});return t.trim()}
 document.querySelectorAll('.media').forEach(function(m){
   m.style.aspectRatio=m.dataset.ratio;
-  var src=m.dataset.src;
+  var src=m.dataset.src,alt=altFor(m);
   if(m.dataset.type==='video'){
     var v=document.createElement('video');
-    v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.setAttribute('playsinline','');
+    v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.setAttribute('playsinline','');if(alt)v.setAttribute('aria-label',alt);
     v.addEventListener('loadeddata',function(){m.classList.add('loaded');});
     v.addEventListener('error',function(){
       // no video yet, try a still image with the same name
-      var img=new Image();
+      var img=new Image();img.alt=alt;
       img.onload=function(){m.appendChild(img);m.classList.add('loaded');};
       img.src=src.replace(/\.mp4(\?.*)?$/,'.jpg$1');
     });
     v.src=src;m.appendChild(v);
   } else {
     var img=new Image();
-    img.alt=m.querySelector('.mph').textContent;
+    img.alt=alt;
     img.onload=function(){m.appendChild(img);m.classList.add('loaded');};
     img.src=src;
   }
@@ -1273,14 +1289,47 @@ try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e
 if(!location.hash||location.hash==='#'){scrollTo(0,0);addEventListener('load',function(){scrollTo(0,0)})}
 // keep the fixed tuner in <body>, above every section
 (function(){var t=document.getElementById('tuner');if(t&&t.parentNode!==document.body)document.body.appendChild(t)})();
-// hero to work: one gentle blue wave hanging from the hero's bottom edge. Flat at the start and end, so no blue stays behind.
-(function(){var work=document.getElementById('work');if(!work||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg'),path=document.createElementNS(NS,'path'),tk=0;
-  svg.id='workWave';svg.setAttribute('viewBox','0 0 100 100');svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('aria-hidden','true');path.setAttribute('fill','#1d12b5');svg.appendChild(path);work.insertBefore(svg,work.firstChild);
-  function draw(){tk=0;var p=Math.max(0,Math.min(1,scrollY/(innerHeight||1))),a=Math.sin(Math.PI*p),d='M 0 0';
-    for(var i=0;i<=40;i++){var x=i*2.5,w=.5+.5*Math.sin(x/100*Math.PI*3+p*Math.PI*2);d+=' L '+x.toFixed(1)+' '+(100*a*w).toFixed(2)}
-    path.setAttribute('d',d+' L 100 0 Z')}
-  addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(draw)}},{passive:true});addEventListener('resize',draw);draw()})();
+// CONTACT in the menu: glide down to the footer on the page you are on (no hash change, so the page does not switch, and the hero snap stays out of the way)
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.tocontact');if(!a)return;e.preventDefault();window.__noSnap=true;
+  document.getElementById('contact').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});setTimeout(function(){window.__noSnap=false},1500);
+  var f=document.querySelector('#contact a');if(f)setTimeout(function(){f.focus({preventScroll:true})},900)});
+// sheet snap: between the hero and the work section the page never rests halfway. A small scroll down carries the work section all the way to the top, a small scroll up carries it all the way back down
+(function(){var home=document.getElementById('home'),work=document.getElementById('work');if(!home||!work)return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,last=scrollY,anim=false,raf=0;
+  function W(){return work.getBoundingClientRect().top+scrollY}
+  function ease(t){return 1-Math.pow(1-t,3)} /* ease-out: starts at full speed so it carries on the visitor's own scroll instead of pausing first */
+  function go(to){if(reduce){scrollTo(0,to);last=to;return}anim=true;var from=scrollY,t0=performance.now(),D=Math.max(380,Math.min(700,Math.abs(to-from)*0.75));
+    (function f(now){var t=Math.max(0,Math.min(1,(now-t0)/D));/* rAF time can be a bit earlier than t0; without the clamp the first frame jumped backwards (the bounce) */scrollTo(0,from+(to-from)*ease(t));if(t<1)raf=requestAnimationFrame(f);else{anim=false;last=scrollY}})(t0)}
+  function block(e){if(anim)e.preventDefault()}
+  addEventListener('wheel',block,{passive:false});addEventListener('touchmove',block,{passive:false});
+  addEventListener('scroll',function(){if(anim||home.hidden)return;var y=scrollY,w=W(),dir=y-last;last=y;
+    if(y<=0||y>=w-1||window.__noSnap)return;
+    if(dir>0&&y>w*0.08)go(w);else if(dir<0&&y<w*0.92)go(0)},{passive:true});
+})();
+// sheet swipe: a hero taller than the screen sticks with its bottom edge showing; the hero dims as the work section covers it
+(function(){var hero=document.getElementById('hero'),tk=0,lastC='';if(!hero)return;
+  function upd(){tk=0;var h=hero.offsetHeight,vh=innerHeight;hero.style.setProperty('--heroTop',Math.min(0,vh-h)+'px');
+    var w=document.getElementById('work').getBoundingClientRect().top,c=Math.max(0,Math.min(1,1-w/vh)).toFixed(2);if(c!==lastC){lastC=c;hero.style.setProperty('--cov',c)}}
+  addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);addEventListener('load',upd);addEventListener('hashchange',function(){setTimeout(upd,0)});upd()})();
+// page transition: clicking a link to another page sends a curved blue sheet up from the bottom,
+// swaps the page underneath, then the sheet keeps rising and uncovers it. Plain JS, no library. Off with reduced motion.
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  
+  function page(h){h=(h||'').replace(/^#/,'');return h==='about'||h==='ergoscan'||h==='shleep'||h==='stuview'?h:(h===''||h==='work'?'home':null)}
+  var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg'),path=document.createElementNS(NS,'path'),busy=false;
+  svg.id='ptr';svg.setAttribute('viewBox','0 0 100 100');svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('aria-hidden','true');path.setAttribute('fill','#1d12b5');svg.appendChild(path);document.body.appendChild(svg);
+  function inE(t){return t*t*t}function outE(t){return 1-Math.pow(1-t,3)}
+  /* in: the top edge rises as a dome, then flattens at the top. out: the bottom edge rises as a dome and leaves through the top */
+  function shape(k,t){var a,e,c;if(t<.5){a=inE(t*2);e=100-50*a;c=100-100*a}else{a=outE((t-.5)*2);e=50-50*a;c=0}
+    return k?'M0 0 V'+e.toFixed(2)+' Q50 '+c.toFixed(2)+' 100 '+e.toFixed(2)+' V0 Z':'M0 100 V'+e.toFixed(2)+' Q50 '+c.toFixed(2)+' 100 '+e.toFixed(2)+' V100 Z'}
+  function run(k,ms,done){var t0=performance.now();(function f(now){var t=Math.min(1,(now-t0)/ms);path.setAttribute('d',shape(k,t));if(t<1)requestAnimationFrame(f);else done()})(t0)}
+  document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href^="#"]');
+    if(!a||ev.defaultPrevented||ev.metaKey||ev.ctrlKey||ev.shiftKey||a.id==='totop'||a.getAttribute('aria-disabled')==='true')return;
+    var href=a.getAttribute('href'),to=page(href),from=page(location.hash);if(!to||to===from)return;
+    ev.preventDefault();if(busy)return;busy=true;svg.classList.add('on');
+    run(0,620,function(){location.hash=href==='#'?'':href;if(href==='#')history.replaceState(null,'',location.pathname+location.search);
+      setTimeout(function(){run(1,620,function(){svg.classList.remove('on');path.setAttribute('d','');busy=false})},90)})},true);
+})();
 </script>
 <script>
 // case studies: click (or Enter) on a show photo or the poster opens it large; click anywhere, the close button or Esc closes it
@@ -1343,6 +1392,8 @@ async function start() {
   const heading = document.querySelector('#aboutPage .abh');
   const bio = document.querySelector('#aboutPage .bio');
   const SIZE = 0.6, STRAP = 0.2; /* desktop card size and band length, same as passed to mountLanyard below */
+  /* layout position, ignoring the scroll-reveal slide-in transforms, so the first measurement is already right and nothing jumps */
+  const absTop = el => { let y = 0; for (; el; el = el.offsetParent) y += el.offsetTop; return y; };
   const placeTip = () => {
     if (!wide.matches || !heading || !lastP) { tip.style.top = tip.style.lineHeight = bio.style.marginTop = ''; if (heading) heading.style.marginTop = ''; return; }
     /* where the resting card's top and bottom edges are, in px from the canvas top (same math as lanyard.js frameView) */
@@ -1355,16 +1406,16 @@ async function start() {
     const m = g.measureText('H'), fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) || fs * 0.9;
     const inkTop = (lh - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2 + (m.fontBoundingBoxAscent - m.actualBoundingBoxAscent);
     const cur = parseFloat(cs.marginTop) || 0;
-    const want = box.getBoundingClientRect().top + cardTop;
-    heading.style.marginTop = Math.max(0, cur + want - (heading.getBoundingClientRect().top + inkTop)) + 'px';
+    const want = absTop(box) + cardTop;
+    heading.style.marginTop = Math.max(0, cur + want - (absTop(heading) + inkTop)) + 'px';
     /* hint: a bit below the card, with room for its swing. It uses the bio's line height so the two lines match */
     const plh = parseFloat(getComputedStyle(lastP).lineHeight) || 27;
     tip.style.lineHeight = plh + 'px';
     tip.style.top = (cardBottom + 40) + 'px';
     /* push the bio down so its last line ends on the same line as the hint */
     const bioCur = parseFloat(getComputedStyle(bio).marginTop) || 0;
-    const tipBottom = box.getBoundingClientRect().top + cardBottom + 40 + plh;
-    bio.style.marginTop = Math.max(0, bioCur + tipBottom - lastP.getBoundingClientRect().bottom) + 'px';
+    const tipBottom = absTop(box) + cardBottom + 40 + plh;
+    bio.style.marginTop = Math.max(0, bioCur + tipBottom - (absTop(lastP) + lastP.offsetHeight)) + 'px';
   };
   new ResizeObserver(placeTip).observe(box); new ResizeObserver(placeTip).observe(lastP); wide.addEventListener('change', placeTip);
   setTimeout(placeTip, 0); setTimeout(placeTip, 1500); /* again after the scroll-reveal slide-in finishes */
