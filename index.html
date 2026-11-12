@@ -10,17 +10,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&text=SUJI&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=TikTok+Sans:wght@600;700;800&display=swap">
 <style>
-:root{--f:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;--black:#0a0a0a;--white:#ffffff;--y:#fff70d;--blue:#1d12b5;--pink:#ff4ba7;--soft:#6b6b6b;--beat:.42s;color-scheme:light}
+:root{--maxw:1240px;--f:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;--black:#0a0a0a;--white:#ffffff;--y:#fff70d;--blue:#1d12b5;--pink:#ff4ba7;--soft:#6b6b6b;--beat:.42s;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--white);color:var(--black);font-family:var(--f);overflow-x:hidden}
-.in{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
+.in{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
 /* hero (black) */
 .hero{background:var(--blue);color:var(--white);position:relative;overflow:hidden}
 nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font-family:'DM Mono',ui-monospace,monospace;font-size:14px;text-transform:uppercase;letter-spacing:0;gap:12px}
 nav a,nav button{color:#fff;text-decoration:none;font:inherit;background:none;border:0;padding:8px;cursor:pointer;text-transform:uppercase}
 nav .lg{font-family:'Unbounded','TikTok Sans',Helvetica,Arial,sans-serif;font-weight:800;font-size:19px;letter-spacing:.01em;line-height:1} /* SUJI as a logo: Unbounded, only these four letters are loaded */
 nav .r{display:flex;gap:6px;color:#fff}nav a:hover,nav button:hover{color:var(--y)}nav a.lg:hover{color:var(--pink)} /* the SUJI logo turns pink, the menu links stay yellow */
-nav{max-width:1240px;margin:0 auto}
+nav{max-width:var(--maxw);margin:0 auto}
 @media(max-width:480px){nav{font-size:12px;gap:8px}nav a.lg{white-space:nowrap}nav .r>a,nav .r>button{padding-left:5px;padding-right:5px}} /* four menu items + logo fit on one line on phones */nav a.lg{padding-left:0}@media(min-width:900px){nav{padding-top:28px}nav .r{gap:22px}}
 .hero .in{min-height:100svh;display:flex;flex-direction:column}
 #cv{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
@@ -171,15 +171,26 @@ footer.end .fl a:hover{color:var(--y);border-color:var(--y)}
 footer.end .fb{margin-top:clamp(56px,10vh,110px);padding-top:18px;border-top:1px solid rgba(255,255,255,.3);display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;font:400 12px 'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.6)}
 footer.end .fb a{color:inherit;text-decoration:none}footer.end .fb a:hover{color:var(--y)}
 @media(min-width:701px){
-.tuner.dev{left:auto;right:max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px));transform:none}
+.tuner.dev{left:auto;right:max(24px,calc((100% - var(--maxw))/2 + 24px),env(safe-area-inset-right,0px));transform:none}
 body.thide .tuner.dev{transform:translateY(calc(100% + 60px))}
-.snd.corner{right:calc(max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px)) + 282px);transition:right var(--beat) cubic-bezier(.7,0,.2,1),background var(--beat),color var(--beat),border-color var(--beat),transform var(--beat)}
+.snd.corner{right:calc(max(24px,calc((100% - var(--maxw))/2 + 24px),env(safe-area-inset-right,0px)) + 282px);transition:right var(--beat) cubic-bezier(.7,0,.2,1),background var(--beat),color var(--beat),border-color var(--beat),transform var(--beat)}
 body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-inset-right,0px))}
 }
 @media(min-width:1400px) and (min-height:760px){
-.tuner.dev{zoom:1.18;right:max(calc(24px/1.18),calc((100% - 1240px/1.18)/2 + 24px/1.18))}
-.snd.corner{right:calc(max(24px,calc((100% - 1240px)/2 + 24px),env(safe-area-inset-right,0px)) + 334px)}
+.tuner.dev{zoom:1.18;right:max(calc(24px/1.18),calc((100% - var(--maxw)/1.18)/2 + 24px/1.18))}
+.snd.corner{right:calc(max(24px,calc((100% - var(--maxw))/2 + 24px),env(safe-area-inset-right,0px)) + 334px)}
 body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-inset-right,0px))}
+}
+/* big screens (e.g. a 24"/27" iMac): the 1240px column looked squeezed into the middle and the tuner small and low.
+   The column grows with the screen (86% of it, up to 1920px), the hero type grows, and the tuner gets bigger and sits higher. */
+@media(min-width:1760px){:root{--maxw:clamp(1240px,86vw,1920px)}#aboutPage .bio p{max-width:44em}} /* keep About lines readable when the column is wide */
+@media(min-width:1800px) and (min-height:950px){
+h1{font-size:clamp(64px,min(13vw,19vh),240px)}
+.lit{font-size:clamp(19px,2.1vw,40px)}
+.tuner.dev{zoom:1.45;right:max(calc(24px/1.45),calc((100% - var(--maxw)/1.45)/2 + 24px/1.45));bottom:calc(10vh/1.45)}
+.snd.corner{right:calc(max(24px,calc((100% - var(--maxw))/2 + 24px),env(safe-area-inset-right,0px)) + 408px);bottom:10vh}
+body.thide .tuner.dev{transform:translateY(calc(100% + 10vh/1.45 + 60px))}
+body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 }
 </style>
 <style>
@@ -242,7 +253,7 @@ body.hint .tuner.dev{animation:none}
 @media(min-width:900px){
   .abg:has(.pic.ly-on) .abh{grid-column:1/span 7}
   .abg:has(.pic.ly-on) .bio{grid-column:1/span 6}
-  .pic.ly-on{grid-column:7/-1;grid-row:1/3;align-self:start;justify-self:stretch;max-width:none;width:auto;margin-top:calc(-1*clamp(96px,14vh,150px));height:min(100vh,880px);margin-right:calc(-1*(max(0px,(100vw - 1240px)/2) + 16px))}
+  .pic.ly-on{grid-column:7/-1;grid-row:1/3;align-self:start;justify-self:stretch;max-width:none;width:auto;margin-top:calc(-1*clamp(96px,14vh,150px));height:min(100vh,880px);margin-right:calc(-1*(max(0px,(100vw - var(--maxw))/2) + 16px))}
   .ab{overflow-x:clip}
   .pic.ly-on .ly-tip{left:44%} /* same x as the band's anchor (0.44), so it sits centered under the card */
   .abg:has(.pic.ly-on){row-gap:22px;grid-template-rows:auto 1fr} /* extra height goes below the bio, not under the heading */
