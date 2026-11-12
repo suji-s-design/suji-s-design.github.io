@@ -1,2 +1,4 @@
 .DS_Store
 *.pdf
+# the resume is meant to be public (footer link)
+!Suji_Shin_Resume.pdf
