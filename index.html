@@ -186,7 +186,8 @@ body.thide .snd.corner,body.pg-about .snd.corner{right:max(16px,env(safe-area-in
 @media(min-width:1760px){:root{--maxw:clamp(1240px,86vw,1920px)}#aboutPage .bio p{max-width:44em}} /* keep About lines readable when the column is wide */
 @media(min-width:1800px) and (min-height:950px){
 h1{font-size:clamp(64px,min(13vw,19vh),200px)}
-.rrow{margin-top:clamp(56px,3.8vw,84px)} /* the bigger name needs more room above the Product Designer pill */
+.rrow{margin-top:clamp(56px,3.8vw,84px)}
+.txt{padding-bottom:22vh} /* the hero text block sits higher, like it does on a MacBook */ /* the bigger name needs more room above the Product Designer pill */
 #name,.abh,footer.end h3{-webkit-text-stroke-width:5px} /* the outline is drawn behind the fill, so only half shows: 3px read as almost nothing at 200px */
 .lit{font-size:clamp(19px,2.1vw,40px)}
 .tuner.dev{zoom:1.45;right:max(calc(24px/1.45),calc((100% - var(--maxw)/1.45)/2 + 24px/1.45));bottom:calc(10vh/1.45)}
